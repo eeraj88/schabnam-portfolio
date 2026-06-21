@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schabnam Shor - Interior Architecture Portfolio</title>
+  <meta name="description" content="Portfolio von Schabnam Shor mit Projekten in Innenarchitektur, Raumplanung, Visualisierung, Corporate Interior und Bestandsmodernisierung.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app-scroll">
+    <header class="site-header">
+      <button class="brand nav-link" data-target="hero">Schabnam Shor</button>
+      <nav class="desktop-nav" aria-label="Hauptnavigation">
+        <button class="nav-link" data-target="aktuelles">Aktuelles</button>
+        <button class="nav-link" data-target="projekte">Projekte</button>
+        <button class="nav-link" data-target="ueber">Über mich</button>
+        <button class="nav-link" data-target="faehigkeiten">Fähigkeiten</button>
+        <button class="nav-link" data-target="werdegang">Werdegang</button>
+        <button class="nav-link" data-target="perspectives">Perspectives</button>
+        <button class="nav-pill" data-target="kontakt">Kontakt</button>
+      </nav>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <button class="mnav-link" data-target="aktuelles">Aktuelles</button>
+        <button class="mnav-link" data-target="projekte">Projekte</button>
+        <button class="mnav-link" data-target="ueber">Über mich</button>
+        <button class="mnav-link" data-target="faehigkeiten">Fähigkeiten</button>
+        <button class="mnav-link" data-target="werdegang">Werdegang</button>
+        <button class="mnav-link" data-target="perspectives">Perspectives</button>
+        <button class="mnav-pill" data-target="kontakt">Kontakt</button>
+      </div>
+    </nav>
+
+    <main>
+      <section id="hero" class="hero" data-screen-label="Hero">
+        <div class="hero-sticky">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="eyebrow"><span></span>Interior Architecture · Portfolio</div>
+              <h1 class="hero-name-video" aria-label="Schabnam Shor">
+                <span class="sr-only">Schabnam Shor</span>
+                <svg viewBox="0 0 700 214" role="img" aria-hidden="true" preserveAspectRatio="xMinYMid meet">
+                  <defs>
+                    <mask id="hero-name-mask">
+                      <rect width="700" height="214" fill="black"></rect>
+                      <text x="0" y="94" fill="white">SCHABNAM</text>
+                      <text x="0" y="196" fill="white">SHOR</text>
+                    </mask>
+                  </defs>
+                  <foreignObject width="700" height="214" mask="url(#hero-name-mask)">
+                    <video class="hero-name-video-fill" src="https://cdn.magicui.design/ocean-small.webm" autoplay muted loop playsinline preload="auto"></video>
+                  </foreignObject>
+                </svg>
+              </h1>
+              <p class="hero-lead">Innenarchitektur mit Feingefühl für Raum, Material und Atmosphäre.</p>
+              <p class="hero-text">Raumkonzepte zwischen Bestand und Vision - von Moodboards und Grundrissen bis zu bewegten Renderings und realisierbaren Raumlösungen.</p>
+              <div class="hero-actions">
+                <button class="primary" data-target="projekte">Projekte ansehen</button>
+                <button class="secondary" data-target="kontakt">Kontakt</button>
+              </div>
+            </div>
+            <div class="hero-video-col">
+              <div class="video-stage">
+                <video id="hero-video" src="assets/hero.mp4" muted preload="auto" playsinline></video>
+                <div class="video-edge left"></div>
+                <div class="video-edge right"></div>
+                <div class="video-edge bottom"></div>
+                <img class="portrait" src="assets/schabnam.png" alt="Schabnam Shor">
+                <div class="video-caption">
+                  <span id="active-num">01</span>
+                  <div>
+                    <small>Szene 01 / 01</small>
+                    <strong id="active-label">Showreel · Interior Architecture</strong>
+                  </div>
+                </div>
+                <div class="progress"><div id="hero-progress"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee" aria-hidden="true">
+        <div id="marquee-track"></div>
+      </div>
+
+      <section id="aktuelles" class="section current-section">
+        <div class="section-pattern"></div>
+        <div class="big-section-number pos-tl">01</div>
+        <div class="section-inner">
+          <div class="live-kicker">
+            <span class="ping-dot"><span></span><span></span></span>
+            <span>Aktuelles · Laufende Masterarbeit</span>
+          </div>
+          <div class="wald-grid">
+            <div>
+              <h2>Waldmannsburg</h2>
+              <p class="wald-lead">Ein verlassenes Kulturdenkmal in Neustadt an der Weinstraße - neu gedacht.</p>
+              <p>Für meine Masterarbeit darf ich die denkmalgeschützte Waldmannsburg nutzen - in Austausch mit der Stadt Neustadt an der Weinstraße. Das Gebäude steht heute leer. Erste Unterlagen - Bestandspläne und Grundrisse - habe ich von der Stadt erhalten; sie bilden die Grundlage für meinen Entwurf.</p>
+              <div class="wald-facts">
+                <div><small>Objekt</small><strong>Gasthaus Waldmannsburg</strong></div>
+                <div><small>Adresse</small><strong>Waldstraße 107 · 67434</strong></div>
+                <div><small>Status</small><strong>Kulturdenkmal</strong></div>
+              </div>
+              <button class="wald-overlay-button" id="open-docs" type="button">Unterlagen anschauen</button>
+            </div>
+            <button class="split-image-card" id="open-wald-modal" type="button" aria-label="Waldmannsburg Bilder und Unterlagen oeffnen">
+              <figure>
+                <img src="assets/aktuelles/waldmannsburg-historisch.jpg" alt="Waldmannsburg historische Ansicht">
+                <figcaption>Historische Ansicht</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/aktuelles/waldmannsburg-heute.jpg" alt="Waldmannsburg heute, Leerstand">
+                <figcaption>Heute · Leerstand</figcaption>
+              </figure>
+              <span class="split-card-hint">Click zum Vergroessern</span>
+            </button>
+          </div>
+          <blockquote class="wald-quote">
+            <small>Nachrichtliches Verzeichnis der Kulturdenkmäler · Stadt Neustadt a.d.W. · Stand Dez. 2023</small>
+            <p>„Waldstraße 107 Gasthaus Waldmannsburg (Bauliche Gesamtanlage); stattliches Wohn- und Gasthaus; sechsachsiger Krüppelwalmdachbau vor 1784, klassizistischer Balkonportikus um 1831, dreiachsige Erweiterung 1883, Gewölbekeller und Wirtschaftsgebäude, Verbreiterung und Terrassenaufbau des eingeschossigen Anbaus um 1906; Gesamtanlage mit Landschaftsgarten.“</p>
+          </blockquote>
+          <div class="city-docs-head">
+            <span>Unterlagen der Stadt</span>
+            <i></i>
+            <span>Bestandspläne · zum Vergrößern tippen</span>
+          </div>
+          <div class="doc-grid" id="doc-grid"></div>
+        </div>
+      </section>
+
+      <section id="projekte" class="section projects-section">
+        <div class="section-pattern"></div>
+        <div class="big-section-number pos-br">02</div>
+        <div class="section-inner">
+          <div class="section-head light">
+            <div>
+              <div class="section-kicker">Ausgewählte Arbeiten</div>
+              <h2>Projekte</h2>
+            </div>
+            <p>Von denkmalgeschützten Bestandsgebäuden über kreative Neubaukonzepte bis zu Corporate-Interior-Projekten: Räume, die Orientierung geben, Atmosphäre schaffen und langfristig nutzbar bleiben.</p>
+          </div>
+          <div class="project-grid" id="project-grid"></div>
+        </div>
+      </section>
+
+      <section id="ueber" class="section about-section">
+        <div class="section-pattern-dk"></div>
+        <div class="big-section-number pos-br">03</div>
+        <div class="section-inner about-grid">
+          <div class="about-image">
+            <img src="assets/ueber-mich.png" alt="Schabnam Shor am Zeichentisch">
+          </div>
+          <div class="about-text">
+            <div class="section-kicker">Über mich</div>
+            <h2 class="typewriter-h2" data-tw="Ich gestalte Räume."><span class="tw-text"></span><span class="tw-cursor" aria-hidden="true">|</span></h2>
+            <p class="about-lead">Mit dem Blick für Atmosphäre, Materialität und Licht — für Räume, die technisch funktionieren und emotional treffen.</p>
+            <p>Ich entwickle Innenräume, die funktionale Anforderungen mit Materialgefühl und einer klaren visuellen Sprache verbinden. Meine Projekte bewegen sich zwischen Bestand, Licht, Farbe, Corporate Interior und handwerklich nachvollziehbarer Umsetzung.</p>
+            <p>Dabei richte ich meinen Blick immer auf den Menschen: Wie betritt man einen Raum? Wo entsteht Ruhe? Welche Materialien tragen Identität? Aus diesen Fragen entstehen Konzepte, die technisch lesbar und atmosphärisch stark sind.</p>
+            <div class="about-tags">
+              <span>Innenarchitektur</span>
+              <span>Weimar · Kaiserslautern</span>
+              <span>Licht & Material</span>
+              <span>Bestand</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faehigkeiten" class="section skills-section">
+        <div class="section-pattern"></div>
+        <div class="big-section-number pos-bl">04</div>
+        <div class="section-inner">
+          <div class="section-head light">
+            <div>
+              <div class="section-kicker">Kompetenzen</div>
+              <h2>Fähigkeiten & Tools</h2>
+            </div>
+            <p>Planung, Visualisierung, Materialentscheidungen und Kommunikation greifen in den Projekten zusammen.</p>
+          </div>
+          <div class="skills-layout">
+            <div class="skills-card-left">
+              <h3>Software</h3>
+              <div id="software-list"></div>
+            </div>
+            <div class="skills-card-right" id="cluster-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="werdegang" class="werdegang-section">
+        <div class="section-pattern-dk"></div>
+        <div class="big-section-number pos-tr">05</div>
+        <div class="wd-header">
+          <div>
+            <div class="section-kicker">Werdegang</div>
+            <h2>Stationen &amp; Erfahrung</h2>
+          </div>
+          <div class="wd-meta">
+            <strong id="wd-year">2025</strong>
+            <div class="wd-progress-bar"><div id="wd-bar"></div></div>
+          </div>
+        </div>
+        <div class="timeline-scroll-container" id="wd-viewport"></div>
+      </section>
+
+      <section id="perspectives" class="section current-section perspectives-section">
+        <div class="section-pattern"></div>
+        <div class="big-section-number pos-bl">06</div>
+        <div class="section-inner">
+          <div class="ps-live-kicker">
+            <span class="ping-dot"><span></span><span></span></span>
+            <span>Akademisch &middot; Seminar Raumtheorie</span>
+          </div>
+          <div class="ps-intro">
+            <div class="section-kicker">Perspectives</div>
+            <h2>Experimenteller Raum<br>im Gespräch</h2>
+            <p class="ps-subhead">Ein Podcast-Gespräch über zeitgenössische Raumtheorie, experimentelle Architektur und Design als Dialog</p>
+          </div>
+          <div class="ps-grid">
+            <div class="ps-video-col">
+              <div class="ps-video-wrap">
+                <iframe src="https://www.youtube.com/embed/lV4hfcyT2D8" title="Experimenteller Raum im Gespräch – Sascha Bauer × Schabnam Shor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+              </div>
+              <div class="ps-meta">
+                <div><small>Seminar</small><strong>Raumtheorie – Experimenteller Raum im Gespräch</strong></div>
+                <div><small>Hochschule</small><strong>Kaiserslautern &middot; Prof. Benedikt Hartl</strong></div>
+                <div><small>Dauer</small><strong>ca. 45 Min</strong></div>
+                <div><small>Datum</small><strong>Januar 2025</strong></div>
+              </div>
+            </div>
+            <div class="ps-text">
+              <p>Wie geht die jüngere Generation an Gestalter*innen mit Raum um? Wie lässt sich daraus eine zeitgenössische Raumtheorie entwickeln?</p>
+              <p>In diesem Podcast-Gespräch mit Sascha Bauer (Founder, Studio Cross Scale) erkunden wir, wie experimentelle Architektur klassische Raumkonzepte adaptiert, kritisch hinterfragt und für unsere Zeit neu interpretiert.</p>
+              <p class="ps-topics-label">Wir diskutieren:</p>
+              <div class="ps-topic-tags">
+                <span>Materialität</span>
+                <span>Atmosphäre</span>
+                <span>Design als Dialog</span>
+                <span>Nachhaltigkeit</span>
+                <span>Experimentelle Ansätze</span>
+              </div>
+              <div class="ps-guest">
+                <div class="ps-guest-label">Zu Gast</div>
+                <div class="ps-guest-name">Sascha Bauer</div>
+                <div class="ps-guest-role">Architect &amp; Founder, Studio Cross Scale</div>
+                <p class="ps-guest-bio">Sascha Bauer gründete Studio Cross Scale in Berlin mit Fokus auf experimentelle, innovative Architektur. Das Büro konzentriert sich auf Materialität, Raumkonzepte und nachhaltige Praktiken.</p>
+                <a href="https://studiocrossscale.com" target="_blank" rel="noopener" class="ps-guest-link">studiocrossscale.com ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt" class="section contact-section">
+        <div class="section-pattern"></div>
+        <div class="big-section-number pos-br">07</div>
+        <div class="section-inner contact-grid">
+          <div>
+            <div class="number-kicker"><span>07</span><i></i><span>Kontakt</span></div>
+            <h2>Get in touch</h2>
+            <p class="contact-lead">Für Projektanfragen, Austausch oder Rückfragen zum Portfolio freue ich mich über eine Nachricht.</p>
+            <button id="copy-email" class="email-card">
+              <span>
+                <small>E-Mail</small>
+                <strong id="copy-state">schabnam.shor@googlemail.com</strong>
+              </span>
+              <em id="copy-feedback">Kopieren</em>
+            </button>
+            <div class="contact-meta">
+              <div><small>Standort</small><span>Neustadt a.d.W. · Kaiserslautern</span></div>
+              <div><small>Social</small><span><a href="#">LinkedIn</a><a href="#">Instagram</a></span></div>
+            </div>
+            <div class="portfolio-note">↓ Vollständiges Portfolio als PDF · folgt</div>
+          </div>
+          <form class="contact-form" id="contact-form" novalidate>
+            <label>Name<input type="text" name="name" placeholder="Ihr Name" required></label>
+            <label>E-Mail<input type="email" name="email" placeholder="name@beispiel.de" required></label>
+            <label>Betreff<input type="text" name="subject" placeholder="Betreff (optional)"></label>
+            <label>Nachricht<textarea name="message" rows="2" placeholder="Worum geht es?" required></textarea></label>
+            <div class="cf-error" id="cf-error" aria-live="polite"></div>
+            <button class="primary" id="cf-btn" type="submit">Nachricht senden</button>
+            <div class="cf-success" id="cf-success" aria-live="polite">
+              <strong>✓ Danke!</strong>
+              <p>Nachricht erfolgreich gesendet. Ich melde mich bald bei dir.</p>
+              <button type="button" class="cf-reset" id="cf-reset">Neue Nachricht schreiben</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Schabnam Shor</strong>
+        <nav>
+          <span>© 2025 Schabnam Shor</span>
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+        </nav>
+        <small>Interior Architecture Portfolio</small>
+      </div>
+    </footer>
+  </div>
+
+  <div id="project-modal" class="modal" aria-hidden="true"></div>
+  <div id="lightbox" class="lightbox" aria-hidden="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
