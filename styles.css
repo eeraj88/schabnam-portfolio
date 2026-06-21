@@ -118,7 +118,9 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 @media(max-width:880px){.hero{height:200vh}}
 @media(max-width:480px){.hero{height:160vh}.section{padding:clamp(52px,12vw,76px) 0}.ps-meta{grid-template-columns:1fr}.contact-grid{gap:32px}.skills-card-left,.cat-card{border-radius:3px}}
 /* ── Hero: fix video cut-off + portrait visibility on mobile ─── */
-@media(max-width:880px){.hero-text{display:none}.hero-copy{flex:0 0 auto}.hero-grid{padding-top:56px;gap:8px}.hero-name-video{height:clamp(90px,28vw,130px)}.hero-video-col{height:35vh}.portrait{width:90px;bottom:12px;left:12px;border-width:4px}}
+@media(max-width:880px){.hero-text{display:none}.hero-copy{flex:0 0 auto}.hero-grid{padding-top:56px;gap:8px}.hero-name-video{height:auto}.hero-video-col{height:35vh}.portrait{width:90px;bottom:12px;left:12px;border-width:4px}}
+/* ── Hero: SVG foreignObject breaks on iOS — show plain text instead ─── */
+@media(max-width:880px){.hero-name-video svg{display:none}.hero-name-video .sr-only{position:static;width:auto;height:auto;overflow:visible;clip:auto;clip-path:none;white-space:normal;display:block;font-family:Jost,sans-serif;font-size:clamp(46px,13vw,72px);font-weight:700;letter-spacing:-.02em;line-height:1.05;color:var(--ink);text-transform:uppercase}}
 /* ── Projekte: all cards same height on mobile ───────────────── */
 @media(max-width:620px){.project-cell.feature{grid-row:span 1!important}.project-cell.feature .pc-title{font-size:20px;max-width:none}.project-grid{grid-auto-rows:300px}}
 /* ── Kontakt: cards fill section width on mobile ─────────────── */

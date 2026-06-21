@@ -32,6 +32,7 @@ const timeline=[
 const software=[["VectorWorks","CAD · Grundrisse, Schnitte, Konstruktionspläne",92],["SketchUp","3D-Modelle, Explosionszeichnungen, Entwürfe",86],["Twinmotion","Innen- & Außenrenderings, Atmosphäre",84],["Adobe Photoshop","Bildbearbeitung, Moodboards, Aufbereitung",76],["Adobe InDesign","Layout, Portfolio, Projektdokumentation",72]];
 const clusters=[["Design & Konzept",["Raumkonzepte","Moodboards","Farbtheorie","Materialauswahl","Storytelling","Funktionale Planung"]],["Planung & Visualisierung",["Grundrisse","Schnitte","Renderings","3D-Visualisierung","Lichtkonzepte","Detailzeichnungen"]],["Material & Atmosphäre",["Terrazzo","Holz","Akustikpaneele","Begrünung","Licht","Möbeldesign"]],["Umsetzung & Kommunikation",["Kundenberatung","Projektkoordination","Teamarbeit","HR & Recruiting","Präsentation"]]];
 const kindColors={Studium:"#4e0000",Beruf:"#4A6858",Praktikum:"#253328",Ehrenamt:"#B85C38"};
+const isMobile=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
 const state={modalId:null,idx:0,filter:"alle",lightbox:null,videoDuration:0,target:0,frame:0,lastSeen:-1};
 const $=s=>document.querySelector(s);
 const sc=$("#app-scroll"),hero=$("#hero"),video=$("#hero-video"),bar=$("#hero-progress");
@@ -57,7 +58,7 @@ function renderWaldModal(){const lb=$("#lightbox"),tabs=[["alle","Alle"],["fotos
 function openDocsOverlay(){openWaldModal("grundrisse")}
 function closeLightbox(){state.lightbox=null;document.body.style.overflow="";$("#lightbox").classList.remove("open");$("#lightbox").setAttribute("aria-hidden","true")}
 function computeHero(){const total=hero.offsetHeight-sc.clientHeight;let p=total>0?sc.scrollTop/total:0;p=Math.max(0,Math.min(1,p));const dur=state.videoDuration||video.duration||0;state.target=dur?p*Math.max(0,dur-.04):0;bar.style.transform=`scaleX(${p.toFixed(4)})`}
-function driveVideo(){if(!video||video.readyState<2)return;const diff=state.target-video.currentTime;const adiff=Math.abs(diff);if(adiff<.05){if(!video.paused)video.pause();return}if(diff>0){video.playbackRate=Math.min(9,Math.max(1,diff*4));if(video.paused){const pr=video.play();if(pr&&pr.catch)pr.catch(()=>{})}}else{if(!video.paused)video.pause();try{video.currentTime=video.currentTime+diff*.3}catch(e){}}}
+function driveVideo(){if(!video||video.readyState<2)return;const diff=state.target-video.currentTime;const adiff=Math.abs(diff);if(adiff<.05){if(!isMobile&&!video.paused)video.pause();return}if(isMobile){try{video.currentTime=state.target}catch(e){}return}if(diff>0){video.playbackRate=Math.min(9,Math.max(1,diff*4));if(video.paused){const pr=video.play();if(pr&&pr.catch)pr.catch(()=>{})}}else{if(!video.paused)video.pause();try{video.currentTime=video.currentTime+diff*.3}catch(e){}}}
 function layoutTimeline(){}
 function scrubTimeline(){}
 function loop(){state.frame++;computeHero();driveVideo();requestAnimationFrame(loop)}
