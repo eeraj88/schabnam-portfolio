@@ -80,7 +80,7 @@ $("#copy-email").addEventListener("click",async()=>{try{await navigator.clipboar
     errorEl.textContent='';
     btn.disabled=true;
     btn.textContent='Wird gesendet…';
-    fetch('https://formspree.io/f/meebjejp',{
+    fetch('https://formspree.io/f/mpqgzzer',{
       method:'POST',
       headers:{'Accept':'application/json'},
       body:new FormData(form)
