@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio von Schabnam Shor mit Projekten in Innenarchitektur, Raumplanung, Visualisierung, Corporate Interior und Bestandsmodernisierung.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -42,53 +42,19 @@
     <main>
       <section id="hero" class="hero" data-screen-label="Hero">
         <div class="hero-sticky">
-          <div class="hero-grid">
-            <div class="hero-copy">
-              <div class="eyebrow"><span></span>Interior Architecture · Portfolio</div>
-              <h1 class="hero-name-video" aria-label="Schabnam Shor">
-                <span class="sr-only">Schabnam Shor</span>
-                <svg viewBox="0 0 700 214" role="img" aria-hidden="true" preserveAspectRatio="xMinYMid meet">
-                  <defs>
-                    <mask id="hero-name-mask">
-                      <rect width="700" height="214" fill="black"></rect>
-                      <text x="0" y="94" fill="white">SCHABNAM</text>
-                      <text x="0" y="196" fill="white">SHOR</text>
-                    </mask>
-                  </defs>
-                  <foreignObject width="700" height="214" mask="url(#hero-name-mask)">
-                    <video class="hero-name-video-fill" src="https://cdn.magicui.design/ocean-small.webm" autoplay muted loop playsinline preload="auto"></video>
-                  </foreignObject>
-                </svg>
-              </h1>
-              <p class="hero-lead">Innenarchitektur mit Feingefühl für Raum, Material und Atmosphäre.</p>
-              <p class="hero-text">Raumkonzepte zwischen Bestand und Vision - von Moodboards und Grundrissen bis zu bewegten Renderings und realisierbaren Raumlösungen.</p>
-              <div class="hero-actions">
-                <button class="primary" data-target="projekte">Projekte ansehen</button>
-                <button class="secondary" data-target="kontakt">Kontakt</button>
-              </div>
-            </div>
-            <div class="hero-video-col">
-              <div class="video-stage">
-                <video id="hero-video" src="assets/hero.mp4" muted preload="auto" playsinline></video>
-                <div class="video-edge left"></div>
-                <div class="video-edge right"></div>
-                <div class="video-edge bottom"></div>
-                <img class="portrait" src="assets/schabnam.png" alt="Schabnam Shor">
-                <div class="video-caption">
-                  <span id="active-num">01</span>
-                  <div>
-                    <small>Szene 01 / 01</small>
-                    <strong id="active-label">Showreel · Interior Architecture</strong>
-                  </div>
-                </div>
-                <div class="progress"><div id="hero-progress"></div></div>
-              </div>
+          <canvas id="hero-canvas"></canvas>
+          <img id="hero-portrait" class="hero-portrait" src="assets/schabnam-remove-bg-io.png" alt="Schabnam Shor">
+          <div id="hero-right-panel" class="hero-right-panel">
+            <div id="hero-name-reveal" class="hero-name-reveal">
+              <div class="hnr-name"><span>SCHABNAM</span><span>SHOR</span></div>
+              <div class="hnr-sub">INTERIOR ARCHITECT</div>
             </div>
           </div>
+          <div class="hero-scroll-bar"><div id="hero-progress"></div></div>
         </div>
       </section>
 
-      <div class="marquee" aria-hidden="true">
+      <div class="marquee" aria-hidden="true" style="display:none">
         <div id="marquee-track"></div>
       </div>
 
@@ -101,35 +67,27 @@
             <span>Aktuelles · Laufende Masterarbeit</span>
           </div>
           <div class="wald-grid">
-            <div>
-              <h2>Waldmannsburg</h2>
-              <p class="wald-lead">Ein verlassenes Kulturdenkmal in Neustadt an der Weinstraße - neu gedacht.</p>
-              <p>Für meine Masterarbeit darf ich die denkmalgeschützte Waldmannsburg nutzen - in Austausch mit der Stadt Neustadt an der Weinstraße. Das Gebäude steht heute leer. Erste Unterlagen - Bestandspläne und Grundrisse - habe ich von der Stadt erhalten; sie bilden die Grundlage für meinen Entwurf.</p>
-              <div class="wald-facts">
-                <div><small>Objekt</small><strong>Gasthaus Waldmannsburg</strong></div>
-                <div><small>Adresse</small><strong>Waldstraße 107 · 67434</strong></div>
-                <div><small>Status</small><strong>Kulturdenkmal</strong></div>
+            <div class="wald-left-col">
+              <div>
+                <h2>Waldmannsburg</h2>
+                <p class="wald-lead">Ein verlassenes Kulturdenkmal in Neustadt an der Weinstraße - neu gedacht.</p>
+                <p>Für meine Masterarbeit darf ich die denkmalgeschützte Waldmannsburg nutzen - in Austausch mit der Stadt Neustadt an der Weinstraße. Das Gebäude steht heute leer. Erste Unterlagen - Bestandspläne und Grundrisse - habe ich von der Stadt erhalten; sie bilden die Grundlage für meinen Entwurf.</p>
+                <div class="wald-facts">
+                  <div><small>Objekt</small><strong>Gasthaus Waldmannsburg</strong></div>
+                  <div><small>Adresse</small><strong>Waldstraße 107 · 67434</strong></div>
+                  <div><small>Status</small><strong>Kulturdenkmal</strong></div>
+                </div>
               </div>
+              <button class="wald-mehr-btn" id="wald-mehr-btn" type="button">Mehr Infos →</button>
             </div>
             <div class="wald-photos">
-              <button class="wald-photo-card" id="open-wald-1" type="button">
+              <div class="wald-photo-card" id="open-wald-1">
                 <figure>
                   <img src="assets/aktuelles/waldmannsburg-historisch.jpg" alt="Waldmannsburg historische Ansicht">
-                  <figcaption>Historische Ansicht</figcaption>
                 </figure>
-              </button>
-              <button class="wald-photo-card" id="open-wald-2" type="button">
-                <figure>
-                  <img src="assets/aktuelles/waldmannsburg-heute.jpg" alt="Waldmannsburg heute, Leerstand">
-                  <figcaption>Heute · Leerstand</figcaption>
-                </figure>
-              </button>
+              </div>
             </div>
           </div>
-          <blockquote class="wald-quote">
-            <small>Nachrichtliches Verzeichnis der Kulturdenkmäler · Stadt Neustadt a.d.W. · Stand Dez. 2023</small>
-            <p>„Waldstraße 107 Gasthaus Waldmannsburg (Bauliche Gesamtanlage); stattliches Wohn- und Gasthaus; sechsachsiger Krüppelwalmdachbau vor 1784, klassizistischer Balkonportikus um 1831, dreiachsige Erweiterung 1883, Gewölbekeller und Wirtschaftsgebäude, Verbreiterung und Terrassenaufbau des eingeschossigen Anbaus um 1906; Gesamtanlage mit Landschaftsgarten."</p>
-          </blockquote>
         </div>
       </section>
 
@@ -153,19 +111,21 @@
         <div class="big-section-number pos-br">03</div>
         <div class="section-inner about-grid">
           <div class="about-image">
-            <img src="assets/ueber-mich.png" alt="Schabnam Shor am Zeichentisch">
+            <img src="assets/ueber-mich-remove-bg-io (4).png" alt="Schabnam Shor am Zeichentisch">
           </div>
           <div class="about-text">
             <div class="section-kicker">Über mich</div>
             <h2 class="typewriter-h2" data-tw="Ich gestalte Räume."><span class="tw-text"></span><span class="tw-cursor" aria-hidden="true">|</span></h2>
             <p class="about-lead">Mit dem Blick für Atmosphäre, Materialität und Licht — für Räume, die technisch funktionieren und emotional treffen.</p>
-            <p>Ich entwickle Innenräume, die funktionale Anforderungen mit Materialgefühl und einer klaren visuellen Sprache verbinden. Meine Projekte bewegen sich zwischen Bestand, Licht, Farbe, Corporate Interior und handwerklich nachvollziehbarer Umsetzung.</p>
-            <p>Dabei richte ich meinen Blick immer auf den Menschen: Wie betritt man einen Raum? Wo entsteht Ruhe? Welche Materialien tragen Identität? Aus diesen Fragen entstehen Konzepte, die technisch lesbar und atmosphärisch stark sind.</p>
+            <p>Ich entwickle Innenräume, die funktionale Anforderungen mit Materialgefühl und einer klaren visuellen Sprache verbinden. Meine Projekte bewegen sich zwischen Bestand, Licht, Farbe, Corporate Interior und handwerklich nachvollziehbarer Umsetzung — von der Bachelorarbeit in einer denkmalgeschützten Bibliothek bis zur Corporate-Welt von Team Rossberg Engineering.</p>
+            <p>Neben dem Studium habe ich praktische Erfahrung in Indonesien gesammelt und arbeite heute parallel als Recruiterin. Mehrsprachigkeit und interkultureller Austausch prägen meinen Blick auf Räume und Menschen.</p>
             <div class="about-tags">
-              <span>Innenarchitektur</span>
-              <span>Weimar · Kaiserslautern</span>
+              <span>Innenarchitektur MA</span>
+              <span>Kaiserslautern</span>
               <span>Licht & Material</span>
-              <span>Bestand</span>
+              <span>Bestand & Denkmal</span>
+              <span>Auslandserfahrung · Indonesien</span>
+              <span>Mehrsprachig</span>
             </div>
           </div>
         </div>
@@ -309,6 +269,33 @@
 
   <div id="project-modal" class="modal" aria-hidden="true"></div>
   <div id="lightbox" class="lightbox" aria-hidden="true"></div>
+  <div id="wald-info-overlay" class="wald-info-overlay" aria-hidden="true">
+    <div class="wald-info-panel">
+      <button class="wald-info-close" id="wald-info-close" type="button" aria-label="Schließen">✕</button>
+      <div class="wald-info-kicker">Laufende Masterarbeit · Neustadt a.d.W.</div>
+      <h2 class="wald-info-title">Waldmannsburg</h2>
+      <div class="wald-info-grid">
+        <div class="wald-info-block">
+          <h3>Lage</h3>
+          <p>Das Gebäude befindet sich innerhalb des Stadtviertels Hambacher Höhe auf dem Nollensattel, der wiederum einen östlichen Ausläufer des Nollenkopf bildet. Es stellt eine Gesamtanlage mit Landschaftsgarten dar.</p>
+        </div>
+        <div class="wald-info-block">
+          <h3>Geschichte</h3>
+          <p>Das Bauwerk wurde vor 1784 errichtet. Benannt nach seinem Erbauer, dem pensionierten französischen Offizier Francois Ignace de Waldmann (1722–1801). Der frühere bayerische König Ludwig I. feierte dort im Jahr 1852 seinen Geburtstag. Seit 1997 steht das Gebäude leer.</p>
+        </div>
+        <div class="wald-info-block">
+          <h3>Architektur</h3>
+          <p>Stattliches Wohn- und Gasthaus; sechsachsiger Krüppelwalmdachbau vor 1784. Klassizistischer Balkonportikus um 1831. Dreiachsige Erweiterung 1883. Gewölbekeller und Wirtschaftsgebäude. Verbreiterung und Terrassenaufbau des eingeschossigen Anbaus um 1906.</p>
+        </div>
+      </div>
+      <div class="wald-info-meta">
+        <div><small>Objekt</small><strong>Gasthaus Waldmannsburg</strong></div>
+        <div><small>Adresse</small><strong>Waldstraße 107 · 67434 Neustadt a.d.W.</strong></div>
+        <div><small>Baujahr</small><strong>vor 1784</strong></div>
+        <div><small>Status</small><strong>Kulturdenkmal · Leerstand seit 1997</strong></div>
+      </div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

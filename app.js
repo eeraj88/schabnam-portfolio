@@ -8,16 +8,17 @@ const waldAssets=[
   {tab:"fotos",label:"Aktuelle Ansicht",src:"assets/aktuelles/waldmannsburg-heute.jpg"}
 ];
 const projects=[
-{id:"modernisierung",title:"Modernisierung mit Feingefühl",year:"2025",type:"Bachelorarbeit",catLabel:"Interior · Bestand",role:"Bachelor-Projekt · Betreuung Prof. Yvonne Fehling",place:"Café der Badischen Landesbibliothek",programs:["VectorWorks","SketchUp","Twinmotion"],blurb:"Behutsame Modernisierung eines denkmalgeschützten Cafés - Bestand bewahren, modern weiterdenken.",concept:"Das denkmalgeschützte Café der Badischen Landesbibliothek wird modernisiert, ohne seinen Charakter zu verlieren. Historische Elemente wie rote Fassade, Fenster, Boden und Säulen bleiben erhalten und werden durch moderne, nachhaltige Eingriffe ergänzt.",measures:["Historische Substanz bewahren, moderne Nutzung ermöglichen","Schwarze Leuchtengestelle als Kontrast, auf unterschiedlichen Höhen abgehängt","Fensternischen als ruhige Rückzugsorte und zusätzliche Sitzplätze","Natürliches Licht bewusst als atmosphärisches Element integriert","Außenmöblierung nimmt Eigenschaften des Bestands auf und verbindet Innen- und Außenraum"],materials:["Terrazzo","Flexible Möblierung","Begrünung & Pflanzen","Angepasste Bestandsmöbel","Schwarze Leuchtengestelle"],result:"Ein einladendes Café, das historische Substanz, nachhaltige Materialien und zeitgemäße Nutzung harmonisch verbindet.",images:["modernisierung-01.jpeg|rendering|Außenfassade","modernisierung-03.jpeg|rendering|Café-Raum","modernisierung-04.jpeg|rendering|Innenraum","modernisierung-02.jpeg|rendering|Innenhof","modernisierung-05.jpeg|rendering|Sitzbereich","modernisierung-06.jpeg|rendering|Fensterplatz","modernisierung-07.jpeg|rendering|Theke & Terrazzo","modernisierung-08.jpeg|plan|Grundriss","modernisierung-09.jpeg|plan|Fassadenansicht","modernisierung-10.jpeg|plan|Schnitt A","modernisierung-11.jpeg|plan|Schnitt B"]},
+{id:"modernisierung",title:"Modernisierung mit Feingefühl",year:"2025",type:"Bachelorarbeit",catLabel:"Interior · Bestand",role:"Bachelor-Projekt · Betreuung Prof. Yvonne Fehling",place:"Café der Badischen Landesbibliothek",programs:["VectorWorks","SketchUp","Twinmotion"],blurb:"Behutsame Modernisierung eines denkmalgeschützten Cafés - Bestand bewahren, modern weiterdenken.",concept:"Das denkmalgeschützte Café der Badischen Landesbibliothek wird modernisiert, ohne seinen Charakter zu verlieren. Historische Elemente wie rote Fassade, Fenster, Boden und Säulen bleiben erhalten und werden durch moderne, nachhaltige Eingriffe ergänzt.",measures:["Historische Substanz bewahren, moderne Nutzung ermöglichen","Schwarze Leuchtengestelle als Kontrast, auf unterschiedlichen Höhen abgehängt","Fensternischen als ruhige Rückzugsorte und zusätzliche Sitzplätze","Natürliches Licht bewusst als atmosphärisches Element integriert","Außenmöblierung nimmt Eigenschaften des Bestands auf und verbindet Innen- und Außenraum"],materials:["Terrazzo","Flexible Möblierung","Begrünung & Pflanzen","Angepasste Bestandsmöbel","Schwarze Leuchtengestelle"],result:"Ein einladendes Café, das historische Substanz, nachhaltige Materialien und zeitgemäße Nutzung harmonisch verbindet.",images:["modernisierung-baa-aussen.jpg|rendering|Außenfassade","modernisierung-baa-innen.jpg|rendering|Innenraum · BAA","modernisierung-lr-01.jpg|rendering|Café · Atmosphäre","modernisierung-lr-02.jpg|rendering|Innenraum · Licht","modernisierung-lr-03.jpg|rendering|Sitzbereich","modernisierung-lr-04.jpg|rendering|Detail","modernisierung-lr-05.jpg|rendering|Fensterplatz","modernisierung-lr-06.jpg|rendering|Übergang","modernisierung-isometrie.png|plan|Isometrie · Möbel","modernisierung-08.jpeg|plan|Grundriss","modernisierung-09.jpeg|plan|Fassadenansicht","modernisierung-10.jpeg|plan|Schnitt A","modernisierung-11.jpeg|plan|Schnitt B"]},
 {id:"creative-quarter",title:"Creative Quarter",year:"2024",type:"Großer Entwurf",catLabel:"Interior · Neubau",role:"Großer Entwurf · Betreuung Prof. Gregor Rutrecht",place:"Mühlenstraße, Kaiserslautern",programs:["VectorWorks","SketchUp","Twinmotion"],blurb:"Ein dreistöckiges Zentrum für Kreativität - Café, Workshops, Startups und Galerie unter einem Dach.",concept:"Das Creative Quarter ist ein dreistöckiges Zentrum für Kreativität und Innovation. Café, Workshop-Räume, Startup-Flächen und Galerie verschmelzen zu einem offenen Ort für Austausch und Zusammenarbeit.",measures:["Erdgeschoss als Café zum Entspannen und Vernetzen","Workshop-Räume und dynamische Startup-Flächen in den oberen Etagen","Galerie als Plattform für studentische Kunst und junge Talente","Grenzen zwischen Disziplinen bewusst aufheben"],materials:["Offene Raumstruktur","Helle Flächen","Galerie-Wände","Flexible Möblierung"],result:"Ein lebendiger Knotenpunkt, der Lernen, Arbeit, Austausch und Präsentation unter einem Dach verbindet.",images:["creative-quarter-01.jpeg|modell|Axonometrie","creative-quarter-03.jpeg|plan|Grundriss EG","creative-quarter-04.jpeg|plan|Grundriss OG","creative-quarter-06.png|plan|Raumkonzept","creative-quarter-07.jpg|plan|Gebäudeschnitt"]},
 {id:"sparkasse",title:"Sparkasse Renovation",year:"2022",type:"Beleuchtungskonzept",catLabel:"Lighting · Renovierung",role:"Gruppenarbeit · Betreuung Prof. Alexander Klein",place:"Sparkasse Filiale",programs:["VectorWorks","SketchUp","Twinmotion"],blurb:"Ein neues Lichtkonzept für eine einladendere, angenehmere und technisch optimierte Atmosphäre.",concept:"Im Renovierungsprojekt der Sparkasse liegt der Schwerpunkt auf einem verbesserten Beleuchtungsdesign - für eine einladendere und angenehmere Atmosphäre für Kundschaft und Mitarbeitende.",measures:["Mehr natürliches Licht: vergrößerte Fenster und Oberlichter","Energieeffiziente LED-Technik mit Dimmsystemen","Tageslichtsensoren passen das Licht an Tageszeit und Nutzung an","Abgehängte Decken verbessern Akustik, Isolierung und Technikzugang"],materials:["LED-Leuchten","Tageslichtsensoren","Abgehängte Decken","Oberlichter"],result:"Ein nutzerfreundlicheres, angenehmeres und technisch optimiertes Raumkonzept mit gleichmäßiger Lichtverteilung.",images:["creative-quarter-02.png|rendering|Innenraum","sparkasse-01.png|rendering|Lounge & Lamellen","sparkasse-02.png|rendering|Schnitt & Theke","sparkasse-03.png|plan|Grundriss","sparkasse-04.png|plan|Beleuchtungsplan","sparkasse-05.png|detail|Schnitt Detail","sparkasse-06.png|detail|Lichtkonzept"]},
 {id:"functional-furniture",title:"Functional Furniture",year:"2022",type:"Möbeldesign",catLabel:"Furniture · Produktdesign",role:"Gruppenprojekt · Betreuung Prof. Yvonne Fehling",place:"Krankenhauszimmer",programs:["VectorWorks"],blurb:"Ein multifunktionaler Krankenhaus-Schrank - Stauraum, Licht, Arbeitstisch und Ladestation in einem.",concept:"Das Projekt entwickelt einen multifunktionalen Krankenhaus-Schrank, der sich vom sterilen Krankenhausstil abhebt und exakt in eine vorgegebene Nische passt.",measures:["Großzügiger Stauraum für persönliche und medizinische Dinge","Integrierte Beleuchtung, verstellbarer Tisch und Ladestation","Abgerundete Ecken und Kanten zur Unfallvermeidung","Langlebige, leicht zu reinigende Oberflächen"],materials:["Langlebige Oberflächen","Integrierte LED","Verstellbarer Tisch","Ladestation"],result:"Ein Möbel, das Patientenzimmer funktionaler, wohnlicher und sicherer macht - belegt durch ein handgebautes Modell.",images:["functional-furniture-01.png|rendering|Schrank im Raum","functional-furniture-02.png|modell|Handgebautes Modell","functional-furniture-03.png|plan|Konstruktion","functional-furniture-04.png|plan|Grundriss & Nische","functional-furniture-05.png|detail|Ansichten"]},
 {id:"magic-marvel",title:"Magic Marvel",year:"2022",type:"Messestand",catLabel:"Exhibition · Messestand",role:"Entwurf · Betreuung Prof. Gregor Rutrecht",place:"Buchmesse / Convention",programs:["VectorWorks","SketchUp","Twinmotion"],blurb:"Ein immersiver Marvel-Stand, der schon aus der Ferne anzieht und im Inneren eine Markenwelt schafft.",concept:"Der Entwurf entwickelt einen Marvel-Stand für Buchmesse oder Convention - ein fesselnder Raum mit geheimnisvoller Fassade aus weißen Bildschirmen, auf denen lebensgroße Charaktere erscheinen.",measures:["Äußere Hülle aus weißen Bildschirmen mit Überraschungsmoment","Elegantes, modernes Interior mit Anspielungen auf Marvels Stil","Snackbar, Leseecke für Comics und Überraschungsauftritte","Obere Ebene als Planetarium - Comic-Zeichner bei der Arbeit erlebbar"],materials:["LED-Screens","Dynamische Beleuchtung","Comic-Grafiken","Lesezonen"],result:"Ein immersiver Raum, der das Marvel-Universum räumlich erfahrbar macht - von der Snackbar bis zur Erlebnisplattform.",images:["magic-marvel-01.png|rendering|Fassade & Screens","magic-marvel-02.jpeg|rendering|Leseecke","magic-marvel-03.jpeg|rendering|Snackbar"]},
 {id:"tre",title:"TRE Vehicle Dynamics Interior",year:"2023-2024",type:"Corporate Interior",catLabel:"Corporate · Team Rossberg",role:"Interior Designer · Team Rossberg Engineering",place:"Team Rossberg Engineering",programs:["Moodboards","VectorWorks","Twinmotion"],blurb:"Corporate-Interior für Team Rossberg - Empfang, Büro, Pausenraum und Atrium aus vier Moodboard-Welten.",concept:"Corporate-Interior für Team Rossberg Engineering - vom Empfangsbereich über Büro und Pausenraum bis zum Atrium. Vier Moodboard-Welten bilden die gestalterische Basis.",measures:["Markenstarke Lobby mit Akustiksegeln, Holzlamellen und Trophäeninszenierung","Porsche-Büro mit Pflanzenkonzept, Mosswand und Akustikpaneelen","Pausenraum mit warmer, wohnlicher Aufenthaltsatmosphäre","Atrium als aktiver Begegnungsort mit klaren Funktionszonen"],materials:["Holzlamellen","Akustiksegel & Deckenpaneele","Mosswand & Pflanzen","Energy-Green Akzente","Terrazzo"],result:"Aus uneinheitlichen Räumen entsteht eine durchgängige, markenstarke Corporate-Welt für Team Rossberg, TRE und RXR.",images:["tre-01.jpg|rendering|Atrium & Showcar","tre-02.jpg|rendering|Empfang","tre-03.jpg|rendering|Empfang · RXR","tre-04.jpg|rendering|Empfang · Lounge","tre-05.jpg|rendering|Pausenraum","tre-06.jpg|rendering|Pausenraum · Begrünung","tre-07.jpg|rendering|Atrium · Bar","tre-08.jpg|rendering|Atrium · Lounge","tre-09.jpg|rendering|Besprechung","tre-10.jpg|rendering|Besprechung · TRE-Wand","tre-11.jpg|rendering|Besprechung · Galerie","tre-14.jpg|modell|Moodboard · Industrial","tre-15.jpg|modell|Moodboard · Mysterious Glamour","tre-16.jpg|modell|Moodboard · Scandinavian","tre-17.jpg|modell|Moodboard · Clean White","tre-18.jpg|detail|Bestand · Atrium","tre-19.jpg|detail|Bestand · Empfang","tre-12.jpg|plan|Grundriss","tre-13.jpg|plan|Markenwand"]},
-{id:"dach",title:"Tradition tragen, Zukunft dämmen",year:"2025-2026",type:"Bauen im Bestand",catLabel:"Bestand · Dachsanierung",role:"Studienprojekt · Prof. Fabian A. Wagner, Ass. Louise Daussy · mit Jule Wagenbrenner",place:"Landwirtschaftliches Gebäude, Kreimbach",programs:["Bestandsanalyse","1:1-Modell","Ubakus"],blurb:"Ein historischer, ungedämmter Dachbestand - mit biobasiertem, rückbaubarem Schichtaufbau neu gedacht.",concept:"Das Projekt transformiert einen historischen Dachaufbau im Bestand: ein landwirtschaftliches Gebäude in Kreimbach mit einfacher Falzziegeldeckung, sichtbaren Eichen-Sparren und fehlender bauphysikalischer Ergänzung.",measures:["Erhalt der sichtbaren Eichen-Sparren als primäre, tragende Struktur","Diffusionsoffener, mechanisch befestigter und weitgehend reversibler Aufbau","Wiederverwendete Tonfalzziegel von F. v. Müller als äußere Witterungsschicht","Schichtfolge: Hanfbauplatte, Schilfrohr-Dämmplatte, Holzfaserplatte, Konter- und Traglattung","1:1-Modell auf Europalette mit zugeschnittenen Eichenbalken"],materials:["Wiederverwendete Tonfalzziegel","GUTEX Ultratherm Holzfaser","Hiss Reet Schilfrohr","Hemplith Hanfbauplatte","Eichen-Sparren"],result:"Denkmalnähe, Ökologie und Bauphysik werden in einem zeitgemäßen Dachsystem zusammengeführt.",images:["dach-01.jpg|detail|Bestandsdach · Eichen-Sparren","dach-02.jpg|modell|1:1-Modell · Schichtaufbau","dach-03.jpg|modell|Schichtaufbau · Detail","dach-04.jpg|detail|Tonfalzziegel · F. v. Müller","dach-05.jpg|detail|Schilfrohr-Dämmplatte","dach-06.jpg|modell|Zuschnitt Eichenbalken","dach-07.jpg|modell|Modellbau · Prozess","dach-08.jpg|modell|Schilfrohr einbauen","dach-09.jpg|plan|Bauteilaufbau & Schutzwerte","dach-10.jpg|plan|Temperaturverlauf & Taupunkt","dach-11.jpg|plan|Ökobilanz","dach-12.jpg|plan|Kostenschätzung"]}
+{id:"dach",title:"Tradition tragen, Zukunft dämmen",year:"2025-2026",type:"Bauen im Bestand",catLabel:"Bestand · Dachsanierung",role:"Studienprojekt · Prof. Fabian A. Wagner, Ass. Louise Daussy · mit Jule Wagenbrenner",place:"Landwirtschaftliches Gebäude, Kreimbach",programs:["Bestandsanalyse","1:1-Modell","Ubakus"],blurb:"Ein historischer, ungedämmter Dachbestand - mit biobasiertem, rückbaubarem Schichtaufbau neu gedacht.",concept:"Das Projekt transformiert einen historischen Dachaufbau im Bestand: ein landwirtschaftliches Gebäude in Kreimbach mit einfacher Falzziegeldeckung, sichtbaren Eichen-Sparren und fehlender bauphysikalischer Ergänzung.",measures:["Erhalt der sichtbaren Eichen-Sparren als primäre, tragende Struktur","Diffusionsoffener, mechanisch befestigter und weitgehend reversibler Aufbau","Wiederverwendete Tonfalzziegel von F. v. Müller als äußere Witterungsschicht","Schichtfolge: Hanfbauplatte, Schilfrohr-Dämmplatte, Holzfaserplatte, Konter- und Traglattung","1:1-Modell auf Europalette mit zugeschnittenen Eichenbalken"],materials:["Wiederverwendete Tonfalzziegel","GUTEX Ultratherm Holzfaser","Hiss Reet Schilfrohr","Hemplith Hanfbauplatte","Eichen-Sparren"],result:"Denkmalnähe, Ökologie und Bauphysik werden in einem zeitgemäßen Dachsystem zusammengeführt.",images:["dach-01.jpg|detail|Bestandsdach · Eichen-Sparren","dach-02.jpg|modell|1:1-Modell · Schichtaufbau","dach-03.jpg|modell|Schichtaufbau · Detail","dach-04.jpg|detail|Tonfalzziegel · F. v. Müller","dach-05.jpg|detail|Schilfrohr-Dämmplatte","dach-06.jpg|modell|Zuschnitt Eichenbalken","dach-07.jpg|modell|Modellbau · Prozess","dach-08.jpg|modell|Schilfrohr einbauen","dach-09.jpg|plan|Bauteilaufbau & Schutzwerte","dach-10.jpg|plan|Temperaturverlauf & Taupunkt","dach-11.jpg|plan|Ökobilanz","dach-12.jpg|plan|Kostenschätzung"]},
+{id:"exr",title:"Experimenteller Raum — Schnee",year:"2024",type:"Installation",catLabel:"Experimental · Modell",role:"Gruppenarbeit · Sophie Rebholz · Seminar Experimenteller Raum",place:"Hochschule Kaiserslautern",programs:["Handwerkliches Modell","Fotodokumentation"],blurb:"Experimenteller Raum aus Schnee — physisches Modell und atmosphärische Installation.",concept:"Der experimentelle Raum 'Schnee' untersucht Materialität und Raumgefühl durch ein physisch erfahrbares Modell. Flüchtige Qualität des Materials, Lichtwirkung und das Erleben von Raum ohne fest definierte Wände stehen im Mittelpunkt.",measures:["Schnee als flüchtiges, wandelbares Material","Licht und Schatten als raumgestaltende Elemente","Raum ohne feste Wände und Decken erleben","Fotodokumentation der Installation vor Ort"],materials:["Schnee","Natürliches Licht","Physisches Modell"],result:"Eine atmosphärische Installation, die Vergänglichkeit und Materialität räumlich erfahrbar macht.",images:["exr-m-12.jpg|modell|Modell · Final","exr-m-08.jpg|modell|Modell · Perspektive","exr-m-05.jpg|modell|Modell · Überblick","exr-01.jpg|modell|Installation vor Ort","exr-m-01.jpg|modell|Modell · Ansicht","exr-m-02.jpg|modell|Modell · Detail","exr-m-03.jpg|modell|Modell · Struktur","exr-m-04.jpg|modell|Modell · Textur","exr-m-06.jpg|modell|Modell · Licht","exr-m-07.jpg|modell|Modell · Innen","exr-m-09.jpg|modell|Modell · Schnee","exr-m-10.jpg|modell|Modell · Form","exr-m-11.jpg|modell|Modell · Prozess"]}
 ].map((p,i)=>({...p,sheet:`PRJ-${String(i+1).padStart(2,"0")}`,images:p.images.map(s=>{const [file,cat,label]=s.split("|");return{src:`assets/projekte/${file}`,cat,label,catLabel:catMeta[cat].label,kind:"image"}})}));
-const projectBentoOrder=["creative-quarter","sparkasse","functional-furniture","modernisierung","magic-marvel","dach","tre"];
-const projectBentoClasses={modernisierung:"feature", "magic-marvel":"tall", dach:"tall", tre:"wide"};
+const projectBentoOrder=["modernisierung","tre","creative-quarter","dach","functional-furniture","sparkasse","exr"];
+const projectBentoClasses={modernisierung:"feature",tre:"tall",sparkasse:"wide"};
 const timeline=[
 ["03.2025 - heute","Master of Arts Innenarchitektur","Hochschule Kaiserslautern","Studium",["Vertiefung Interior Architecture","Raumkonzepte, Materialität und atmosphärische Gestaltung"]],
 ["08.2023 - heute","Recruiter & HR Administrator","Reline Europe GmbH","Beruf",["Bewerbungsmanagement und Koordination von Gesprächen","Kommunikation mit Bewerbern, HR-Administration"]],
@@ -32,16 +33,131 @@ const software=[["VectorWorks","CAD · Grundrisse, Schnitte, Konstruktionspläne
 const clusters=[["Design & Konzept",["Raumkonzepte","Moodboards","Farbtheorie","Materialauswahl","Storytelling","Funktionale Planung"]],["Planung & Visualisierung",["Grundrisse","Schnitte","Renderings","3D-Visualisierung","Lichtkonzepte","Detailzeichnungen"]],["Material & Atmosphäre",["Terrazzo","Holz","Akustikpaneele","Begrünung","Licht","Möbeldesign"]],["Umsetzung & Kommunikation",["Kundenberatung","Projektkoordination","Teamarbeit","HR & Recruiting","Präsentation"]]];
 const kindColors={Studium:"#4e0000",Beruf:"#4A6858",Praktikum:"#253328",Ehrenamt:"#B85C38"};
 const isMobile=('ontouchstart' in window)||(navigator.maxTouchPoints>0);
-const state={modalId:null,idx:0,filter:"alle",lightbox:null,videoDuration:0,target:0,frame:0,lastSeen:-1};
+const state={modalId:null,idx:0,filter:"alle",lightbox:null,scrollP:0,frame:0};
 const $=s=>document.querySelector(s);
-const sc=$("#app-scroll"),hero=$("#hero"),video=$("#hero-video"),bar=$("#hero-progress");
+const sc=$("#app-scroll"),hero=$("#hero"),bar=$("#hero-progress");
+const TOTAL_FRAMES=294;
+const canvas=$("#hero-canvas");
+const ctx=canvas?canvas.getContext("2d"):null;
+const frames=[];
+let framesLoaded=0;
+let currentFrameF=0;
+const heroPortrait=document.getElementById("hero-portrait");
+const heroNameReveal=document.getElementById("hero-name-reveal");
+const heroRightPanel=document.getElementById("hero-right-panel");
+function preloadFrames(){for(let i=1;i<=TOTAL_FRAMES;i++){const img=new Image();img.src=`assets/frames/f${String(i).padStart(3,"0")}.jpg`;img.onload=()=>{framesLoaded++;};frames.push(img);}}
+function sizeCanvas(){if(!canvas)return;canvas.width=canvas.offsetWidth||canvas.clientWidth;canvas.height=canvas.offsetHeight||canvas.clientHeight;}
 function navTo(id){const el=document.getElementById(id);if(!el)return;const top=sc.scrollTop+(el.getBoundingClientRect().top-sc.getBoundingClientRect().top)-64;sc.scrollTo({top,behavior:"smooth"})}
 document.querySelectorAll("[data-target]").forEach(b=>b.addEventListener("click",()=>navTo(b.dataset.target)));
 function initMarquee(){const track=$("#marquee-track");track.innerHTML=[...marqueeWords,...marqueeWords].map(w=>`<span>${w}</span>`).join("")}
-function renderDocs(){const w1=$("#open-wald-1"),w2=$("#open-wald-2");if(w1)w1.addEventListener("click",()=>{state.waldIdx=0;openWaldModal("fotos")});if(w2)w2.addEventListener("click",()=>{state.waldIdx=1;openWaldModal("fotos")})}
-function renderProjects(){const grid=$("#project-grid"),ordered=projectBentoOrder.map(id=>projects.find(p=>p.id===id)).filter(Boolean);grid.innerHTML=ordered.map((p,i)=>{const cls=projectBentoClasses[p.id]||"",displayTitle=p.title;return`<div class="project-cell ${cls}" style="--i:${i}"><button class="pc" data-project="${p.id}"><div class="pc-media"><img src="${p.images[0].src}" alt="${displayTitle}" loading="lazy"><div class="pc-hover-overlay"><span class="pc-hover-label">Explore →</span></div><div class="pc-sheen"></div></div><div class="pc-body"><div><div class="pc-kicker">${p.type} · ${p.year}</div><div class="pc-title">${displayTitle}</div><div class="pc-meta">${p.catLabel}</div></div><div class="pc-year">${p.sheet}</div></div>${p.id==="modernisierung"?`<div class="pc-feature-caption"><small>Bachelor-Abschlussarbeit</small><strong>${p.title}</strong><p>${p.blurb}</p></div>`:""}</button></div>`}).join("");grid.querySelectorAll(".pc").forEach(b=>b.addEventListener("click",()=>openProject(b.dataset.project)))}
+function renderDocs(){}
+function renderProjects(){
+  var grid=$("#project-grid");
+  var ordered=projectBentoOrder.map(function(id){return projects.find(function(p){return p.id===id;});}).filter(Boolean);
+  grid.innerHTML=
+    '<div class="proj-gallery" id="proj-gallery">'+
+    ordered.map(function(p,i){
+      return '<button class="proj-card" data-project="'+p.id+'" style="--i:'+i+'">'+
+        '<img src="'+p.images[0].src+'" alt="'+p.title+'" loading="lazy">'+
+        '<div class="proj-card-overlay">'+
+          '<div class="proj-card-type">'+p.type+' · '+p.year+'</div>'+
+          '<div class="proj-card-title">'+p.title+'</div>'+
+          '<div class="proj-card-sub">'+p.catLabel+'</div>'+
+        '</div>'+
+      '</button>';
+    }).join('')+
+    '</div>'+
+    '<div class="proj-pullbar-wrap">'+
+      '<div class="proj-pullbar-label">Pull →</div>'+
+      '<div class="proj-pullbar-track" id="proj-pullbar-track">'+
+        '<div class="proj-pullbar-thumb" id="proj-pullbar-thumb"></div>'+
+      '</div>'+
+    '</div>';
+
+  var gallery=document.getElementById("proj-gallery");
+  var track=document.getElementById("proj-pullbar-track");
+  var thumb=document.getElementById("proj-pullbar-thumb");
+
+  function updatePullbar(){
+    var maxScroll=gallery.scrollWidth-gallery.clientWidth;
+    if(maxScroll<=0){thumb.style.width="100%";thumb.style.left="0";return;}
+    var ratio=gallery.scrollLeft/maxScroll;
+    var thumbW=Math.max(48,Math.round((gallery.clientWidth/gallery.scrollWidth)*track.offsetWidth));
+    var maxLeft=track.offsetWidth-thumbW;
+    thumb.style.width=thumbW+"px";
+    thumb.style.left=Math.round(ratio*maxLeft)+"px";
+  }
+
+  gallery.addEventListener("scroll",updatePullbar);
+  window.addEventListener("resize",updatePullbar);
+  setTimeout(updatePullbar,120);
+
+  // drag gallery
+  var dragging=false,startX,startScroll;
+  gallery.addEventListener("mousedown",function(e){dragging=true;startX=e.pageX;startScroll=gallery.scrollLeft;gallery.style.cursor="grabbing";e.preventDefault();});
+  document.addEventListener("mousemove",function(e){if(!dragging)return;gallery.scrollLeft=startScroll-(e.pageX-startX);});
+  document.addEventListener("mouseup",function(){dragging=false;gallery.style.cursor="";});
+
+  // drag pullbar
+  var tDragging=false,tStartX,tStartScroll;
+  thumb.addEventListener("mousedown",function(e){tDragging=true;tStartX=e.pageX;tStartScroll=gallery.scrollLeft;e.stopPropagation();e.preventDefault();});
+  document.addEventListener("mousemove",function(e){
+    if(!tDragging)return;
+    var maxScroll=gallery.scrollWidth-gallery.clientWidth;
+    var thumbW=thumb.offsetWidth;
+    var trackW=track.offsetWidth;
+    var ratio=(e.pageX-tStartX)/(trackW-thumbW);
+    gallery.scrollLeft=tStartScroll+ratio*maxScroll;
+  });
+  document.addEventListener("mouseup",function(){tDragging=false;});
+
+  // click on track (not thumb) → jump
+  track.addEventListener("click",function(e){
+    if(e.target===thumb)return;
+    var rect=track.getBoundingClientRect();
+    var ratio=(e.clientX-rect.left)/rect.width;
+    gallery.scrollLeft=ratio*(gallery.scrollWidth-gallery.clientWidth);
+  });
+
+  grid.querySelectorAll(".proj-card").forEach(function(b){b.addEventListener("click",function(){openProject(b.dataset.project);});});
+}
 function renderSkills(){const list=$("#software-list");list.innerHTML=software.map(s=>`<div class="software-row"><header><strong>${s[0]}</strong><span class="skill-pct"><span class="skill-pct-num">0</span><em>%</em></span></header><div class="bar"><span class="bar-fill" style="width:${s[2]}%"></span></div><small class="skill-desc">${s[1]}</small></div>`).join("");$("#cluster-list").innerHTML=clusters.map((c,i)=>`<div class="cat-card" style="--i:${i}"><div class="cat-card-title"><span class="cat-kicker">K${String(i+1).padStart(2,"0")}</span>${c[0]}</div><div class="cat-tags">${c[1].map(t=>`<span>${t}</span>`).join("")}</div></div>`).join("")}
-function renderTimeline(){var vp=document.getElementById("wd-viewport");if(!vp)return;vp.innerHTML=timeline.map(function(t,i){var col=kindColors[t[3]]||"#4A6858";return'<div class="timeline-card'+(i===0?" active":"")+'"><div class="tc-kind" style="color:'+col+'">'+t[3]+'</div><h3>'+t[1]+'</h3><p><strong>'+t[0]+'</strong><br>'+t[2]+'</p><ul>'+t[4].map(function(x){return'<li>'+x+'</li>';}).join('')+'</ul></div>';}).join("");var bar=document.getElementById("wd-bar");var yearEl=document.getElementById("wd-year");var currentYear=String(new Date().getFullYear());var years=timeline.map(function(t){var s=String(t[0]);return s.indexOf("heute")!==-1?currentYear:(s.match(/\d{4}/)||["2025"])[0];});function update(){var maxScroll=vp.scrollWidth-vp.clientWidth;var p=maxScroll>0?vp.scrollLeft/maxScroll:0;if(bar)bar.style.width=(p*100).toFixed(1)+"%";var cards=Array.from(vp.querySelectorAll(".timeline-card"));var vpLeft=vp.getBoundingClientRect().left;var activeIdx=0,minD=Infinity;cards.forEach(function(c,i){var d=Math.abs(c.getBoundingClientRect().left-vpLeft);if(d<minD){minD=d;activeIdx=i;}});cards.forEach(function(c,i){c.classList.toggle("active",i===activeIdx);});if(yearEl)yearEl.textContent=years[activeIdx]||"2025";var sec=vp.closest('.werdegang-section');var atEnd=maxScroll<=0||vp.scrollLeft>=maxScroll-12;if(sec)sec.classList.toggle('wd-at-end',atEnd);var hint=document.getElementById('wd-scroll-hint');if(hint)hint.classList.toggle('hidden',atEnd);}vp.addEventListener("scroll",update,{passive:true});var hint=document.createElement('div');hint.id='wd-scroll-hint';hint.className='wd-scroll-hint';hint.innerHTML='<span>Scrollen</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9h12M11 5l4 4-4 4" stroke="#7C8A72" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';vp.parentElement.appendChild(hint);update();var drag={on:false,x:0};vp.addEventListener("mousedown",function(e){drag.on=true;drag.x=e.clientX;vp.classList.add("dragging");e.preventDefault();});document.addEventListener("mousemove",function(e){if(!drag.on)return;vp.scrollLeft+=drag.x-e.clientX;drag.x=e.clientX;},{passive:true});document.addEventListener("mouseup",function(){drag.on=false;vp.classList.remove("dragging");});vp.addEventListener("touchstart",function(e){drag.on=true;drag.x=e.touches[0].clientX;},{passive:true});vp.addEventListener("touchmove",function(e){if(!drag.on)return;vp.scrollLeft+=drag.x-e.touches[0].clientX;drag.x=e.touches[0].clientX;},{passive:true});vp.addEventListener("touchend",function(){drag.on=false;});}
+function renderTimeline(){
+  var vp=document.getElementById("wd-viewport");
+  if(!vp)return;
+  vp.className="tl-viewport";
+  var curYear=String(new Date().getFullYear());
+  var years=timeline.map(function(t){var s=t[0];return s.indexOf("heute")!==-1?curYear:(s.match(/\d{4}/)||["2025"])[0];});
+  var html='<div class="tl-track">';
+  html+=timeline.map(function(t,i){
+    return'<div class="tl-event" style="--i:'+i+'">'+
+      '<div class="tl-content">'+
+        '<div class="tl-meta">'+
+          '<div class="tl-kind">'+t[3]+'</div>'+
+          '<div class="tl-date">'+t[0]+'</div>'+
+        '</div>'+
+        '<div class="tl-body">'+
+          '<div class="tl-title">'+t[1]+'</div>'+
+          '<div class="tl-org">'+t[2]+'</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+  html+='<div class="tl-pgblur"></div></div>';
+  vp.innerHTML=html;
+  var pgblur=vp.querySelector(".tl-pgblur");
+  var barEl=document.getElementById("wd-bar");
+  var yearEl=document.getElementById("wd-year");
+  function update(){
+    var max=vp.scrollHeight-vp.clientHeight;
+    var p=max>0?vp.scrollTop/max:0;
+    if(barEl)barEl.style.width=(p*100).toFixed(1)+"%";
+    if(yearEl){var idx=Math.min(Math.round(p*(timeline.length-1)),timeline.length-1);yearEl.textContent=years[idx]||curYear;}
+    if(pgblur)pgblur.style.opacity=p>=0.9?'0':'1';
+  }
+  vp.addEventListener("scroll",update,{passive:true});
+  update();
+}
 function activeProject(){return projects.find(p=>p.id===state.modalId)}
 function visibleImages(){const p=activeProject();if(!p)return[];return state.filter==="alle"?p.images:p.images.filter(im=>im.cat===state.filter)}
 function openProject(id){state.modalId=id;state.idx=0;state.filter="alle";document.body.style.overflow="hidden";renderModal()}
@@ -49,23 +165,24 @@ function closeProject(){state.modalId=null;document.body.style.overflow="";$("#p
 function setFilter(f){state.filter=f;state.idx=0;renderModal()}
 function stepImg(dir){const v=visibleImages();if(v.length){state.idx=(state.idx+dir+v.length)%v.length;renderModal()}}
 function stepProject(dir){const i=projects.findIndex(p=>p.id===state.modalId);state.modalId=projects[(i+dir+projects.length)%projects.length].id;state.idx=0;state.filter="alle";renderModal()}
-function renderModal(){const p=activeProject();if(!p)return;const modal=$("#project-modal");const imgs=visibleImages(),current=imgs[state.idx]||imgs[0];const cats=["alle",...["rendering","plan","modell","detail"].filter(c=>p.images.some(im=>im.cat===c))];if(modal.classList.contains("open")&&modal.dataset.pid===p.id){const imgEl=modal.querySelector(".modal-media img");if(imgEl){imgEl.style.opacity="0";setTimeout(()=>{imgEl.src=current.src;imgEl.alt=current.label;imgEl.style.opacity="1"},80)}const cap=modal.querySelector("[data-cap]");if(cap)cap.innerHTML=`<strong>${current.label}</strong> · ${state.idx+1} / ${imgs.length}`;const fr=modal.querySelector(".filter-row");if(fr){fr.innerHTML=cats.map(c=>`<button class="${state.filter===c?"active":""}" data-filter="${c}">${c==="alle"?"Alle":catMeta[c].label.split(" ")[0]}</button>`).join("");fr.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>setFilter(b.dataset.filter))}const tr=modal.querySelector(".thumb-row");if(tr){tr.innerHTML=imgs.map((im,i)=>`<button class="thumb ${i===state.idx?"active":""}" data-thumb="${i}"><img src="${im.src}" alt="${im.label}"></button>`).join("");tr.querySelectorAll("[data-thumb]").forEach(b=>b.onclick=()=>{state.idx=+b.dataset.thumb;renderModal()})}return}modal.dataset.pid=p.id;modal.innerHTML=`<div class="modal-panel"><div class="modal-media"><button class="modal-close" id="modal-close">Schließen ✕</button><button class="modal-arrow prev" id="prev-img">‹</button><img src="${current.src}" alt="${current.label}" style="transition:opacity .12s ease"><button class="modal-arrow next" id="next-img">›</button></div><aside class="modal-info"><div class="section-kicker">${p.sheet} · ${p.catLabel}</div><h2>${p.title}</h2><p><strong>${p.year}</strong> · ${p.role}<br>${p.place}</p><p>${p.concept}</p><div class="filter-row">${cats.map(c=>`<button class="${state.filter===c?"active":""}" data-filter="${c}">${c==="alle"?"Alle":catMeta[c].label.split(" ")[0]}</button>`).join("")}</div><p data-cap><strong>${current.label}</strong> · ${state.idx+1} / ${imgs.length}</p><div class="thumb-row">${imgs.map((im,i)=>`<button class="thumb ${i===state.idx?"active":""}" data-thumb="${i}"><img src="${im.src}" alt="${im.label}"></button>`).join("")}</div><h3>Maßnahmen</h3><ul class="detail-list">${p.measures.map(m=>`<li>${m}</li>`).join("")}</ul><h3>Material & Tools</h3><div class="pill-list">${[...p.materials,...p.programs].map(m=>`<span>${m}</span>`).join("")}</div><h3>Ergebnis</h3><p>${p.result}</p><div class="hero-actions"><button class="secondary" id="prev-project">Vorheriges Projekt</button><button class="primary" id="next-project">Nächstes Projekt</button></div></aside></div>`;modal.classList.add("open");modal.setAttribute("aria-hidden","false");$("#modal-close").onclick=closeProject;$("#prev-img").onclick=()=>stepImg(-1);$("#next-img").onclick=()=>stepImg(1);$("#prev-project").onclick=()=>stepProject(-1);$("#next-project").onclick=()=>stepProject(1);modal.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>setFilter(b.dataset.filter));modal.querySelectorAll("[data-thumb]").forEach(b=>b.onclick=()=>{state.idx=+b.dataset.thumb;renderModal()})}
+function renderModal(){const p=activeProject();if(!p)return;const modal=$("#project-modal");const imgs=visibleImages(),current=imgs[state.idx]||imgs[0];const cats=["alle",...["rendering","plan","modell","detail"].filter(c=>p.images.some(im=>im.cat===c))];const fHTML=()=>cats.map(c=>`<button class="${state.filter===c?"active":""}" data-filter="${c}">${c==="alle"?"Alle":catMeta[c].label.split(" ")[0]}</button>`).join("");const tHTML=()=>imgs.map((im,i)=>`<button class="thumb ${i===state.idx?"active":""}" data-thumb="${i}"><img src="${im.src}" alt="${im.label}"></button>`).join("");if(modal.classList.contains("open")&&modal.dataset.pid===p.id){const imgEl=modal.querySelector(".mp-media img");if(imgEl){imgEl.style.opacity="0";setTimeout(()=>{imgEl.src=current.src;imgEl.alt=current.label;imgEl.style.opacity="1"},80)}const cap=modal.querySelector("[data-cap]");if(cap)cap.innerHTML=`<strong>${current.label}</strong> · ${state.idx+1} / ${imgs.length}`;const fr=modal.querySelector(".filter-row");if(fr){fr.innerHTML=fHTML();fr.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>setFilter(b.dataset.filter))}const tr=modal.querySelector(".thumb-row");if(tr){tr.innerHTML=tHTML();tr.querySelectorAll("[data-thumb]").forEach(b=>b.onclick=()=>{state.idx=+b.dataset.thumb;renderModal()})}return}modal.dataset.pid=p.id;const tools=p.programs.join(" · ");modal.innerHTML=`<div class="mp-panel"><div class="mp-header"><div class="mp-header-meta"><div class="mp-kicker">${p.sheet} · ${p.catLabel} · ${p.year}</div><h2 class="mp-title">${p.title}</h2><div class="mp-sub">${p.role}<span class="mp-sep">·</span>${p.place}<span class="mp-sep">|</span><span class="mp-tools">${tools}</span></div></div><button class="mp-close" id="modal-close">✕</button></div><div class="mp-media"><button class="mp-arrow mp-prev" id="prev-img">‹</button><img src="${current.src}" alt="${current.label}" style="transition:opacity .12s ease"><button class="mp-arrow mp-next" id="next-img">›</button><div class="mp-caption" data-cap><strong>${current.label}</strong> · ${state.idx+1} / ${imgs.length}</div></div><div class="mp-controls"><div class="filter-row">${fHTML()}</div><div class="thumb-row">${tHTML()}</div></div><div class="mp-details"><div class="mp-col"><div class="mp-label">Konzept</div><p class="mp-text">${p.concept}</p><div class="mp-label">Gestalterische Maßnahmen</div><ul class="mp-list">${p.measures.map(m=>`<li>${m}</li>`).join("")}</ul></div><div class="mp-col mp-col-right"><div class="mp-label">Material & Elemente</div><div class="pill-list mp-pills">${p.materials.map(m=>`<span>${m}</span>`).join("")}</div><div class="mp-label">Ergebnis</div><p class="mp-text">${p.result}</p></div></div><div class="mp-nav"><button class="mp-nav-btn" id="prev-project">← Vorheriges</button><button class="mp-nav-btn mp-nav-mid" id="close-project-nav">Übersicht</button><button class="mp-nav-btn mp-nav-right" id="next-project">Nächstes →</button></div></div>`;modal.classList.add("open");modal.setAttribute("aria-hidden","false");$("#modal-close").onclick=closeProject;document.getElementById("close-project-nav").onclick=closeProject;$("#prev-img").onclick=()=>stepImg(-1);$("#next-img").onclick=()=>stepImg(1);$("#prev-project").onclick=()=>stepProject(-1);$("#next-project").onclick=()=>stepProject(1);modal.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>setFilter(b.dataset.filter));modal.querySelectorAll("[data-thumb]").forEach(b=>b.onclick=()=>{state.idx=+b.dataset.thumb;renderModal()})}
 function openLightbox(src,label){const lb=$("#lightbox");state.lightbox=src;document.body.style.overflow="hidden";lb.innerHTML=`<div class="lightbox-inner"><div class="lightbox-top"><span>${label}</span><button id="close-lightbox">Schließen ✕</button></div><img src="${src}" alt="${label}"></div>`;lb.classList.add("open");lb.setAttribute("aria-hidden","false");$("#close-lightbox").onclick=closeLightbox}
 function waldVisible(){return state.waldTab==="alle"?waldAssets:waldAssets.filter(x=>x.tab===state.waldTab)}
 function openWaldModal(tab="fotos"){state.waldTab=tab;state.waldIdx=0;document.body.style.overflow="hidden";renderWaldModal()}
 function renderWaldModal(){const lb=$("#lightbox"),items=waldAssets,current=items[state.waldIdx]||items[0];state.lightbox=current.src;lb.innerHTML=`<div class="wald-modal-panel"><button class="wald-modal-close" id="close-lightbox">✕</button><div class="wald-modal-head"><small>Aktuelles · Laufende Masterarbeit</small><strong>Waldmannsburg</strong></div><figure class="wald-modal-stage"><img class="wald-modal-image" src="${current.src}" alt="${current.label}" loading="lazy"><figcaption>${current.label}</figcaption></figure><div class="wald-modal-controls"><button id="wald-prev">‹</button><span>${state.waldIdx+1} / ${items.length}</span><button id="wald-next">›</button></div></div>`;lb.classList.add("open");lb.setAttribute("aria-hidden","false");$("#close-lightbox").onclick=closeLightbox;$("#wald-prev").onclick=()=>{state.waldIdx=(state.waldIdx-1+items.length)%items.length;renderWaldModal()};$("#wald-next").onclick=()=>{state.waldIdx=(state.waldIdx+1)%items.length;renderWaldModal()}}
 function openDocsOverlay(){openWaldModal("grundrisse")}
 function closeLightbox(){state.lightbox=null;document.body.style.overflow="";$("#lightbox").classList.remove("open");$("#lightbox").setAttribute("aria-hidden","true")}
-function computeHero(){const total=hero.offsetHeight-sc.clientHeight;let p=total>0?sc.scrollTop/total:0;p=Math.max(0,Math.min(1,p));const dur=state.videoDuration||video.duration||0;state.target=dur?p*Math.max(0,dur-.04):0;bar.style.transform=`scaleX(${p.toFixed(4)})`}
-function driveVideo(){if(!video)return;const minReady=isMobile?1:2;if(video.readyState<minReady)return;const diff=state.target-video.currentTime;const adiff=Math.abs(diff);if(adiff<.05){if(!isMobile&&!video.paused)video.pause();return}if(isMobile){try{video.currentTime=state.target}catch(e){}return}if(diff>0){video.playbackRate=Math.min(9,Math.max(1,diff*4));if(video.paused){const pr=video.play();if(pr&&pr.catch)pr.catch(()=>{})}}else{if(!video.paused)video.pause();try{video.currentTime=video.currentTime+diff*.3}catch(e){}}}
+function computeHero(){const total=hero.offsetHeight-sc.clientHeight;let p=total>0?sc.scrollTop/total:0;p=Math.max(0,Math.min(1,p));state.scrollP=p;bar.style.transform=`scaleX(${p.toFixed(4)})`}
+function drawFrame(){if(!canvas||!ctx||framesLoaded===0)return;const targetF=state.scrollP*(TOTAL_FRAMES-1);currentFrameF+=(targetF-currentFrameF)*0.08;const idx=Math.min(Math.round(currentFrameF),TOTAL_FRAMES-1);const img=frames[idx];if(!img||!img.complete||!img.naturalWidth)return;if(canvas.width!==canvas.offsetWidth||canvas.height!==canvas.offsetHeight)sizeCanvas();ctx.drawImage(img,0,0,canvas.width,canvas.height);const mob=window.innerWidth<=880;if(heroPortrait)heroPortrait.classList.toggle("visible",mob||currentFrameF>=130);if(heroRightPanel)heroRightPanel.classList.toggle("visible",mob||currentFrameF>=232);}
 function layoutTimeline(){}
 function scrubTimeline(){}
-function loop(){state.frame++;computeHero();driveVideo();requestAnimationFrame(loop)}
-video.addEventListener("loadedmetadata",()=>{state.videoDuration=video.duration||0;try{video.currentTime=0;video.pause()}catch(e){}});
-let videoUnlocked=false;
-sc.addEventListener("scroll",()=>{computeHero();if(isMobile&&!videoUnlocked&&video){videoUnlocked=true;const p=video.play();if(p&&p.then)p.then(()=>{try{video.pause();video.currentTime=state.target}catch(e){}}).catch(()=>{});}if(state.frame===state.lastSeen&&video.readyState>=1){try{video.pause();video.currentTime=state.target}catch(e){}}state.lastSeen=state.frame},{passive:true});
+function loop(){state.frame++;computeHero();drawFrame();requestAnimationFrame(loop)}
+preloadFrames();sizeCanvas();
+// Mobile: show portrait/panel immediately without waiting for frames
+if(window.innerWidth<=880){setTimeout(()=>{if(heroPortrait)heroPortrait.classList.add("visible");if(heroRightPanel)heroRightPanel.classList.add("visible");},100);}
+sc.addEventListener("scroll",()=>{computeHero();},{passive:true});
 addEventListener("resize",()=>{layoutTimeline();computeHero()},{passive:true});
-addEventListener("keydown",e=>{if(e.key==="Escape"){closeProject();closeLightbox()}if(state.modalId&&e.key==="ArrowRight")stepImg(1);if(state.modalId&&e.key==="ArrowLeft")stepImg(-1)});
+addEventListener("keydown",e=>{if(e.key==="Escape"){closeProject();closeLightbox();const oi=document.getElementById('wald-info-overlay');if(oi&&oi.classList.contains('open')){oi.classList.remove('open');oi.setAttribute('aria-hidden','true');document.body.style.overflow='';}}if(state.modalId&&e.key==="ArrowRight")stepImg(1);if(state.modalId&&e.key==="ArrowLeft")stepImg(-1)});
 $("#copy-email").addEventListener("click",async()=>{try{await navigator.clipboard.writeText("schabnam.shor@googlemail.com");$("#copy-feedback").textContent="Kopiert ✓"}catch(e){$("#copy-feedback").textContent="Kopieren"}setTimeout(()=>$("#copy-feedback").textContent="Kopieren",1900)});
 (function(){
   var form=document.getElementById('contact-form');
@@ -138,6 +255,17 @@ obs.observe(sec);
 }
 initMarquee();renderDocs();renderProjects();renderSkills();initSkillsAnim();renderTimeline();initTypewriter();computeHero();requestAnimationFrame(loop);
 (function(){
+  const overlay=document.getElementById('wald-info-overlay');
+  const btn=document.getElementById('wald-mehr-btn');
+  const closeBtn=document.getElementById('wald-info-close');
+  if(!overlay||!btn)return;
+  function openInfo(){overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function closeInfo(){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  btn.addEventListener('click',openInfo);
+  closeBtn.addEventListener('click',closeInfo);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)closeInfo();});
+})();
+(function(){
   var btn=document.getElementById('mobile-menu-btn');
   var nav=document.getElementById('mobile-nav');
   if(!btn||!nav)return;
@@ -145,4 +273,19 @@ initMarquee();renderDocs();renderProjects();renderSkills();initSkillsAnim();rend
   function closeMenu(){btn.classList.remove('open');nav.classList.remove('open');nav.setAttribute('aria-hidden','true');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}
   btn.addEventListener('click',function(){btn.classList.contains('open')?closeMenu():openMenu();});
   nav.querySelectorAll('[data-target]').forEach(function(el){el.addEventListener('click',function(){navTo(el.dataset.target);closeMenu();});});
+})();
+(function(){
+  const sec=document.getElementById('ueber');
+  const img=document.querySelector('#ueber .about-image img');
+  if(!sec||!img)return;
+  function setSplit(){
+    const r=img.naturalWidth/img.naturalHeight;
+    const rect=img.getBoundingClientRect();
+    const w=rect.width,h=rect.height;
+    const contentW=(w/h>=r)?Math.round(h*r):w;
+    sec.style.setProperty('--split-x',contentW+'px');
+  }
+  if(img.complete&&img.naturalWidth)setSplit();
+  else img.addEventListener('load',setSplit);
+  window.addEventListener('resize',setSplit);
 })();
