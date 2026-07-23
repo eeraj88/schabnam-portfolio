@@ -319,13 +319,11 @@ function renderWaldModal(){const lb=$("#lightbox"),items=waldAssets,current=item
 function openDocsOverlay(){openWaldModal("grundrisse")}
 function closeLightbox(){state.lightbox=null;document.body.style.overflow="";$("#lightbox").classList.remove("open");$("#lightbox").setAttribute("aria-hidden","true")}
 function drawCoverImage(c,img,cw,ch){const nw=img.naturalWidth||1920,nh=img.naturalHeight||1080,ir=nw/nh,cr=cw/ch;let dw,dh,dx,dy;if(cr>ir){dw=cw;dh=cw/ir;dx=0;dy=(ch-dh)/2;}else{dw=ch*ir;dh=ch;dx=(cw-dw)/2;dy=0;}c.drawImage(img,dx,dy,dw,dh);}
-function drawFrame(){if(!canvas||!ctx||framesLoaded===0)return;const targetF=state.scrollP*(TOTAL_FRAMES-1);currentFrameF+=(targetF-currentFrameF)*0.08;const idx=Math.min(Math.round(currentFrameF),TOTAL_FRAMES-1);const img=frames[idx];if(!img||!img.complete||!img.naturalWidth)return;if(canvas.width!==canvas.offsetWidth||canvas.height!==canvas.offsetHeight)sizeCanvas();drawCoverImage(ctx,img,canvas.width,canvas.height);const mob=window.innerWidth<=880;if(heroRightPanel)heroRightPanel.classList.toggle("visible",mob||currentFrameF>=280);}
+function drawFrame(){if(!canvas||!ctx||framesLoaded===0)return;const targetF=state.scrollP*(TOTAL_FRAMES-1);currentFrameF+=(targetF-currentFrameF)*0.08;const idx=Math.min(Math.round(currentFrameF),TOTAL_FRAMES-1);const img=frames[idx];if(!img||!img.complete||!img.naturalWidth)return;if(canvas.width!==canvas.offsetWidth||canvas.height!==canvas.offsetHeight)sizeCanvas();ctx.drawImage(img,0,0,canvas.width,canvas.height);if(heroRightPanel)heroRightPanel.classList.toggle("visible",currentFrameF>=270);}
 function layoutTimeline(){}
 function scrubTimeline(){}
 function loop(){state.frame++;computeHero();drawFrame();requestAnimationFrame(loop)}
 preloadFrames();sizeCanvas();
-// Mobile: show panel immediately without waiting for frames
-if(window.innerWidth<=880){setTimeout(()=>{if(heroRightPanel)heroRightPanel.classList.add("visible");},100);}
 sc.addEventListener("scroll",()=>{computeHero();},{passive:true});
 addEventListener("resize",()=>{layoutTimeline();computeHero()},{passive:true});
 addEventListener("keydown",e=>{if(e.key==="Escape"){closeProject();closeLightbox();const oi=document.getElementById('wald-info-overlay');if(oi&&oi.classList.contains('open')){oi.classList.remove('open');oi.setAttribute('aria-hidden','true');document.body.style.overflow='';}}if(state.modalId&&e.key==="ArrowRight")stepImg(1);if(state.modalId&&e.key==="ArrowLeft")stepImg(-1)});
