@@ -46,8 +46,8 @@ let currentFrameF=0;
 const heroPortrait=document.getElementById("hero-portrait");
 const heroNameReveal=document.getElementById("hero-name-reveal");
 const heroRightPanel=document.getElementById("hero-right-panel");
-function preloadFrames(){for(let i=1;i<=TOTAL_FRAMES;i++){const img=new Image();img.src=`assets/frames/f${String(i).padStart(3,"0")}.jpg`;img.onload=()=>{framesLoaded++;};frames.push(img);}}
-function sizeCanvas(){if(!canvas)return;canvas.width=canvas.offsetWidth||canvas.clientWidth;canvas.height=canvas.offsetHeight||canvas.clientHeight;}
+function preloadFrames(){for(let i=1;i<=TOTAL_FRAMES;i++){const img=new Image();img.src=`assets/frames/f${String(i).padStart(3,"0")}.jpg`;img.onload=()=>{framesLoaded++;if(i===1)drawFrame();};frames.push(img);}}
+function sizeCanvas(){if(!canvas)return;const w=canvas.offsetWidth||canvas.clientWidth||window.innerWidth;const h=canvas.offsetHeight||canvas.clientHeight||window.innerHeight;canvas.width=w;canvas.height=h;}
 function navTo(id){const el=document.getElementById(id);if(!el)return;const top=sc.scrollTop+(el.getBoundingClientRect().top-sc.getBoundingClientRect().top)-64;sc.scrollTo({top,behavior:"smooth"})}
 document.querySelectorAll("[data-target]").forEach(b=>b.addEventListener("click",()=>navTo(b.dataset.target)));
 function initMarquee(){const track=$("#marquee-track");track.innerHTML=[...marqueeWords,...marqueeWords].map(w=>`<span>${w}</span>`).join("")}
