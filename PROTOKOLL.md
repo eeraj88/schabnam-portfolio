@@ -136,35 +136,32 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 8. ⏳ Sektion „Stationen & Erfahrung“ (Werdegang) — 2,5 Karten Viewport, 740px Box-Form, Markante Outlines & Skalierter Scroll-Hint
-* **Neue Karten-Proportionen & Typografie:**
-  * **Kompakte Box-Form (`max-w-2xl` bis `max-w-3xl`):** Maximale Kartenbreite auf `width: min(740px, 100%)` fokussiert, um die visuell überstreckte Wirkung zu eliminieren.
-  * **Großzügiges vertikales Padding (`py-8` bis `py-10`):** Innenabstand auf `clamp(32px, 3.6vw, 38px) clamp(28px, 3.2vw, 36px)` bei `min-height: 156px` erhöht für ein hochwertiges, kompaktes Kartenprofil.
-  * **Vergrößertes Datums-Label:** Zeitraum-Badge (`.tl-period-badge`) spürbar vergrößert (`clamp(13px, 1.05vw, 14.5px)`, entsprechend `text-sm` bis `text-base`), mit hohem Kontrast in hellem Off-White (`#FAF7F2`) und feinem Tracking (`letter-spacing: 0.08em`).
-* **Präzise Viewport-Geometrie (Exakt 2,5 Karten sichtbar):**
-  * **Viewport-Höhe (452px Desktop / 460px Mobile):** Exakt berechnet aus Kartenhöhen (156px) und 20px Track-Gap:
-    * *Karte 1:* Zu **100 % vollständig sichtbar**.
-    * *Karte 2:* Zu **100 % vollständig sichtbar**.
-    * *Karte 3:* Ragt zu **ca. 50 % (84px von 156px = 54 %)** am unteren Rand hinein.
-    * *Karte 4:* Zu 0 % sichtbar (vollständig außerhalb des Viewports).
-  * **Präziser Fade-Verlauf:** Der lineare Gradient (`linear-gradient(to bottom, #000 0%, #000 76%, rgba(0,0,0,.6) 88%, transparent 100%)`) startet erst ab 76 % Höhe (nach Karte 2), sodass Karte 1 & 2 glasklar bleiben und ausschließlich Karte 3 sanft in den Hintergrund verblasst.
-* **Kontrastreiche Outline & Leuchtender Hover-Effekt:**
-  * **Basis-Zustand:** Deutlich sichtbare, feine weiße Kontur (`border: 1px solid rgba(255, 255, 255, 0.22)`).
-  * **Hover-Zustand:** Kontur leuchtet kontrastreich auf (`border-color: rgba(255, 255, 255, 0.72)`), sanfter Auftrieb (`transform: translateY(-4px)`), satter Kartenhintergrund (`#2B2825`), tiefer Raumschatten (`box-shadow: 0 20px 48px rgba(0,0,0,.42), 0 0 24px rgba(255,255,255,.08)`).
-* **Visuelle Logo-Neuabstimmung (rechtsbündig):**
-  * **Hochschule Kaiserslautern (Master & Bachelor):** Deutlich vergrößert auf ca. doppelte Pixelhöhe (`max-height: 72px`, `max-width: 220px`).
-  * **Reline Europe:** Harmonisch verkleinert (`max-height: 34px`, `max-width: 135px`), um die Gesamtbalance nicht zu überlagern.
-  * **D-EVA Studios:** Typo-Schriftzug dominant vergrößert (*Playfair Display*, `letter-spacing: 0.24em`), die Unterzeilen („Bali“ / „Interior“) wurden komplett entfernt.
-  * **TRE Vehicle Dynamics:** Der dritte dünne Strich hinter dem Kasten (`border-left`) wurde entfernt, der Abstand zu `VEHICLE DYNAMICS` verringert und die Typografie insgesamt markanter skaliert (`28px / 11px`).
-  * **Komami:** Auf doppelte Größe skaliert (`76×76px` rundes Gastronomie-Badge).
-  * **Stadt Neustadt an der Weinstraße:** Aktuelle, bewährte Größe beibehalten (`max-height: 44px`).
-* **Skalierter animierter Scroll-Indicator (30–50 % größer & deutlicher Abstand):**
-  * **Großzügiger Abstand:** `margin: clamp(40px, 4.5vw, 64px) auto 0` nach oben für freies Atmen unterhalb der Karten.
-  * **Vergrößerte Dimensionen:**
-    * Maus-Icon auf `22×34px` mit 2px Border und verlängertem 9px Dot-Travel (`@keyframes mouseScrollDot`).
-    * Monospace-Schriftzug `SCROLLEN` auf `13px` vergrößert (`letter-spacing: 0.18em`).
-    * Sanft bouncender Chevron-Pfeil auf `16×16px` vergrößert (`@keyframes chevronBounce`).
-    * Interaktiv: Klick auf den Indicator scrollt die Timeline automatisch um exakt 176px (1 Kartenhöhe + Gap) weiter; blendet am Ende sanft aus.
+### 8. 🧊 Sektion „Stationen & Erfahrung“ (Werdegang) — 3D-Marquee (Magic UI Marquee3D / Perspective Grid)
+* **3D-Container & Perspective-Setup:**
+  * **3D-Bühne (`.wd-3d-container`):** Mit `overflow: hidden` und `perspective: 600px` (`-webkit-perspective: 600px`) für immersive Raumtiefe.
+  * **3D-Rotation der Spaltengruppe (`.wd-3d-stage`):**
+    `transform: translateX(-50px) translateY(0px) translateZ(-50px) rotateX(15deg) rotateY(-8deg) rotateZ(8deg);` mit `transform-style: preserve-3d;` für eine architektonisch geneigte, elegante Perspektive bei optimal lesbarer Typografie.
+  * **4-Kanten-Maskierung (Edge Gradients):** 4 sanfte Gradients an allen Kanten (oben, unten, links, rechts) im exakten Hintergrundfarbton `#E8DDD0` mit `pointer-events: none; z-index: 10;`, wodurch die Karten nahtlos in den Raum schweben und ein- bzw. ausblenden.
+* **3 vertikale Marquee-Spalten & Motion:**
+  * **Spalte 1 (`.wd-col-1`):** Läuft vertikal nach oben (`marqueeUp`), animiert über 28s (`--duration: 28s`).
+  * **Spalte 2 (`.wd-col-2`):** Läuft vertikal nach unten (`marqueeDown` / reverse), animiert über 32s (`--duration: 32s`).
+  * **Spalte 3 (`.wd-col-3`):** Läuft vertikal nach oben (`marqueeUp`), animiert über 26s (`--duration: 26s`).
+  * **`pauseOnHover` Interaktions-Garantie:** Sobald der Mauszeiger die Bühne, eine Spalte oder eine Karte berührt, pausiert die gesamte Bewegung sofort (`animation-play-state: paused !important` via CSS und JS Event-Listener). Beim Verlassen läuft die Bewegung nahtlos weiter.
+* **Datenbasis (7 Stationen):**
+  1. *Studium:* Master of Arts Innenarchitektur | Hochschule Kaiserslautern (03.2025 – HEUTE)
+  2. *Beruf:* Recruiter & HR Administrator | Reline Europe GmbH (08.2023 – HEUTE)
+  3. *Auslandssemester:* D-EVA Studios | Bali (2024)
+  4. *Studium:* Bachelor of Arts Innenarchitektur | Hochschule Kaiserslautern (2020 – 2024)
+  5. *Ehrenamt:* Dolmetscherin & Integration | Arbeitskreis Asyl / Stadt Neustadt a. d. W.
+  6. *Gastronomie:* Servicekraft | Komami
+  7. *Studium:* Rechtswissenschaften | Universität zu Köln
+* **Card-Design (Pure Architektur-Typografie):**
+  * **Dimensionen:** Einheitliche Kartenbreite (`w-64 sm:w-72`, `clamp(256px, 20vw, 288px)`) mit abgerundeten Ecken (`rounded-xl` / 14px) und fester Mindesthöhe.
+  * **Styling & Hover:** Dunkler Hintergrund (`#242220`) mit feiner Kontur (`border: 1px solid rgba(255, 255, 255, 0.12)`). Bei Hover strahlt der Rand hell auf (`rgba(255, 255, 255, 0.45)`), mit feinem Lift (`translateY(-3px)`) und tiefem Raumschatten.
+  * **Typografischer Aufbau:**
+    * *Oben:* Kategorie & Zeitraum in hellem Kontrast-Font (`IBM Plex Mono`, `text-xs uppercase`, `#D4D4D4`).
+    * *Mitte:* Rolle / Titel fett (`Jost`, `text-sm font-semibold`, `#FFFFFF`).
+    * *Unten:* Institution / Unternehmen in dezentem Grau (`Jost`, `text-xs`, `#A3A3A3`).
 
 ---
 

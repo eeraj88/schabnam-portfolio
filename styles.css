@@ -1228,328 +1228,222 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   #faehigkeiten .beam-station-3{gap:24px!important}
 }
 
-/* Werdegang → beige + vertical scrollable dark cards */
-.werdegang-section{background:#E8DDD0!important;position:relative;overflow:hidden;padding:clamp(44px,5.5vw,78px) 0 clamp(48px,6vw,84px)!important}
-.werdegang-section h2{color:#141210!important;font-family:Jost,sans-serif!important;font-weight:600!important}
-.werdegang-section .section-kicker{color:#915851!important;font-family:"IBM Plex Mono",monospace!important;font-size:11px!important;letter-spacing:.16em!important;text-transform:uppercase!important;font-weight:600!important}
-.werdegang-section .wd-meta strong{color:#141210!important;font-family:Jost,sans-serif!important;font-size:clamp(30px,3.4vw,44px)!important;font-weight:600!important}
-.werdegang-section .wd-progress-bar{background:rgba(20,18,16,.14)!important;border-radius:4px!important;width:clamp(110px,14vw,190px)!important;height:4px!important}
-#wd-bar{background:#915851!important;border-radius:4px!important;transition:width 80ms ease-out!important}
+/* Werdegang → Magic UI Marquee3D / Perspective Grid */
+.werdegang-section{
+  background:#E8DDD0!important;
+  position:relative;
+  overflow:hidden;
+  padding:clamp(44px,5.5vw,78px) 0 clamp(48px,6vw,84px)!important;
+}
+.werdegang-section h2{
+  color:#141210!important;
+  font-family:Jost,sans-serif!important;
+  font-weight:600!important;
+}
+.werdegang-section .section-kicker{
+  color:#915851!important;
+  font-family:"IBM Plex Mono",monospace!important;
+  font-size:11px!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+  font-weight:600!important;
+}
+.werdegang-section .wd-header{
+  width:min(1180px,calc(100% - 48px));
+  margin:0 auto clamp(28px,3.8vw,48px);
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+}
 .werdegang-section::after{display:none!important}
 
-/* Vertical scroll viewport — Exactly 2.5 cards visible: Card 1 & 2 at 100%, Card 3 peeks ~50% with bottom gradient fade */
-.werdegang-section .tl-viewport{
-  height:452px!important;
-  overflow-y:auto!important;
-  overflow-x:hidden!important;
-  cursor:default!important;
-  scrollbar-width:none!important;
-  -ms-overflow-style:none!important;
-  position:relative!important;
-  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 76%,rgba(0,0,0,.6) 88%,transparent 100%)!important;
-  mask-image:linear-gradient(to bottom,#000 0%,#000 76%,rgba(0,0,0,.6) 88%,transparent 100%)!important;
-  scroll-behavior:smooth!important;
-}
-.werdegang-section .tl-viewport::-webkit-scrollbar{display:none!important}
-.werdegang-section .tl-viewport.dragging{cursor:default!important}
-
-/* Vertical track — centered, compact high-value box cards with generous gap */
-.werdegang-section .tl-track{
-  display:flex!important;
-  flex-direction:column!important;
-  gap:20px!important;
-  width:100%!important;
-  min-width:0!important;
-  height:auto!important;
-  padding:16px clamp(16px,4vw,48px) 110px!important;
-  box-sizing:border-box!important;
-  transform:none!important;
-  align-items:center!important;
-}
-.werdegang-section .tl-axis{display:none!important}
-.werdegang-section .tl-stem{display:none!important}
-.werdegang-section .tl-dot{display:none!important}
-
-/* Cards: max-w-2xl bis max-w-3xl (740px), generous vertical padding py-8 bis py-10, visible border */
-.werdegang-section .tl-event{
-  position:static!important;
-  flex:none!important;
-  height:auto!important;
-  width:min(740px,100%)!important;
-  margin:0 auto!important;
-}
-.werdegang-section .tl-content,
-.werdegang-section .tl-above .tl-content,
-.werdegang-section .tl-below .tl-content{
-  position:static!important;
-  left:auto!important;
-  right:auto!important;
-  top:auto!important;
-  bottom:auto!important;
-  transform:none!important;
-  display:flex!important;
-  flex-direction:row!important;
-  align-items:center!important;
-  justify-content:space-between!important;
-  gap:clamp(20px,3.5vw,44px)!important;
-  width:100%!important;
-  min-height:156px!important;
-  background:#242220!important;
-  border:1px solid rgba(255,255,255,.22)!important;
-  border-radius:16px!important;
-  padding:clamp(32px,3.6vw,38px) clamp(28px,3.2vw,36px)!important;
-  box-shadow:0 8px 28px rgba(0,0,0,.22)!important;
-  transition:all .3s ease-out!important;
-  cursor:default!important;
-  box-sizing:border-box!important;
-}
-/* Hover-Effekt: Rand leuchtet deutlich auf (hover:border-white/70), sanftes Schweben und tiefer Schatten */
-.werdegang-section .tl-event:hover .tl-content{
-  transform:translateY(-4px)!important;
-  border-color:rgba(255,255,255,.72)!important;
-  background:#2B2825!important;
-  box-shadow:0 20px 48px rgba(0,0,0,.42),0 0 24px rgba(255,255,255,.08)!important;
-}
-
-/* Left side: Info-Column with Status, Zeitraum, Title, Institution */
-.werdegang-section .tl-info-col{
-  flex:1!important;
-  min-width:0!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:flex-start!important;
-}
-.werdegang-section .tl-kicker-row{
-  display:inline-flex!important;
-  align-items:center!important;
-  gap:9px!important;
-  margin-bottom:8px!important;
-}
-.werdegang-section .tl-kind-badge{
-  font-family:"IBM Plex Mono",monospace!important;
-  font-size:clamp(11px,.9vw,12.5px)!important;
-  font-weight:600!important;
-  letter-spacing:.14em!important;
-  text-transform:uppercase!important;
-  color:#D4745F!important;
-}
-.werdegang-section .tl-kicker-sep{
-  color:rgba(232,221,208,.45)!important;
-  font-size:14px!important;
-  line-height:1!important;
-}
-/* Datums-Label: spürbar größer (text-sm/base), helles Off-White/Neutral-200, feines Tracking */
-.werdegang-section .tl-period-badge{
-  font-family:"IBM Plex Mono",monospace!important;
-  font-size:clamp(13px,1.05vw,14.5px)!important;
-  letter-spacing:.08em!important;
-  text-transform:uppercase!important;
-  color:#FAF7F2!important;
-  font-weight:500!important;
-}
-.werdegang-section .tl-title{
-  font-family:Jost,sans-serif!important;
-  font-size:clamp(20px,1.9vw,24px)!important;
-  font-weight:700!important;
-  color:#FFFFFF!important;
-  line-height:1.25!important;
-  margin:0 0 6px!important;
-  text-transform:none!important;
-}
-.werdegang-section .tl-org{
-  font-family:"IBM Plex Mono",monospace!important;
-  font-size:clamp(12.5px,1vw,14px)!important;
-  color:rgba(232,221,208,.68)!important;
-  line-height:1.4!important;
-  margin:0!important;
-}
-
-/* Right side: dedicated logo area, vertically centered, right-aligned */
-.werdegang-section .tl-logo-slot{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:flex-end!important;
-  flex-shrink:0!important;
-  min-width:160px!important;
-  max-width:230px!important;
-  height:76px!important;
-}
-.werdegang-section .tl-logo-img{
-  max-height:44px!important;
-  max-width:160px!important;
-  width:auto!important;
-  height:auto!important;
-  object-fit:contain!important;
-  filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))!important;
-  transition:transform .3s ease,filter .3s ease!important;
-}
-.werdegang-section .tl-event:hover .tl-logo-img{
-  transform:scale(1.04)!important;
-  filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))!important;
-}
-
-/* Logo-Größen Feinabstimmung */
-/* Hochschule Kaiserslautern: ca. doppelt so groß wie bisher */
-.werdegang-section .tl-logo-hskl{
-  max-height:72px!important;
-  max-width:220px!important;
-}
-/* Reline: minimal verkleinert für harmonische Ausgewogenheit */
-.werdegang-section .tl-logo-reline{
-  max-height:34px!important;
-  max-width:135px!important;
-}
-/* Komami: auf doppelte Größe skaliert */
-.werdegang-section .tl-logo-komami{
-  max-height:76px!important;
-  max-width:76px!important;
-  width:76px!important;
-  height:76px!important;
-  border-radius:50%!important;
-  box-shadow:0 4px 16px rgba(0,0,0,.35)!important;
-}
-/* Uni Köln Siegel */
-.werdegang-section .tl-logo-seal{
-  max-height:58px!important;
-  max-width:58px!important;
-}
-
-/* Typo-Branding: D-EVA STUDIOS — vergrößert, ohne Sublines */
-.tl-brand-deva{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  text-align:right;
-  padding:4px 0;
-}
-.tl-brand-deva .deva-title{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(19px,1.9vw,24px);
-  font-weight:600;
-  letter-spacing:.24em;
-  text-transform:uppercase;
-  color:#FAF7F2;
-  line-height:1.15;
-  text-shadow:0 0 16px rgba(255,255,255,.25);
-  white-space:nowrap;
-}
-
-/* Typo-Branding: TRE VEHICLE DYNAMICS — größer, dritter Strich entfernt, engerer Abstand */
-.tl-brand-tre{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  padding:4px 0;
-}
-.tl-brand-tre .tre-mark{
-  display:flex;
-  align-items:center;
-  gap:3px;
-  font-family:Jost,sans-serif;
-  font-weight:800;
-  font-size:clamp(22px,2.2vw,26px);
-  letter-spacing:.06em;
-  color:#FFFFFF;
-  line-height:1;
-}
-.tl-brand-tre .tre-pipe{
-  color:#B8614A;
-  font-weight:300;
-  font-size:clamp(23px,2.3vw,27px);
-  line-height:1;
-}
-.tl-brand-tre .tre-label{
-  display:flex;
-  flex-direction:column;
-  border-left:none!important;
-  padding-left:0!important;
-  font-family:"IBM Plex Mono",monospace;
-  font-size:clamp(9.5px,.85vw,11px);
-  font-weight:700;
-  line-height:1.25;
-  letter-spacing:.16em;
-  color:rgba(232,221,208,.85);
-  text-align:left;
-}
-
-/* Minimalistischer animierter Scroll-Indicator — 30–50% größer & mit deutlichem Abstand mt-16 */
-.wd-scroll-hint{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  margin:clamp(40px,4.5vw,64px) auto 0;
-  color:rgba(20,18,16,.58);
-  cursor:pointer;
-  user-select:none;
-  transition:opacity .35s ease,color .25s ease,transform .25s ease;
-  width:fit-content;
-  outline:none;
-  padding:6px 14px;
-}
-.wd-scroll-hint:hover,.wd-scroll-hint:focus-visible{
-  color:#915851;
-  transform:translateY(3px);
-}
-.wd-scroll-mouse{
-  width:22px;
-  height:34px;
-  border:2px solid currentColor;
-  border-radius:12px;
+/* 1. 3D-Container & Perspective-Setup */
+.werdegang-section .wd-3d-container{
   position:relative;
+  width:100%;
+  height:clamp(520px,64vh,640px);
+  overflow:hidden;
   display:flex;
+  align-items:center;
   justify-content:center;
-  padding-top:5px;
-  box-sizing:border-box;
-}
-.wd-scroll-wheel{
-  width:3px;
-  height:6px;
-  background:currentColor;
-  border-radius:2px;
-  animation:mouseScrollDot 1.6s ease-in-out infinite;
-}
-@keyframes mouseScrollDot{
-  0%{opacity:1;transform:translateY(0)}
-  60%{opacity:0;transform:translateY(9px)}
-  100%{opacity:0;transform:translateY(0)}
-}
-.wd-scroll-text{
-  font-family:"IBM Plex Mono",monospace;
-  font-size:13px;
-  font-weight:600;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
-.wd-scroll-chevron{
-  width:16px;
-  height:16px;
-  animation:chevronBounce 1.6s ease-in-out infinite;
-}
-@keyframes chevronBounce{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(4px)}
+  perspective:600px;
+  -webkit-perspective:600px;
 }
 
-@media (max-width: 760px) {
-  .werdegang-section .tl-viewport{
-    height:460px!important;
+/* 3D Spalten-Gruppe mit dezenter Rotation */
+.werdegang-section .wd-3d-stage{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(16px,2.4vw,28px);
+  transform-style:preserve-3d;
+  -webkit-transform-style:preserve-3d;
+  transform:translateX(-50px) translateY(0px) translateZ(-50px) rotateX(15deg) rotateY(-8deg) rotateZ(8deg);
+  will-change:transform;
+}
+
+/* 2. Spalten & Vertikales Marquee Motion */
+.werdegang-section .wd-marquee-col{
+  position:relative;
+  height:clamp(560px,70vh,700px);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 88%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 88%,transparent 100%);
+}
+
+.werdegang-section .wd-col-track{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  will-change:transform;
+}
+
+/* Spalte 1: läuft nach oben, 28s */
+.werdegang-section .wd-col-1 .wd-col-track{
+  animation:marqueeUp var(--duration, 28s) linear infinite;
+}
+/* Spalte 2: reverse / läuft nach unten, 32s */
+.werdegang-section .wd-col-2 .wd-col-track{
+  animation:marqueeDown var(--duration, 32s) linear infinite;
+}
+/* Spalte 3: läuft nach oben, 26s */
+.werdegang-section .wd-col-3 .wd-col-track{
+  animation:marqueeUp var(--duration, 26s) linear infinite;
+}
+
+@keyframes marqueeUp{
+  from{transform:translateY(0)}
+  to{transform:translateY(-50%)}
+}
+@keyframes marqueeDown{
+  from{transform:translateY(-50%)}
+  to{transform:translateY(0)}
+}
+
+/* WICHTIG: pauseOnHover - sobald Cursor über Spalte oder Karte fährt, stoppt die Bewegung komplett */
+.werdegang-section .wd-3d-stage:hover .wd-col-track,
+.werdegang-section .wd-marquee-col:hover .wd-col-track,
+.werdegang-section .wd-col-track:hover,
+.werdegang-section .wd-card-3d:hover{
+  animation-play-state:paused!important;
+}
+
+/* 3. & 4. Card-Design (Pure Architektur-Typo) */
+.werdegang-section .wd-card-3d{
+  width:clamp(256px,20vw,288px);
+  min-height:130px;
+  background:#242220;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  padding:16px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:0 6px 20px rgba(0,0,0,.2);
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease,background-color .25s ease;
+  box-sizing:border-box;
+  cursor:default;
+  user-select:none;
+}
+.werdegang-section .wd-card-3d:hover{
+  border-color:rgba(255,255,255,.45)!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.38),0 0 18px rgba(255,255,255,.05)!important;
+  background:#2A2724!important;
+  transform:translateY(-3px)!important;
+}
+
+/* Oben: Kategorie & Zeitraum in hellem Kontrast-Font */
+.werdegang-section .wd-card-kicker{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#D4D4D4;
+  line-height:1.3;
+  margin-bottom:8px;
+}
+/* Mitte: Titel / Rolle fett */
+.werdegang-section .wd-card-title{
+  font-family:Jost,sans-serif;
+  font-size:14px;
+  font-weight:600;
+  color:#FFFFFF;
+  line-height:1.35;
+  margin:0 0 8px;
+}
+/* Unten: Institution / Unternehmen */
+.werdegang-section .wd-card-org{
+  font-family:Jost,sans-serif;
+  font-size:12px;
+  color:#A3A3A3;
+  line-height:1.35;
+  margin:0;
+}
+
+/* 4 Kanten Rand-Maskierung Gradients in Hintergrundfarbe (#E8DDD0) */
+.werdegang-section .wd-edge-top{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:26%;
+  pointer-events:none;
+  z-index:10;
+  background:linear-gradient(to bottom,#E8DDD0 0%,transparent 100%);
+}
+.werdegang-section .wd-edge-bottom{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:26%;
+  pointer-events:none;
+  z-index:10;
+  background:linear-gradient(to top,#E8DDD0 0%,transparent 100%);
+}
+.werdegang-section .wd-edge-left{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  width:20%;
+  pointer-events:none;
+  z-index:10;
+  background:linear-gradient(to right,#E8DDD0 0%,transparent 100%);
+}
+.werdegang-section .wd-edge-right{
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  width:20%;
+  pointer-events:none;
+  z-index:10;
+  background:linear-gradient(to left,#E8DDD0 0%,transparent 100%);
+}
+
+/* Responsive Skalierung der 3D-Bühne auf mobilen Geräten */
+@media (max-width: 900px){
+  .werdegang-section .wd-3d-stage{
+    transform:scale(0.82) translateX(-30px) translateY(0px) translateZ(-40px) rotateX(15deg) rotateY(-8deg) rotateZ(8deg);
   }
-  .werdegang-section .tl-event{
-    width:100%!important;
+}
+@media (max-width: 680px){
+  .werdegang-section .wd-3d-stage{
+    transform:scale(0.68) translateX(-15px) translateY(0px) translateZ(-30px) rotateX(15deg) rotateY(-8deg) rotateZ(8deg);
   }
-  .werdegang-section .tl-content{
-    flex-direction:column!important;
-    align-items:flex-start!important;
-    gap:16px!important;
-    padding:24px 22px!important;
-    min-height:auto!important;
+  .werdegang-section .wd-edge-left,
+  .werdegang-section .wd-edge-right{
+    width:14%;
   }
-  .werdegang-section .tl-logo-slot{
-    align-self:flex-start!important;
-    justify-content:flex-start!important;
-    min-width:0!important;
-    height:auto!important;
+}
+@media (max-width: 460px){
+  .werdegang-section .wd-3d-stage{
+    transform:scale(0.58) translateX(0px) translateY(0px) translateZ(-20px) rotateX(14deg) rotateY(-6deg) rotateZ(6deg);
   }
 }
 

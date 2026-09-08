@@ -22,60 +22,53 @@ const projectBentoOrder=["modernisierung","creative-quarter","tre","hotelzimmer"
 const projectBentoClasses={modernisierung:"feature",tre:"tall",sparkasse:"wide"};
 const timeline=[
   {
+    category: "Studium",
     period: "03.2025 – HEUTE",
+    kicker: "Studium · 03.2025 – HEUTE",
     title: "Master of Arts Innenarchitektur",
-    org: "Hochschule Kaiserslautern",
-    kind: "Studium",
-    logo: { type: "img", src: "assets/logos/hs-kl-light.png", alt: "Hochschule Kaiserslautern", isHsKl: true }
+    org: "Hochschule Kaiserslautern"
   },
   {
+    category: "Beruf",
     period: "08.2023 – HEUTE",
+    kicker: "Beruf · 08.2023 – HEUTE",
     title: "Recruiter & HR Administrator",
-    org: "Reline Europe GmbH",
-    kind: "Beruf",
-    logo: { type: "img", src: "assets/logos/reline-europe-light.png", alt: "Reline Europe", isReline: true }
+    org: "Reline Europe GmbH"
   },
   {
-    period: "08.2023 – 03.2024",
-    title: "Auslandssemester · Interior Design",
-    org: "D-Eva Studio · Bali, Indonesien",
-    kind: "Praktikum",
-    logo: { type: "deva" }
+    category: "Auslandssemester",
+    period: "2024",
+    kicker: "Auslandssemester · 2024",
+    title: "D-EVA Studios",
+    org: "Bali"
   },
   {
-    period: "05.2023 – 11.2024",
-    title: "Interior Designer / Innenraumausstatterin",
-    org: "TRE Vehicle Dynamics · Team Rossberg Engineering",
-    kind: "Beruf",
-    logo: { type: "tre" }
-  },
-  {
-    period: "10.2020 – 03.2025",
+    category: "Studium",
+    period: "2020 – 2024",
+    kicker: "Studium · 2020 – 2024",
     title: "Bachelor of Arts Innenarchitektur",
-    org: "Hochschule Kaiserslautern",
-    kind: "Studium",
-    logo: { type: "img", src: "assets/logos/hs-kl-light.png", alt: "Hochschule Kaiserslautern", isHsKl: true }
+    org: "Hochschule Kaiserslautern"
   },
   {
-    period: "08.2020 – HEUTE",
-    title: "Ehrenamtliche Dolmetscherin",
-    org: "Arbeitskreis Asylbewerber · Stadt Neustadt a. d. W.",
-    kind: "Ehrenamt",
-    logo: { type: "img", src: "assets/logos/stadt-neustadt.png", alt: "Stadt Neustadt an der Weinstraße" }
+    category: "Ehrenamt",
+    period: "",
+    kicker: "Ehrenamt",
+    title: "Dolmetscherin & Integration",
+    org: "Arbeitskreis Asyl / Stadt Neustadt a. d. W."
   },
   {
-    period: "2021 – 2023",
-    title: "Servicekraft & Gastronomie",
-    org: "Komami",
-    kind: "Beruf",
-    logo: { type: "img", src: "assets/logos/komami.png", alt: "Komami", isKomami: true, isRound: true }
+    category: "Gastronomie",
+    period: "",
+    kicker: "Gastronomie",
+    title: "Servicekraft",
+    org: "Komami"
   },
   {
-    period: "2015 – 2017",
-    title: "Studium Rechtswissenschaft",
-    org: "Universität zu Köln",
-    kind: "Studium",
-    logo: { type: "img", src: "assets/logos/uni-koeln-light.svg", alt: "Universität zu Köln", isSeal: true }
+    category: "Studium",
+    period: "",
+    kicker: "Studium",
+    title: "Rechtswissenschaften",
+    org: "Universität zu Köln"
   }
 ];
 const software=[["VectorWorks","CAD · Grundrisse, Schnitte, Konstruktionspläne",92],["SketchUp","3D-Modelle, Explosionszeichnungen, Entwürfe",86],["Twinmotion","Innen- & Außenrenderings, Atmosphäre",84],["Adobe Photoshop","Bildbearbeitung, Moodboards, Aufbereitung",76],["Adobe InDesign","Layout, Portfolio, Projektdokumentation",72]];
@@ -469,120 +462,62 @@ function renderSkills() {
   initConceptShowcase();
 }
 function renderTimeline() {
-  var vp = document.getElementById("wd-viewport");
-  if (!vp) return;
-  vp.className = "tl-viewport";
-  var curYear = String(new Date().getFullYear());
-  var years = timeline.map(function(t) {
-    var s = t.period || (Array.isArray(t) ? t[0] : "");
-    return s.indexOf("HEUTE") !== -1 || s.indexOf("heute") !== -1 ? curYear : (s.match(/\d{4}/) || ["2025"])[0];
-  });
+  var col1 = document.getElementById("wd-col-1");
+  var col2 = document.getElementById("wd-col-2");
+  var col3 = document.getElementById("wd-col-3");
+  if (!col1 || !col2 || !col3) return;
 
-  function renderLogoHtml(logo) {
-    if (!logo) return '<div class="tl-logo-slot"></div>';
-    if (logo.type === "deva") {
-      return '<div class="tl-logo-slot">' +
-        '<div class="tl-brand-deva">' +
-          '<span class="deva-title">D-EVA STUDIOS</span>' +
-        '</div>' +
-      '</div>';
-    }
-    if (logo.type === "tre") {
-      return '<div class="tl-logo-slot">' +
-        '<div class="tl-brand-tre">' +
-          '<div class="tre-mark"><span class="tre-pipe">|</span><span>TRE</span><span class="tre-pipe">|</span></div>' +
-          '<div class="tre-label"><span>VEHICLE</span><span>DYNAMICS</span></div>' +
-        '</div>' +
-      '</div>';
-    }
-    if (logo.type === "img") {
-      var extraCls = '';
-      if (logo.isHsKl) extraCls += ' tl-logo-hskl';
-      if (logo.isReline) extraCls += ' tl-logo-reline';
-      if (logo.isKomami || logo.isRound) extraCls += ' tl-logo-komami tl-logo-round';
-      if (logo.isSeal) extraCls += ' tl-logo-seal';
-      return '<div class="tl-logo-slot">' +
-        '<img src="' + logo.src + '" alt="' + (logo.alt || '') + '" class="tl-logo-img' + extraCls + '" loading="lazy">' +
-      '</div>';
-    }
-    return '<div class="tl-logo-slot"></div>';
-  }
-
-  var html = '<div class="tl-track">';
-  html += timeline.map(function(t, i) {
-    var period = t.period || t[0];
-    var title = t.title || t[1];
-    var org = t.org || t[2];
-    var kind = (t.kind || t[3] || '').toUpperCase();
-    var logoHtml = renderLogoHtml(t.logo);
-
-    return '<div class="tl-event" style="--i:' + i + '">' +
-      '<div class="tl-content">' +
-        '<div class="tl-info-col">' +
-          '<div class="tl-kicker-row">' +
-            '<span class="tl-kind-badge">' + kind + '</span>' +
-            '<span class="tl-kicker-sep">&middot;</span>' +
-            '<span class="tl-period-badge">' + period + '</span>' +
-          '</div>' +
-          '<h3 class="tl-title">' + title + '</h3>' +
-          '<div class="tl-org">' + org + '</div>' +
-        '</div>' +
-        logoHtml +
-      '</div>' +
+  function cardHtml(item) {
+    var kicker = item.kicker || (item.category + (item.period ? ' · ' + item.period : ''));
+    return '<div class="wd-card-3d">' +
+      '<div class="wd-card-kicker">' + kicker + '</div>' +
+      '<div class="wd-card-title">' + item.title + '</div>' +
+      '<div class="wd-card-org">' + item.org + '</div>' +
     '</div>';
-  }).join('');
-  html += '</div>';
-  vp.innerHTML = html;
-
-  var barEl = document.getElementById("wd-bar");
-  var yearEl = document.getElementById("wd-year");
-  var hintEl = document.getElementById("wd-scroll-hint");
-
-  function update() {
-    var max = vp.scrollHeight - vp.clientHeight;
-    var p = max > 0 ? vp.scrollTop / max : 0;
-    if (barEl) barEl.style.width = (p * 100).toFixed(1) + "%";
-    if (yearEl) {
-      var idx = Math.min(Math.round(p * (timeline.length - 1)), timeline.length - 1);
-      yearEl.textContent = years[idx] || curYear;
-    }
-    if (hintEl) {
-      hintEl.style.opacity = p >= 0.94 ? '0' : '1';
-      hintEl.style.pointerEvents = p >= 0.94 ? 'none' : 'auto';
-    }
   }
 
-  vp.addEventListener("scroll", update, { passive: true });
-  update();
+  // Distribution across 3 columns (4 items each, duplicated for seamless loop)
+  // Col 1: Studium Fokus + Beruf (Master, Bachelor, Jura, Recruiter)
+  // Col 2: Beruf & Auslandssemester & Ehrenamt (Recruiter, Ehrenamt, D-EVA, Komami)
+  // Col 3: Auslandssemester & Gastronomie & Studium (D-EVA, Komami, Master, Bachelor)
+  var col1Items = [timeline[0], timeline[3], timeline[6], timeline[1]];
+  var col2Items = [timeline[1], timeline[4], timeline[2], timeline[5]];
+  var col3Items = [timeline[2], timeline[5], timeline[0], timeline[3]];
 
-  if (hintEl && !hintEl.dataset.clickBound) {
-    hintEl.dataset.clickBound = "true";
-    hintEl.addEventListener("click", function() {
-      vp.scrollBy({ top: 176, behavior: "smooth" });
-    });
-    hintEl.addEventListener("keydown", function(e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        vp.scrollBy({ top: 176, behavior: "smooth" });
-      }
-    });
+  function populateCol(el, items) {
+    var allItems = items.concat(items);
+    el.innerHTML = '<div class="wd-col-track">' +
+      allItems.map(cardHtml).join('') +
+    '</div>';
   }
 
-  // Pin-Scroll / Wheel forwarder on Werdegang section
-  var section = document.getElementById("werdegang");
-  if (section && !section.dataset.wheelBound) {
-    section.dataset.wheelBound = "true";
-    section.addEventListener("wheel", function(e) {
-      var max = vp.scrollHeight - vp.clientHeight;
-      if (max <= 0) return;
-      if (e.deltaY > 0 && vp.scrollTop < max - 3) {
-        vp.scrollTop += e.deltaY;
-        e.preventDefault();
-      } else if (e.deltaY < 0 && vp.scrollTop > 3) {
-        vp.scrollTop += e.deltaY;
-        e.preventDefault();
-      }
-    }, { passive: false });
+  populateCol(col1, col1Items);
+  populateCol(col2, col2Items);
+  populateCol(col3, col3Items);
+
+  // pauseOnHover: Pause when cursor enters the 3D stage or any column
+  var stage = document.getElementById("wd-3d-stage");
+  if (stage) {
+    stage.addEventListener("mouseenter", function() {
+      stage.querySelectorAll(".wd-col-track").forEach(function(tr) {
+        tr.style.animationPlayState = "paused";
+      });
+    });
+    stage.addEventListener("mouseleave", function() {
+      stage.querySelectorAll(".wd-col-track").forEach(function(tr) {
+        tr.style.animationPlayState = "running";
+      });
+    });
+    stage.addEventListener("touchstart", function() {
+      stage.querySelectorAll(".wd-col-track").forEach(function(tr) {
+        tr.style.animationPlayState = "paused";
+      });
+    }, { passive: true });
+    stage.addEventListener("touchend", function() {
+      stage.querySelectorAll(".wd-col-track").forEach(function(tr) {
+        tr.style.animationPlayState = "running";
+      });
+    }, { passive: true });
   }
 }
 function activeProject(){return projects.find(p=>p.id===state.modalId)}
