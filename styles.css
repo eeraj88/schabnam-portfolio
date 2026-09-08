@@ -555,16 +555,20 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 }
 
 /* ── Kachel 1: Software & Workflow (Vernetzte 4-Stationen Workflow-Pipeline) ── */
-#faehigkeiten .bento-card-workflow{grid-column:span 7!important}
+#faehigkeiten .bento-card-workflow{grid-column:span 8!important}
 #faehigkeiten .beam-stage{
   position:relative!important;
-  min-height:310px!important;
+  min-height:320px!important;
   flex:1!important;
   display:flex!important;
   align-items:stretch!important;
   justify-content:space-between!important;
-  padding:16px clamp(8px, 1.8vw, 24px)!important;
+  padding:22px clamp(12px, 2vw, 32px)!important;
   box-sizing:border-box!important;
+  background:#FAF7F2!important;
+  border:1px solid rgba(42, 42, 42, 0.08)!important;
+  border-radius:16px!important;
+  box-shadow:inset 0 2px 8px rgba(20, 15, 13, 0.02)!important;
 }
 #faehigkeiten .beam-svg{
   position:absolute!important;
@@ -600,7 +604,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   flex-direction:column!important;
   align-items:center!important;
   justify-content:center!important;
-  z-index:2!important;
+  z-index:5!important;
   position:relative!important;
 }
 #faehigkeiten .beam-station-1{
@@ -624,7 +628,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   flex:0 0 auto!important;
 }
 
-/* Standalone Logos & Nodes (keine weissen runden Rahmen) */
+/* Standalone Logos & Nodes mit maskiertem Zeichentisch-Hintergrund */
 #faehigkeiten .beam-node{
   display:flex!important;
   align-items:center!important;
@@ -636,16 +640,31 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   border:none!important;
   padding:0!important;
   position:relative!important;
+  z-index:10!important;
 }
 #faehigkeiten .beam-node:hover{
-  transform:scale(1.18)!important;
-  filter:drop-shadow(0 8px 20px rgba(20, 15, 13, 0.22))!important;
+  transform:scale(1.16)!important;
+  filter:drop-shadow(0 8px 20px rgba(20, 15, 13, 0.2))!important;
+}
+#faehigkeiten .wf-logo-mask{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:#FAF7F2!important;
+  border-radius:12px!important;
+  box-shadow:0 0 0 4px #FAF7F2!important;
+  z-index:10!important;
+}
+#faehigkeiten #node-vw .wf-logo-mask{
+  border-radius:50%!important;
+  box-shadow:0 0 0 5px #FAF7F2!important;
 }
 #faehigkeiten .wf-logo-standalone{
-  width:clamp(48px, 4.4vw, 56px)!important;
-  height:clamp(48px, 4.4vw, 56px)!important;
+  width:clamp(46px, 4vw, 52px)!important;
+  height:clamp(46px, 4vw, 52px)!important;
   display:block!important;
-  filter:drop-shadow(0 4px 12px rgba(20, 15, 13, 0.1))!important;
+  filter:drop-shadow(0 3px 10px rgba(20, 15, 13, 0.08))!important;
   transition:transform .25s ease!important;
 }
 
@@ -655,31 +674,38 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   grid-template-columns:repeat(2, 1fr)!important;
   gap:clamp(10px, 1.2vw, 14px)!important;
   padding:clamp(12px, 1.4vw, 16px)!important;
-  background:rgba(255, 255, 255, 0.38)!important;
+  background:rgba(255, 255, 255, 0.65)!important;
   border:1.5px dashed rgba(156, 79, 62, 0.35)!important;
   border-radius:22px!important;
   backdrop-filter:blur(8px)!important;
   -webkit-backdrop-filter:blur(8px)!important;
-  box-shadow:0 8px 24px rgba(20, 15, 13, 0.05)!important;
+  box-shadow:0 8px 24px rgba(20, 15, 13, 0.04)!important;
   transition:border-color .3s ease,box-shadow .3s ease,transform .3s ease!important;
+  position:relative!important;
+  z-index:10!important;
 }
 #faehigkeiten .beam-cluster:hover{
   border-color:rgba(156, 79, 62, 0.65)!important;
-  box-shadow:0 10px 28px rgba(156, 79, 62, 0.14)!important;
+  box-shadow:0 10px 28px rgba(156, 79, 62, 0.12)!important;
 }
 #faehigkeiten .cluster-icon{
-  width:clamp(38px, 3.4vw, 44px)!important;
-  height:clamp(38px, 3.4vw, 44px)!important;
+  width:clamp(44px, 3.8vw, 50px)!important;
+  height:clamp(44px, 3.8vw, 50px)!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
   cursor:pointer!important;
   user-select:none!important;
   transition:transform .25s cubic-bezier(0.16, 1, 0.3, 1),filter .25s ease!important;
+  position:relative!important;
+  z-index:10!important;
+  background:#FAF7F2!important;
+  border-radius:10px!important;
+  box-shadow:0 0 0 2px #FAF7F2!important;
 }
 #faehigkeiten .cluster-icon:hover{
-  transform:scale(1.18)!important;
-  filter:drop-shadow(0 6px 14px rgba(20, 15, 13, 0.2))!important;
+  transform:scale(1.16)!important;
+  filter:drop-shadow(0 6px 14px rgba(20, 15, 13, 0.18))!important;
 }
 #faehigkeiten .wf-icon{
   width:100%!important;
@@ -688,7 +714,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   filter:drop-shadow(0 2px 8px rgba(20, 15, 13, 0.08))!important;
 }
 #faehigkeiten .wf-icon-tool{
-  padding:3px!important;
+  padding:4px!important;
   box-sizing:border-box!important;
 }
 
@@ -698,20 +724,20 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
-  width:clamp(52px, 4.8vw, 62px)!important;
-  height:clamp(52px, 4.8vw, 62px)!important;
+  width:clamp(52px, 4.6vw, 60px)!important;
+  height:clamp(52px, 4.6vw, 60px)!important;
 }
 #faehigkeiten .target-glow-ring{
   position:absolute!important;
   inset:-12px!important;
   border-radius:50%!important;
-  background:radial-gradient(circle, rgba(156, 79, 62, 0.35) 0%, rgba(156, 79, 62, 0) 70%)!important;
+  background:radial-gradient(circle, rgba(156, 79, 62, 0.32) 0%, rgba(156, 79, 62, 0) 70%)!important;
   animation:targetBeacon 2.6s ease-in-out infinite!important;
   pointer-events:none!important;
 }
 @keyframes targetBeacon{
-  0%,100%{transform:scale(0.92);opacity:0.38}
-  50%{transform:scale(1.35);opacity:0.92}
+  0%,100%{transform:scale(0.92);opacity:0.35}
+  50%{transform:scale(1.35);opacity:0.9}
 }
 #faehigkeiten .wf-target-icon{
   width:100%!important;
@@ -726,8 +752,52 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   stroke:#B8614A!important;
 }
 
+/* Hover Tooltips für alle Software & Tools */
+#faehigkeiten .wf-tooltip{
+  position:absolute!important;
+  bottom:calc(100% + 10px)!important;
+  left:50%!important;
+  transform:translateX(-50%) translateY(5px)!important;
+  background:#1A1714!important;
+  color:#FAF7F2!important;
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:10px!important;
+  font-weight:500!important;
+  letter-spacing:.04em!important;
+  white-space:nowrap!important;
+  padding:5px 10px!important;
+  border-radius:6px!important;
+  pointer-events:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  transition:opacity .2s ease,transform .2s ease,visibility .2s ease!important;
+  box-shadow:0 6px 18px rgba(0, 0, 0, 0.22)!important;
+  z-index:100!important;
+}
+#faehigkeiten .wf-tooltip::after{
+  content:''!important;
+  position:absolute!important;
+  top:100%!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  border:4px solid transparent!important;
+  border-top-color:#1A1714!important;
+}
+#faehigkeiten .beam-node:hover .wf-tooltip,
+#faehigkeiten .cluster-icon:hover .wf-tooltip{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:translateX(-50%) translateY(0)!important;
+}
+#faehigkeiten #node-pinterest .wf-tooltip{left:0!important;transform:translateX(0) translateY(5px)!important}
+#faehigkeiten #node-pinterest:hover .wf-tooltip{transform:translateX(0) translateY(0)!important}
+#faehigkeiten #node-pinterest .wf-tooltip::after{left:18px!important}
+#faehigkeiten #node-target .wf-tooltip{left:auto!important;right:0!important;transform:translateX(0) translateY(5px)!important}
+#faehigkeiten #node-target:hover .wf-tooltip{transform:translateX(0) translateY(0)!important}
+#faehigkeiten #node-target .wf-tooltip::after{left:auto!important;right:18px!important}
+
 /* ── Kachel 2: Kommunikation & Projektführung (Magic UI AnimatedList) ── */
-#faehigkeiten .bento-card-milestones{grid-column:span 5!important}
+#faehigkeiten .bento-card-milestones{grid-column:span 4!important}
 #faehigkeiten .anim-list-wrapper{
   position:relative!important;
   height:280px!important;
@@ -753,10 +823,10 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 #faehigkeiten .anim-item{
   display:flex!important;
   align-items:center!important;
-  gap:13px!important;
+  gap:12px!important;
   background:#FFFFFF!important;
   border-radius:12px!important;
-  padding:12px 15px!important;
+  padding:12px 14px!important;
   box-shadow:0 2px 8px rgba(42, 42, 42, .05)!important;
   border:1px solid rgba(42, 42, 42, .06)!important;
   transition:transform .45s cubic-bezier(.16, 1, .3, 1),opacity .45s ease,max-height .45s ease,margin .45s ease,padding .45s ease!important;
@@ -786,8 +856,8 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   margin-bottom:0!important;
 }
 #faehigkeiten .anim-item-icon{
-  width:38px!important;
-  height:38px!important;
+  width:36px!important;
+  height:36px!important;
   border-radius:10px!important;
   display:flex!important;
   align-items:center!important;
@@ -799,82 +869,297 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 #faehigkeiten .anim-item-content{flex:1!important;min-width:0!important}
 #faehigkeiten .anim-item-title{
   font-family:'Jost',sans-serif!important;
-  font-size:13.5px!important;
+  font-size:13px!important;
   font-weight:700!important;
   color:#2a2a2a!important;
   text-transform:uppercase!important;
   letter-spacing:.03em!important;
   line-height:1.2!important;
   margin-bottom:2px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
 }
 #faehigkeiten .anim-item-sub{
-  font-size:11.5px!important;
+  font-size:11px!important;
   color:rgba(42, 42, 42, .68)!important;
-  line-height:1.4!important;
+  line-height:1.35!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
 }
-#faehigkeiten .anim-item-meta{
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:flex-end!important;
-  flex-shrink:0!important;
-}
+#faehigkeiten .anim-item-meta,
 #faehigkeiten .anim-item-badge{
-  font-family:'IBM Plex Mono',monospace!important;
-  font-size:9px!important;
-  font-weight:600!important;
-  text-transform:uppercase!important;
-  letter-spacing:.08em!important;
-  padding:3px 9px!important;
-  border-radius:12px!important;
-  background:rgba(145, 88, 81, .09)!important;
-  color:#915851!important;
+  display:none!important;
 }
 
-/* ── Kachel 3: Entwurf & Raumplanung (Minimalistisch ohne Nummern & Badges) ── */
-#faehigkeiten .bento-card-concepts{grid-column:span 5!important}
-#faehigkeiten .concepts-grid{
-  display:grid!important;
-  grid-template-columns:1fr 1fr!important;
-  gap:12px!important;
-  flex:1!important;
-  align-items:stretch!important;
-}
-#faehigkeiten .concept-item{
-  background:rgba(255, 255, 255, .6)!important;
-  border:1px solid rgba(42, 42, 42, .08)!important;
-  border-radius:12px!important;
-  padding:clamp(16px, 1.8vw, 22px)!important;
+/* ── Kachel 3: Entwurf & Raumplanung (Interaktives Motion Showcase) ── */
+#faehigkeiten .bento-card-concepts{grid-column:span 6!important}
+#faehigkeiten .concept-showcase{
   display:flex!important;
   flex-direction:column!important;
+  justify-content:space-between!important;
+  flex:1!important;
+  min-height:280px!important;
+  gap:16px!important;
+}
+#faehigkeiten .showcase-viewport{
+  position:relative!important;
+  flex:1!important;
+  min-height:180px!important;
+  background:#FAF7F2!important;
+  border-radius:16px!important;
+  border:1px solid rgba(42, 42, 42, 0.08)!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
   justify-content:center!important;
-  gap:6px!important;
-  transition:all .25s ease!important;
+  padding:20px!important;
+  box-sizing:border-box!important;
 }
-#faehigkeiten .concept-item:hover{
-  background:#FFFFFF!important;
-  transform:translateY(-2px)!important;
-  box-shadow:0 6px 18px rgba(0, 0, 0, .06)!important;
-  border-color:rgba(145, 88, 81, .35)!important;
+#faehigkeiten .showcase-slide{
+  position:absolute!important;
+  inset:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:20px 24px!important;
+  box-sizing:border-box!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  transform:translateY(14px)!important;
+  transition:opacity .45s cubic-bezier(0.16, 1, 0.3, 1),transform .45s cubic-bezier(0.16, 1, 0.3, 1),visibility .45s ease!important;
+  pointer-events:none!important;
 }
-#faehigkeiten .concept-item h4{
+#faehigkeiten .showcase-slide.active{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:translateY(0)!important;
+  pointer-events:auto!important;
+  position:relative!important;
+}
+#faehigkeiten .showcase-visual{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:95px!important;
+  margin-bottom:12px!important;
+}
+#faehigkeiten .showcase-text h4{
   font-family:'Jost',sans-serif!important;
-  font-size:clamp(13px, 1.05vw, 14.5px)!important;
+  font-size:clamp(14px, 1.2vw, 16px)!important;
   font-weight:700!important;
   color:#2a2a2a!important;
   text-transform:uppercase!important;
   letter-spacing:.04em!important;
-  margin:0!important;
+  margin:0 0 6px 0!important;
   line-height:1.25!important;
 }
-#faehigkeiten .concept-item p{
-  font-size:clamp(11px, .9vw, 12px)!important;
+#faehigkeiten .showcase-text p{
+  font-size:clamp(11.5px, .95vw, 13px)!important;
   line-height:1.5!important;
-  color:rgba(42, 42, 42, .7)!important;
-  margin:0!important;
+  color:rgba(42, 42, 42, .75)!important;
+  margin:0 auto!important;
+  max-width:380px!important;
+}
+
+/* Slide 0: 3D-Visualisierung Würfel Animation */
+#faehigkeiten .cube-3d-scene{
+  width:64px!important;
+  height:64px!important;
+  perspective:400px!important;
+}
+#faehigkeiten .cube-3d{
+  width:100%!important;
+  height:100%!important;
+  position:relative!important;
+  transform-style:preserve-3d!important;
+  animation:rotateCube 10s linear infinite!important;
+}
+@keyframes rotateCube{
+  0%{transform:rotateX(-22deg) rotateY(0deg)}
+  100%{transform:rotateX(-22deg) rotateY(360deg)}
+}
+#faehigkeiten .cube-face{
+  position:absolute!important;
+  width:64px!important;
+  height:64px!important;
+  border:1.5px solid #9C4F3E!important;
+  background:rgba(156, 79, 62, 0.12)!important;
+  box-shadow:inset 0 0 10px rgba(156, 79, 62, 0.18)!important;
+  backdrop-filter:blur(1px)!important;
+}
+#faehigkeiten .cube-front {transform:translateZ(32px)!important}
+#faehigkeiten .cube-back  {transform:rotateY(180deg) translateZ(32px)!important}
+#faehigkeiten .cube-right {transform:rotateY(90deg) translateZ(32px)!important}
+#faehigkeiten .cube-left  {transform:rotateY(-90deg) translateZ(32px)!important}
+#faehigkeiten .cube-top   {transform:rotateX(90deg) translateZ(32px)!important}
+#faehigkeiten .cube-bottom{transform:rotateX(-90deg) translateZ(32px)!important}
+
+/* Slide 1: Grundrisse & Zonierung Plan Animation */
+#faehigkeiten .showcase-svg-plan{
+  width:120px!important;
+  height:82px!important;
+}
+#faehigkeiten .plan-outer,
+#faehigkeiten .plan-wall,
+#faehigkeiten .plan-door{
+  stroke:#9C4F3E!important;
+  stroke-width:2px!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+  stroke-dasharray:180!important;
+  animation:drawPlan 4.5s ease-in-out infinite alternate!important;
+}
+@keyframes drawPlan{
+  0%{stroke-dashoffset:180}
+  45%,100%{stroke-dashoffset:0}
+}
+#faehigkeiten .plan-door-leaf{
+  stroke:#9C4F3E!important;
+  stroke-width:1.6px!important;
+}
+#faehigkeiten .plan-zone{
+  fill:rgba(156, 79, 62, 0.12)!important;
+  stroke:rgba(156, 79, 62, 0.45)!important;
+  stroke-width:1.2px!important;
+  stroke-dasharray:3 3!important;
+}
+#faehigkeiten .plan-accent{
+  fill:#F4A261!important;
+  animation:lampConePulse 2.5s ease-in-out infinite!important;
+}
+
+/* Slide 2: Licht & Atmosphäre Lampe Animation */
+#faehigkeiten .light-ambient-wrap{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:85px!important;
+  height:85px!important;
+}
+#faehigkeiten .light-cone{
+  position:absolute!important;
+  bottom:0!important;
+  width:95px!important;
+  height:65px!important;
+  background:radial-gradient(ellipse at 50% 30%, rgba(244, 162, 97, 0.45) 0%, rgba(244, 162, 97, 0) 70%)!important;
+  border-radius:50%!important;
+  animation:lampConePulse 3s ease-in-out infinite!important;
+}
+@keyframes lampConePulse{
+  0%,100%{opacity:.45;transform:scale(0.92)}
+  50%{opacity:1;transform:scale(1.15)}
+}
+#faehigkeiten .showcase-svg-lamp{
+  width:72px!important;
+  height:72px!important;
+  position:relative!important;
+  z-index:2!important;
+}
+#faehigkeiten .lamp-bulb{
+  animation:bulbGlow 3s ease-in-out infinite!important;
+}
+@keyframes bulbGlow{
+  0%,100%{fill:#F4A261;filter:drop-shadow(0 0 3px #F4A261)}
+  50%{fill:#FFE8B8;filter:drop-shadow(0 0 10px #FFAA5A)}
+}
+#faehigkeiten .lamp-rays{
+  animation:raysPulse 3s ease-in-out infinite!important;
+}
+@keyframes raysPulse{
+  0%,100%{opacity:.4}
+  50%{opacity:1}
+}
+
+/* Slide 3: Detail- & Ausführungsplanung Zirkel Animation */
+#faehigkeiten .showcase-svg-compass{
+  width:80px!important;
+  height:80px!important;
+}
+#faehigkeiten .compass-circle{
+  stroke:rgba(156, 79, 62, 0.35)!important;
+  stroke-width:1.2px!important;
+  stroke-dasharray:4 4!important;
+  animation:rotateCompassCircle 14s linear infinite!important;
+  transform-origin:55px 55px!important;
+}
+@keyframes rotateCompassCircle{
+  to{transform:rotate(360deg)}
+}
+#faehigkeiten .compass-axis{
+  stroke:rgba(42, 42, 42, 0.18)!important;
+  stroke-width:1px!important;
+}
+#faehigkeiten .compass-legs{
+  stroke:#9C4F3E!important;
+  stroke-width:2.2px!important;
+  stroke-linecap:round!important;
+}
+#faehigkeiten .compass-head{
+  fill:#9C4F3E!important;
+}
+#faehigkeiten .compass-spreader{
+  stroke:#9C4F3E!important;
+  stroke-width:1.5px!important;
+}
+
+/* Showcase Nav Tabs */
+#faehigkeiten .showcase-nav{
+  display:grid!important;
+  grid-template-columns:repeat(4, 1fr)!important;
+  gap:8px!important;
+}
+#faehigkeiten .showcase-tab{
+  position:relative!important;
+  padding:8px 10px!important;
+  border-radius:10px!important;
+  border:1px solid rgba(42, 42, 42, 0.08)!important;
+  background:rgba(255, 255, 255, 0.5)!important;
+  color:#2a2a2a!important;
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:10px!important;
+  font-weight:600!important;
+  text-transform:uppercase!important;
+  letter-spacing:.04em!important;
+  cursor:pointer!important;
+  transition:all .25s ease!important;
+  text-align:center!important;
+  outline:none!important;
+  overflow:hidden!important;
+}
+#faehigkeiten .showcase-tab:hover{
+  background:#FFFFFF!important;
+  border-color:rgba(156, 79, 62, 0.4)!important;
+}
+#faehigkeiten .showcase-tab.active{
+  background:#FFFFFF!important;
+  border-color:#9C4F3E!important;
+  color:#9C4F3E!important;
+  box-shadow:0 2px 8px rgba(156, 79, 62, 0.12)!important;
+}
+#faehigkeiten .tab-progress{
+  position:absolute!important;
+  bottom:0!important;
+  left:0!important;
+  height:2.5px!important;
+  width:0%!important;
+  background:#9C4F3E!important;
+  transition:width .1s linear!important;
+}
+#faehigkeiten .showcase-tab.active .tab-progress{
+  animation:tabTimer 4s linear infinite!important;
+}
+@keyframes tabTimer{
+  0%{width:0%}
+  100%{width:100%}
 }
 
 /* ── Kachel 4: Material & Atmosphäre (Sattes Moodboard Marquee) ── */
-#faehigkeiten .bento-card-materials{grid-column:span 7!important}
+#faehigkeiten .bento-card-materials{grid-column:span 6!important}
 #faehigkeiten .material-marquee-outer{
   position:relative!important;
   overflow:hidden!important;
@@ -897,16 +1182,22 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   100%{transform:translateX(-50%)}
 }
 #faehigkeiten .material-tile{
-  flex:0 0 clamp(200px, 19vw, 250px)!important;
-  width:clamp(200px, 19vw, 250px)!important;
-  height:clamp(200px, 19vw, 250px)!important;
+  flex:0 0 clamp(190px, 18vw, 240px)!important;
+  width:clamp(190px, 18vw, 240px)!important;
+  height:clamp(190px, 18vw, 240px)!important;
   aspect-ratio:1/1!important;
   border-radius:16px!important;
   position:relative!important;
   overflow:hidden!important;
-  box-shadow:0 6px 20px rgba(0, 0, 0, .12)!important;
-  border:1px solid rgba(255, 255, 255, .45)!important;
+  box-shadow:0 6px 20px rgba(0, 0, 0, .08)!important;
+  border:1.5px solid rgba(42, 42, 42, 0.08)!important;
   cursor:pointer!important;
+  transition:transform .35s cubic-bezier(.16, 1, .3, 1),border-color .25s ease,box-shadow .25s ease!important;
+}
+#faehigkeiten .material-tile:hover{
+  border-color:rgba(156, 79, 62, 0.7)!important;
+  box-shadow:0 14px 34px rgba(156, 79, 62, 0.24), 0 4px 12px rgba(20, 15, 13, 0.1)!important;
+  transform:scale(1.05)!important;
 }
 #faehigkeiten .material-tile img{
   width:100%!important;
@@ -926,11 +1217,11 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   #faehigkeiten .bento-card-materials{grid-column:span 12!important}
 }
 @media(max-width:640px){
-  #faehigkeiten .concepts-grid{grid-template-columns:1fr!important}
+  #faehigkeiten .showcase-nav{grid-template-columns:repeat(2, 1fr)!important}
   #faehigkeiten .material-tile{flex:0 0 160px!important;width:160px!important;height:160px!important}
   #faehigkeiten .beam-stage{padding:10px 4px!important;min-height:260px!important}
   #faehigkeiten .wf-logo-standalone{width:36px!important;height:36px!important}
-  #faehigkeiten .cluster-icon{width:28px!important;height:28px!important}
+  #faehigkeiten .cluster-icon{width:32px!important;height:32px!important}
   #faehigkeiten .beam-cluster{padding:8px!important;gap:6px!important;border-radius:14px!important}
   #faehigkeiten .beam-node-target{width:40px!important;height:40px!important}
   #faehigkeiten .beam-station-2{gap:18px!important}

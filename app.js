@@ -186,28 +186,29 @@ function initMaterialMarquee() {
 
 const kommMilestones = [
   {
-    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>',
-    title: "Präsentationen & Pitch",
-    desc: "Visuelle Aufbereitung für Auftraggeber & Bauherren",
-    category: "Präsentation"
-  },
-  {
-    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>',
+    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>',
     title: "Projektkoordination",
-    desc: "Schnittstelle zwischen Planung, Handwerk & Team",
-    category: "Koordination"
+    desc: "Schnittstelle zwischen Planung, Handwerk & Team"
   },
   {
-    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
-    title: "Teamwork & Führung",
-    desc: "Empathische Zusammenarbeit, HR & Recruiting-Erfahrung",
-    category: "Leadership"
+    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>',
+    title: "Präsentationen & Pitch",
+    desc: "Visuelle Aufbereitung für Auftraggeber & Bauherren"
   },
   {
-    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>',
+    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>',
     title: "Kundenberatung",
-    desc: "Bedürfnisanalyse und individuelle Raumkonzepte",
-    category: "Beratung"
+    desc: "Bedarfsanalyse und individuelle Raumkonzepte"
+  },
+  {
+    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+    title: "Teamwork",
+    desc: "Kollaboratives Arbeiten im interdisziplinären Planerteam"
+  },
+  {
+    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>',
+    title: "HR & Recruiting",
+    desc: "Erfahrung in Teamaufbau und Mitarbeiterbetreuung"
   }
 ];
 
@@ -229,9 +230,6 @@ function initAnimatedList() {
       '<div class="anim-item-content">' +
         '<div class="anim-item-title">' + data.title + '</div>' +
         '<div class="anim-item-sub">' + data.desc + '</div>' +
-      '</div>' +
-      '<div class="anim-item-meta">' +
-        '<span class="anim-item-badge">' + data.category + '</span>' +
       '</div>';
     return div;
   }
@@ -291,12 +289,13 @@ function updateAnimatedBeams() {
   svg.querySelectorAll(".beam-track, .beam-active").forEach(function(p) { p.remove(); });
 
   function getNodeCenter(el, fromSide) {
-    var rect = el.getBoundingClientRect();
+    var targetEl = el.querySelector(".wf-logo-mask") || el;
+    var rect = targetEl.getBoundingClientRect();
     var x;
     if (fromSide === "right") {
-      x = (rect.right - sRect.left) - 3;
+      x = (rect.right - sRect.left) - 2;
     } else if (fromSide === "left") {
-      x = (rect.left - sRect.left) + 3;
+      x = (rect.left - sRect.left) + 2;
     } else {
       x = (rect.left - sRect.left) + (rect.width / 2);
     }
@@ -359,10 +358,67 @@ function initAnimatedBeam() {
   setTimeout(updateAnimatedBeams, 750);
 }
 
+var conceptShowcaseTimer = null;
+function initConceptShowcase() {
+  var container = document.getElementById("concept-showcase");
+  if (!container) return;
+
+  var slides = container.querySelectorAll(".showcase-slide");
+  var tabs = container.querySelectorAll(".showcase-tab");
+  if (!slides.length || !tabs.length) return;
+
+  var currentIndex = 0;
+  var isPaused = false;
+
+  function goToSlide(idx) {
+    currentIndex = ((idx % slides.length) + slides.length) % slides.length;
+    slides.forEach(function(s, i) {
+      if (i === currentIndex) {
+        s.classList.add("active");
+      } else {
+        s.classList.remove("active");
+      }
+    });
+    tabs.forEach(function(t, i) {
+      if (i === currentIndex) {
+        t.classList.add("active");
+      } else {
+        t.classList.remove("active");
+      }
+    });
+  }
+
+  function nextSlide() {
+    if (isPaused) return;
+    goToSlide(currentIndex + 1);
+  }
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener("click", function() {
+      var target = parseInt(tab.getAttribute("data-target"), 10);
+      if (!isNaN(target)) {
+        goToSlide(target);
+        resetTimer();
+      }
+    });
+  });
+
+  container.addEventListener("mouseenter", function() { isPaused = true; });
+  container.addEventListener("mouseleave", function() { isPaused = false; });
+
+  function resetTimer() {
+    if (conceptShowcaseTimer) clearInterval(conceptShowcaseTimer);
+    conceptShowcaseTimer = setInterval(nextSlide, 4000);
+  }
+
+  resetTimer();
+}
+
 function renderSkills() {
   initMaterialMarquee();
   initAnimatedList();
   initAnimatedBeam();
+  initConceptShowcase();
 }
 function renderTimeline(){
   var vp=document.getElementById("wd-viewport");

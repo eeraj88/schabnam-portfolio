@@ -101,60 +101,38 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 7. 🧩 Sektion „Fähigkeiten & Tools“ — Magic UI Bento Grid Overhaul & 4-Stationen-Pipeline
-* **Asset-Vorbereitung & Bereinigung des Icon-Designs:**
-  * Material-Texturen aus dem lokalen Projektpfad importiert nach `assets/materials/` und `public/images/materials/`:
-    * `warm-light.jpg`: Präziser quadratischer Center-Crop (736×736 px) aus dem Original-Hochformatbild.
-    * `eiche.jpg`, `terrazzo.jpg`, `akustikpaneel.webp`, `stoff.jpg`: Alle Texturen im 1:1-Seitenverhältnis verifiziert (`aspect-ratio: 1/1; object-fit: cover`).
-  * Logos für **Pinterest** und **Miro** aus dem lokalen Bildpfad importiert (`assets/icons/pinterest.svg`, `assets/icons/miro.svg`) und direkt als verlustfreie, native Inline-SVGs eingebunden.
-  * **Bereinigtes Icon-Design:**
-    * Keine weißen runden Container oder Rahmen mehr um die Logos — alle Logos wirken direkt, transparent freigestellt und mit edlem Drop-Shadow auf dem warmen Sandhintergrund der Bento-Karte.
-    * Deutliche Skalierung auf `clamp(48px, 4.4vw, 56px)` für maximale Fernwirkung und sofortige Wiedererkennbarkeit.
-    * Sämtliche Subtexte und Beschriftungen unter den Logos wurden entfernt (Informationen sind clean per nativer Hover-Tooltip `title` erreichbar).
-    * Obere Spaltenüberschriften („1. INPUT / PLANUNG“, etc.) restlos entfernt für ein ruhiges, unaufdringliches Gesamtbild.
-* **Kachel 1: Software & Tools (4-Stationen-Workflow & Magic UI AnimatedBeam):**
-  * **Station 1 (Start links · Recherche, Konzept & Skizze):**
-    * Zusammenhängender 2×2-Knotenpunkt-Cluster in edlem Frosted Glass mit feiner Sand-Perforation:
-      1. *Pinterest* (Stil- und Bildrecherche)
-      2. *Miro* (Digitales Moodboard & Konzeptentwicklung)
-      3. *Freihand-Skizze* (Architektonisches Entwurfs- und Stift-Icon)
-      4. *Material- & Haptikrecherche* (Taktile Layer- und Werkstoffbemusterung)
-  * **Station 2 (Mitte-Links · Technische Planung & Modellierung):**
-    * Verzweigt vertikal versetzt in 3 Kern-Software-Knoten:
-      1. *Vectorworks* (CAD & Werkplanung)
-      2. *SketchUp* (3D-Volumenmodellierung)
-      3. *Twinmotion* (Echtzeit-Rendering & Lichtstimmung)
-  * **Station 3 (Mitte-Rechts · Visualisierung & Layout):**
-    * Führt die Planungsdaten zur Veredelung zusammen in:
-      1. *Adobe Photoshop* (Bildbearbeitung & Bildatmosphäre)
-      2. *Adobe InDesign* (Planlayout & Präsentationsportfolio)
-  * **Station 4 (Endpunkt rechts · Realisiertes Projekt):**
-    * Mündet in einem zentralen, architektonischen Ziel-Icon (`Building2`) mit kontinuierlich pulsierendem Terrakotta-Beacon (`@keyframes targetBeacon`), das das fertig gebaute Objekt symbolisiert.
-  * **AnimatedBeam-Netzwerk:**
-    * 10 flüssig berechnete kubische Bezier-Kurven mit horizontalen Tangenten verbinden die Stationen von links nach rechts:
-      * Station 1 (Cluster) ➔ Station 2 (Vectorworks, SketchUp, Twinmotion)
-      * Station 2 ➔ Station 3 (Photoshop, InDesign)
-      * Station 3 ➔ Station 4 (Realisiertes Gebäude)
-    * Gestaffelte Lichtstrahl-Pulse (`@keyframes beamFlow` mit 3,2s Zyklus) leiten das Auge harmonisch durch den gesamten architektonischen Schaffensprozess.
-* **Kachel 2: Kommunikation & Projektführung (Magic UI AnimatedList):**
-  * Sanft durchwechselnde Liste aus 4 authentischen innenarchitektonischen Kernkompetenzen:
-    1. *Präsentationen & Pitch:* Visuelle Aufbereitung für Auftraggeber & Bauherren
-    2. *Projektkoordination:* Schnittstelle zwischen Planung, Handwerk & Team
-    3. *Teamwork & Führung:* Empathische Zusammenarbeit, HR & Recruiting-Erfahrung
-    4. *Kundenberatung:* Bedürfnisanalyse und individuelle Raumkonzepte
-  * Kein Saas-Zeitticker, sondern klare Rollen- und Kategorie-Tags (`Präsentation`, `Koordination`, `Leadership`, `Beratung`).
-* **Kachel 3: Entwurf & Raumplanung (Minimalistische Architektur-Quadranten):**
-  * 4 fokussierte Fachdisziplinen ohne künstliche Ziffern oder Maßstabs-Badges:
-    1. *Grundrisse & Zonierung*
-    2. *3D-Visualisierung & Rendering*
-    3. *Lichtkonzepte & Atmosphäre*
-    4. *Detail- & Ausführungsplanung*
-* **Kachel 4: Material & Atmosphäre (Das Moodboard — Großzügiges Marquee):**
-  * Vollständig von störenden Text-Overlays („Eiche Natur“, „2700K“, etc.) und Footer-Pills befreit.
-  * Großzügige quadratische Samples (`clamp(200px, 19vw, 250px)`) im kontinuierlichen Endlos-Marquee mit beidseitigem Rand-Fade (`mask-image: linear-gradient`) und Pause bei Maus-Hover.
-* **Design & Responsive Abstimmung:**
-  * Konsistentes Farbschema beibehalten: Warme Beige-Bento-Karten (`#E8DDD0`) mit feinen Sandkanten auf dunklem Anthrazit-Hintergrund (`#2a2a2a`) der Sektion.
-  * Vollständig responsive Anpassung für Desktop, Tablet und Smartphones.
+### 7. 🧩 Sektion „Fähigkeiten & Tools“ — Bento Grid Overhaul & Motion Showcase
+* **Grid-Proportionen (8 / 4 & 6 / 6 Spalten-Split):**
+  * **Obere Reihe:** Großzügige 8/12-Spalten-Breite (`grid-column: span 8`) für „Software & Tools“, damit die interaktive Workflow-Pipeline atmen und wirken kann. Kompakte 4/12-Spalten-Breite (`grid-column: span 4`) für „Kommunikation & Projektführung“.
+  * **Untere Reihe:** Perfekt austarierte 6/6-Spalten-Symmetrie (`grid-column: span 6`) für „Entwurf & Raumplanung“ und „Material & Atmosphäre“.
+* **Kachel: Software & Tools (Heller Zeichentisch-Look, Maskierung & Tooltips):**
+  * **Zeichentisch-Arbeitsfläche:** Die Stage nutzt den hellen, warmen Ton `#FAF7F2` mit feinem inneren Schatten (`inset 0 2px 10px rgba(0,0,0,0.03)`), der wie ein edler Architektur-Zeichentisch wirkt.
+  * **SVG-Layering & Vectorworks-Transparenz-Fix:**
+    * Die `AnimatedBeam`-SVG-Ebene liegt strikt auf `z-index: 1` hinter den Knoten.
+    * Alle Software-Knoten und Icons (`.wf-logo-mask`, `.cluster-icon`) sitzen auf `z-index: 10` und besitzen einen deckenden `#FAF7F2`-Hintergrund. Dadurch scheinen keine farbigen Laser-Strahlen mehr durch die transparente Aussparung des Vectorworks-„V“ oder durch Icon-Details.
+  * **Icon-Größenharmonisierung:**
+    * Die Icons für Pinterest, Miro, Freihand-Skizze und Material-Recherche wurden auf die optische Masse der Software-Logos angepasst (~44px–52px).
+  * **Elegante Dark-Graphite Tooltips:**
+    * Jeder Knoten ist mit einem dezenten, dunklen Tooltip (`.wf-tooltip`) ausgestattet, der bei Hover weich einblendet (`opacity: 1`, `translateY(0)`), den Namen des Programms und seinen Einsatzzweck nennt und durch smarte Kantenjustierung nicht über das Bento-Panel hinausragt.
+* **Kachel: Kommunikation & Projektführung (Bereinigung & 5 Kernkompetenzen):**
+  * **Badge-Entfernung:** Sämtliche störenden Rand-Pills („PRÄSENTATION“, „LEADERSHIP“, etc.) wurden restlos entfernt.
+  * **5 authentische Innenarchitektur-Kompetenzen in der `AnimatedList`:**
+    1. *Projektkoordination:* Schnittstelle zwischen Planung, Handwerk & Team
+    2. *Präsentationen & Pitch:* Visuelle Aufbereitung für Auftraggeber & Bauherren
+    3. *Kundenberatung:* Bedarfsanalyse und individuelle Raumkonzepte
+    4. *Teamwork:* Kollaboratives Arbeiten im interdisziplinären Planerteam
+    5. *HR & Recruiting:* Erfahrung in Teamaufbau und Mitarbeiterbetreuung
+* **Kachel: Material & Atmosphäre (Edle Werkstoff-Kanten & Terrakotta-Glow):**
+  * Alle quadratischen Material-Muster im Endlos-Marquee haben eine feine, präzise Einfassung (`border: 1.5px solid rgba(42, 42, 42, 0.08)`).
+  * Bei Hover akzentuiert eine samtige Terrakotta-Kante (`rgba(156, 79, 62, 0.7)`) mit tiefem Raumschatten (`box-shadow: 0 14px 34px rgba(156, 79, 62, 0.24)`).
+* **Kachel: Entwurf & Raumplanung (Interaktives Motion Showcase):**
+  * Ersetzung der starren 4 Textkarten durch ein dynamisches, interaktives Motion Showcase (`#concept-showcase`):
+    1. *3D-Visualisierung & Rendering:* Räumlicher, sich im 3D-Perspektivraum drehender Drahtgitter-Würfel (`.cube-3d` mit `rotateX` und `rotateY`).
+    2. *Grundrisse & Zonierung:* Selbstzeichnender architektonischer CAD-Grundriss (`drawPlan`-Pfad-Animation mit Raumstempeln).
+    3. *Lichtkonzepte & Atmosphäre:* Stilvolle Pendelleuchte mit pulsierendem, warmem Lichtkegel (`lampConePulse` & `bulbGlow`).
+    4. *Detail- & Ausführungsplanung:* Rotierender technischer Präzisionszirkel mit Winkelmaß und Fadenkreuz (`rotateCompassCircle`).
+  * **Interaktive Tab-Leiste & Progress:**
+    * 4 Navigations-Reiter mit linearem Ladebalken (`.tab-progress`), Klick-Auswahl zur direkten Themenansicht und automatischer Pause beim Überfahren mit dem Mauszeiger.
 
 ---
 
