@@ -1096,7 +1096,7 @@ initMarquee();renderDocs();renderProjects();renderSkills();initSkillsAnim();rend
 })();
 (function(){
   const sec=document.getElementById('ueber');
-  const img=document.querySelector('#ueber .about-image img');
+  const img=document.querySelector('#ueber .about-photo, #ueber .about-image img');
   if(!sec||!img)return;
   function setSplit(){
     const r=img.naturalWidth/img.naturalHeight;

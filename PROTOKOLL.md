@@ -40,6 +40,10 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 * **Kuratierte Canvas-Bühne & HiDPI-Schärfe:**
   * 60 % Spaltenbreite, kuratiertes Fenster (`.hero-canvas-stage`, `border-radius: 12px`, `box-shadow: 0 20px 50px rgba(0,0,0,0.5)`).
   * Retina-Auflösung via `devicePixelRatio` und `ctx.imageSmoothingQuality = 'high'` in [`app.js`](file:///C:/Users/eeraj/Documents/PROJEKTE/Schabnam%20Portfolio/schabnam-portfolio-site/app.js).
+* **Mobile-Optimierung (Frame-Scrubbing & Typografie):**
+  * **Frame-Scrubbing auf Mobile aktiviert:** `.hero` auf `220vh` und `.hero-sticky` auf `position: sticky; top: 0; height: 100dvh;` gesetzt. Zuvor war durch ein altes `height: auto` und `position: relative` die Scrollstrecke auf 0 gesetzt, weshalb die 294 Frames auf Handys nicht scrubben konnten.
+  * **Touch-Optimierung:** `pointer-events: none` auf dem Canvas leitet Swipe-Gesten ohne Reibungsverlust direkt an `#app-scroll` mit `-webkit-overflow-scrolling: touch` weiter.
+  * **Mobile-only Typo:** Auf Smartphones zentriert (`align-items: center; text-align: center;`), größer skaliert (`clamp(34px, 9.5vw, 52px)` für den Namen und `clamp(22px, 6vw, 32px)` für den MorphingText) und mit angenehmem Abstand (`padding-top: clamp(20px, 3.8vh, 38px)`) weiter nach unten versetzt. Desktop bleibt unverändert rechtsbündig.
 
 ---
 
