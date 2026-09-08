@@ -136,24 +136,28 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 8. 🧊 Sektion „Stationen & Erfahrung“ (Werdegang) — Einzelnes 3D-Band mit interaktivem Drag & Auto-Move
+### 8. 🧊 Sektion „Stationen & Erfahrung“ (Werdegang) — Echtes Ping-Pong-3D-Band mit interaktivem Drag & Reversal
 * **Layout & 3D-Bühne (1 zentraler Stream):**
-  * **Zentraler Container (`.wd-stream-container`):** Mittig zentriert (`width: min(500px, calc(100% - 32px))`, `margin: 0 auto`), `perspective: 800px` (`-webkit-perspective: 800px`) und `overflow: hidden`.
-  * **3D-Neigung (`.wd-stream-stage`):**
-    `transform: rotateX(16deg) rotateY(-10deg) rotateZ(6deg);` mit `transform-style: preserve-3d;` für eine ausbalancierte Raumschräge und optimale typografische Lesbarkeit.
-  * **Sanfte Gradients oben und unten:** Ausblend-Verläufe oben (`.wd-edge-top`) und unten (`.wd-edge-bottom`) im Hintergrundton `#E8DDD0` mit `pointer-events: none; z-index: 10;`, wodurch die Karten schwebend ein- und ausblenden.
-* **Interaktion & Drag-Funktion (Maus-Steuerung + Auto-Move):**
-  * **Interaktives Drag & Drop (`cursor: grab` / `cursor: grabbing`):** Unified Pointer-Events (`pointerdown`, `pointermove`, `pointerup` mit `setPointerCapture`) ermöglichen das freie Hoch- und Runterziehen des Bands mit der Maus und auf Touchscreens.
-  * **Flüssige Trägheit (Momentum Physics):** Beim Loslassen gleitet das Band dank berechneter Abwurfgeschwindigkeit mit sanfter Reibung (`velocity *= 0.92`) aus.
-  * **Sanfter Auto-Move & `pauseOnHover`:** Läuft im Ruhezustand kontinuierlich mit ruhiger Geschwindigkeit nach oben (`autoSpeed = 0.55`). Stoppt sofort bei Hover (`isHovered = true`) oder bei manuellem Eingriff (Drag / Wheel).
-  * **Nahtlose Endlos-Schleife (Infinite Looping):** Durch 3-fache Duplizierung (21 Karten) und automatischen Modulo-Wrap (`wrapY`) kann das Band unbegrenzt nach oben oder unten gezogen werden, ohne jemals an ein Ende zu stoßen.
-* **Großes Card-Design & Pure Architektur-Typografie:**
-  * **Dimensionen & Shape (`.wd-stream-card`):** Feste Präsenz (`min-width: clamp(320px, 85vw, 420px)`), `min-height: 152px`, großzügiges Innen-Padding (`clamp(22px, 3.5vw, 28px) clamp(24px, 4vw, 32px)`), `rounded-2xl` (18px Radius).
-  * **Styling & Hover:** Dunkler Hintergrund (`#242220`), feine Kontur (`border: 1px solid rgba(255, 255, 255, 0.15)`). Bei Hover akzentuiert der Rand sauber (`border-color: rgba(255, 255, 255, 0.5)`), mit minimalem Lift (`scale(1.02)`) und tiefem Raumschatten (`box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4)`).
-  * **Typografischer Aufbau:**
-    * *Oben:* Status & Zeitraum kontrastreich (`IBM Plex Mono`, `clamp(11.5px, 1vw, 13px)`, uppercase, `#D4745F`).
-    * *Mitte:* Rolle / Abschluss groß und fett (`Jost`, `clamp(18px, 1.8vw, 22px)`, font-bold, `#FFFFFF`).
-    * *Unten:* Institution / Unternehmen (`Jost`, `clamp(13px, 1.1vw, 14.5px)`, `#D4D4D4`).
+  * **Zentraler Container (`.wd-stream-container`):** Mittig zentriert (`width: min(560px, calc(100% - 32px))`, `margin: 0 auto`), `perspective: 800px` (`-webkit-perspective: 800px`), Höhe `clamp(580px, 72vh, 740px)` und `overflow: hidden`.
+  * **3D-Neigung (`.wd-stream-stage`):** `transform: rotateX(16deg) rotateY(-10deg) rotateZ(6deg);` mit `transform-style: preserve-3d;` für eine ausbalancierte Raumschräge und optimale Lesbarkeit.
+  * **Sanfte Gradients oben und unten:** Ausblend-Verläufe oben (`.wd-edge-top`) und unten (`.wd-edge-bottom`) im Hintergrundton `#E8DDD0` mit `pointer-events: none; z-index: 10;`.
+* **Keine Endlos-Schleife (Echte Begrenzung):**
+  * **Keine Duplizierung:** Das Array enthält exakt die 7 definierten Stationen ohne künstliches Loopen.
+  * **Startpunkt:** Ganz oben steht „Master of Arts Innenarchitektur“ mit sauberer Kante (oberhalb kein weiterer Content).
+  * **Endanschlag & Richtungsumkehr:** Sobald die letzte Karte („Rechtswissenschaften“) die vertikale Mitte der Sektion erreicht, kehrt die Animation automatisch um.
+* **Ping-Pong-Bewegung & Interaktion:**
+  * **Automatisches Hin- und Her-Gleiten:** Harmonische Cosinus-Kurve (`easeInOut`, 24s Halbzyklus). Gleitet von Position 0 bis `-maxScroll` und kehrt dort sanft um, um wieder zur Ausgangsposition zu gleiten.
+  * **`pauseOnHover`:** Bei Hover über dem Band friert die Bewegung an der aktuellen Pixelposition sofort ein.
+  * **Maus-Drag (`drag="y"`):** Begrenzung durch Drag-Constraints exakt im Intervall `[0, -maxScroll]`. Zieht der Nutzer über die Grenzen hinaus, greift eine elastische Rubberband-Resistance (0.22) mit weichem Zurückschnappen.
+  * **Wheel-Support:** Sanftes Scrollen per Mausrad innerhalb der Bounds mit automatischer Weiterführung des Ping-Pong-Zyklus.
+* **Spürbar vergrößerte Kartengröße & Abstände:**
+  * **Dimensionen (`.wd-stream-card`):** Breite `max-w-lg min-w-[380px] sm:min-w-[460px]`, `min-height: 164px`, großzügiges Padding `py-8 px-10` (`padding: 32px clamp(28px, 4vw, 40px);`), abgerundete Ecken (`rounded-2xl` / 20px).
+  * **Deutlich vergrößerter Abstand:** Vertikaler Abstand zwischen den Stationen auf `gap: 32px;` (`gap-8`) vergrößert für klare Trennung der Stationen.
+  * **Styling & Hover:** Dunkler Hintergrund (`#242220`), feine Kontur (`border: 1px solid rgba(255, 255, 255, 0.15)`). Bei Hover leuchtet der Rand auf (`border-color: rgba(255, 255, 255, 0.5)`), mit feinem Lift (`scale(1.02)`) und tiefem Raumschatten (`box-shadow: 0 20px 48px rgba(0, 0, 0, 0.42)`).
+  * **Typografie (Pure Architektur-Typo):**
+    * *Zeitraum / Status:* `text-sm font-medium tracking-wide text-neutral-300` (`IBM Plex Mono`, `clamp(13px, 1.05vw, 14.5px)`, `font-weight: 500`, `#D4D4D4`).
+    * *Titel / Rolle:* `text-xl font-bold text-white` (`Jost`, `clamp(20px, 1.9vw, 24px)`, `font-weight: 700`, `#FFFFFF`).
+    * *Institution / Ort:* `text-base text-neutral-400` (`Jost`, `clamp(15px, 1.2vw, 16.5px)`, `#A3A3A3`).
 * **Datenbasis (7 Stationen):**
   1. *03.2025 – HEUTE · Studium:* Master of Arts Innenarchitektur | Hochschule Kaiserslautern
   2. *08.2023 – HEUTE · Beruf:* Recruiter & HR Administrator | Reline Europe GmbH

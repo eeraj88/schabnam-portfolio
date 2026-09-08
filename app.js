@@ -474,30 +474,33 @@ function renderTimeline() {
     '</div>';
   }
 
-  // 3 repetitions of all 7 items (21 cards) for seamless infinite looping
-  var allItems = timeline.concat(timeline).concat(timeline);
-  track.innerHTML = allItems.map(cardHtml).join('');
+  // 1. Keine Endlos-Schleife: Exakt die 7 definierten Stationen (keine Duplizierung!)
+  track.innerHTML = timeline.map(cardHtml).join('');
 
-  var singleSetHeight = 0;
+  var maxScroll = 0;
   function measure() {
     var cards = track.querySelectorAll(".wd-stream-card");
-    if (cards.length >= 14) {
-      var rect0 = cards[0].getBoundingClientRect();
-      var rect7 = cards[7].getBoundingClientRect();
-      singleSetHeight = Math.abs(rect7.top - rect0.top);
-      if (singleSetHeight <= 0) {
-        singleSetHeight = 7 * (152 + 22);
-      }
-    }
+    if (cards.length === 0) return;
+    var lastCard = cards[cards.length - 1];
+    // Center of the last card relative to track top
+    var lastCardCenterInTrack = lastCard.offsetTop + (lastCard.offsetHeight / 2);
+    // Vertical center of the container
+    var containerCenter = container.clientHeight / 2;
+    // Endanschlag: Sobald die letzte Karte ("Rechtswissenschaften") die vertikale Mitte erreicht hat
+    maxScroll = Math.max(0, lastCardCenterInTrack - containerCenter);
   }
 
   measure();
   requestAnimationFrame(measure);
   setTimeout(measure, 150);
+  setTimeout(measure, 500);
 
-  // Position & Motion State
-  var currentY = -1200;
-  var targetY = -1200;
+  // Ping-Pong Animation & Drag State
+  var currentY = 0;
+  var targetY = 0;
+  var u = 0;           // Progress [0, 1] along easeInOut curve
+  var dir = 1;         // 1 = glides towards -maxScroll; -1 = glides back to 0
+  var duration = 24;   // 24s half-cycle
   var isDragging = false;
   var isHovered = false;
   var startY = 0;
@@ -505,34 +508,48 @@ function renderTimeline() {
   var velocity = 0;
   var lastPointerY = 0;
   var lastPointerTime = 0;
-  var autoSpeed = 0.55; // calm, elegant continuous crawl
+  var lastFrameTime = performance.now();
   var animFrameId = null;
 
-  function wrapY(y) {
-    if (singleSetHeight <= 0) return y;
-    while (y < -2 * singleSetHeight) {
-      y += singleSetHeight;
-      currentY += singleSetHeight;
-    }
-    while (y > -singleSetHeight) {
-      y -= singleSetHeight;
-      currentY -= singleSetHeight;
-    }
-    return y;
-  }
+  function tick(now) {
+    var dt = Math.min(0.1, (now - lastFrameTime) / 1000);
+    lastFrameTime = now;
 
-  function tick() {
     if (!isDragging) {
-      if (Math.abs(velocity) > 0.05) {
-        targetY += velocity;
-        velocity *= 0.92;
+      if (Math.abs(velocity) > 0.4) {
+        // Coasting with inertia from drag
+        currentY += velocity;
+        velocity *= 0.88;
+        // Clamp with bounce back
+        if (currentY > 0) {
+          currentY *= 0.6;
+          velocity = 0;
+        } else if (currentY < -maxScroll) {
+          currentY = -maxScroll + (currentY - (-maxScroll)) * 0.6;
+          velocity = 0;
+        }
+        // Sync u to currentY
+        var p = maxScroll > 0 ? Math.max(0, Math.min(1, -currentY / maxScroll)) : 0;
+        u = Math.acos(Math.max(-1, Math.min(1, 1 - 2 * p))) / Math.PI;
       } else if (!isHovered) {
-        targetY -= autoSpeed;
+        // Continuous ping-pong animation (ease: easeInOut, duration: 24s)
+        if (maxScroll > 0) {
+          u += dir * (dt / duration);
+          if (u >= 1) {
+            u = 1;
+            dir = -1; // Reverse direction: slide back down to "Master of Arts"
+          } else if (u <= 0) {
+            u = 0;
+            dir = 1;  // Reverse direction: slide up towards "Rechtswissenschaften"
+          }
+          // easeInOut: 0.5 * (1 - cos(pi * u))
+          var progress = 0.5 * (1 - Math.cos(Math.PI * u));
+          targetY = -progress * maxScroll;
+          currentY += (targetY - currentY) * 0.14;
+        } else {
+          currentY = 0;
+        }
       }
-      targetY = wrapY(targetY);
-      currentY += (targetY - currentY) * 0.18;
-    } else {
-      currentY = targetY;
     }
 
     track.style.transform = "translate3d(0, " + currentY.toFixed(2) + "px, 0)";
@@ -542,22 +559,22 @@ function renderTimeline() {
   if (animFrameId) cancelAnimationFrame(animFrameId);
   animFrameId = requestAnimationFrame(tick);
 
-  // Pause on hover
+  // pauseOnHover: Bewegung friert sofort an aktueller Position ein
   container.addEventListener("mouseenter", function() {
     isHovered = true;
   });
   container.addEventListener("mouseleave", function() {
     isHovered = false;
+    lastFrameTime = performance.now();
   });
 
-  // Unified Pointer Drag (Mouse & Touch)
+  // Maus-Drag (drag="y") mit Drag-Constraints [0, -maxScroll]
   container.addEventListener("pointerdown", function(e) {
     if (e.button !== 0 && e.pointerType === "mouse") return;
     isDragging = true;
     container.classList.add("is-dragging");
     startY = e.clientY;
     dragStartY = currentY;
-    targetY = currentY;
     velocity = 0;
     lastPointerY = e.clientY;
     lastPointerTime = performance.now();
@@ -569,8 +586,16 @@ function renderTimeline() {
   container.addEventListener("pointermove", function(e) {
     if (!isDragging) return;
     var deltaY = e.clientY - startY;
-    targetY = dragStartY + deltaY;
-    targetY = wrapY(targetY);
+    var rawY = dragStartY + deltaY;
+
+    // Soft drag constraints: resistance when pulled past top (0) or bottom (-maxScroll)
+    if (rawY > 0) {
+      currentY = rawY * 0.22;
+    } else if (rawY < -maxScroll) {
+      currentY = -maxScroll + (rawY - (-maxScroll)) * 0.22;
+    } else {
+      currentY = rawY;
+    }
 
     var now = performance.now();
     var dt = Math.max(1, now - lastPointerTime);
@@ -586,17 +611,32 @@ function renderTimeline() {
     try {
       container.releasePointerCapture(e.pointerId);
     } catch (_) {}
+
+    // Snap back into strict constraints if pulled outside
+    var clampedY = Math.max(-maxScroll, Math.min(0, currentY));
+    var p = maxScroll > 0 ? -clampedY / maxScroll : 0;
+    u = Math.acos(Math.max(-1, Math.min(1, 1 - 2 * p))) / Math.PI;
+    if (velocity < -1) {
+      dir = 1;  // Thrown upwards towards the end
+    } else if (velocity > 1) {
+      dir = -1; // Thrown downwards towards the beginning
+    }
+    lastFrameTime = performance.now();
   }
 
   container.addEventListener("pointerup", endDrag);
   container.addEventListener("pointercancel", endDrag);
 
-  // Mouse wheel interaction
+  // Wheel interaction (constrained to [0, -maxScroll])
   container.addEventListener("wheel", function(e) {
     if (Math.abs(e.deltaY) > 2) {
-      targetY -= e.deltaY * 0.6;
-      targetY = wrapY(targetY);
-      velocity = -e.deltaY * 0.12;
+      var nextY = currentY - e.deltaY * 0.5;
+      currentY = Math.max(-maxScroll, Math.min(0, nextY));
+      var p = maxScroll > 0 ? -currentY / maxScroll : 0;
+      u = Math.acos(Math.max(-1, Math.min(1, 1 - 2 * p))) / Math.PI;
+      dir = e.deltaY > 0 ? 1 : -1;
+      velocity = -e.deltaY * 0.08;
+      lastFrameTime = performance.now();
       e.preventDefault();
     }
   }, { passive: false });
