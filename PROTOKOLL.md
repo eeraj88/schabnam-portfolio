@@ -1,7 +1,7 @@
 # Dokumentation & Änderungsprotokoll — Schabnam Shor Portfolio
 
 **Projekt:** Portfolio-Website Schabnam Shor (Interior Architecture)  
-**Datum:** 23. Juli 2026  
+**Datum:** 23. Juli 2026 / Aktualisiert: 08. September 2026  
 **Status:** Live & Vercel Deployed  
 
 ---
@@ -68,7 +68,75 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 6. 🚀 Git & Vercel Deployment
+---
+
+### 6. 🎛️ Projekt-Karussell & Karten-Redesign (Portfolio-Slider)
+* **Entfall der Ziehleiste (Pullbar):**  
+  Die alte manuelle Ziehleiste wurde vollständig entfernt, um ein klares, aufgeräumtes und großzügiges Layout zu schaffen.
+* **Prägnante Pfeil-Navigation (Glassmorphism & Terrakotta-Akzent):**  
+  * **Positionierung:** Vertikal exakt zentriert (`top: 50%`, `transform: translateY(-50%)`) direkt an den äußeren Kanten des Slider-Viewports (`left: 14px`, `right: 14px`).
+  * **Größe & Styling:** Mit 64×64px (48×48px mobil) deutlich vergrößerte runde Buttons aus getöntem Frosted Glass (`rgba(22, 19, 16, 0.76)` mit 16px Backdrop-Blur), eingefasst von einem 1,5px Sandrand (`rgba(232, 221, 208, 0.42)`).
+  * **Interaktiver Hover-Status:** Sofortiger Farbumschlag in kräftiges Terrakotta (`#B8614A`), weiße Icon-Kontur, sanfte Vergrößerung (`scale(1.1)`) und ein raumgreifender Terrakotta-Glow (`box-shadow: 0 16px 42px rgba(184, 97, 74, 0.65)`).
+  * **Sichtbarkeits-Logik:** Der linke Pfeil blendet sanft aus, solange man am Anfang steht, und erscheint weich ab einem Scrollwert von 20px. Der rechte Pfeil blendet aus, sobald das Ende erreicht ist.
+* **Kartenformat, Docked-Bottom Layout & Typografie:**  
+  * **Format:** Ausdehnung der Karten in die Vertikale (`height: clamp(380px, 58vh, 620px)`), wodurch Renderings und Architekturpläne im eleganten Monographie-Format zur Geltung kommen.
+  * **Docking ganz unten:** Alle Text-Overlays sitzen einheitlich am unteren Rand (`bottom: 0`, `width: 100%`) mit einer Mindesthöhe von `86px` und festem Padding (`16px 20px`).
+  * **Reduktion & Zentrierung:** Die dritte Textzeile (Kategorie-Label) wurde entfernt. Es verbleiben nur noch Zeile 1 (Kategorie/Jahr) und Zeile 2 (Projekttitel) — beide horizontal wie vertikal im Textfeld zentriert.
+* **Alternierendes Farbschema (Beige / Schwarz im Wechsel):**  
+  * **Karte 1, 3, 5... (Beige / `theme-light`):** Heller Sandsteinton (`rgba(236, 229, 220, 0.95)`), weißer Akzentrand oben, Zeile 1 in warmem Terrakotta (`#9C4F3E`) und Titel in tiefem Anthrazitschwarz (`#140F0D`).
+  * **Karte 2, 4, 6... (Schwarz / `theme-dark`):** Tiefes Graphitschwarz (`rgba(18, 16, 14, 0.93)`), sandfarbener Akzentrand oben, Zeile 1 in warmem Sandton (`rgba(232, 221, 208, 0.78)`) und Titel in reinem Warmweiß (`#FFFFFF`).
+* **Cover-Rendering TRE Vehicle Dynamics:**  
+  * Das Titelbild des Projekts wurde gegen das neue, hochqualitative Konferenzraum-Rendering (`assets/projekte/tre-09.jpg`) ausgetauscht.
+* **Weicher Peek-Fade-Out-Effekt (Mask-Gradient):**  
+  * Die Galerie nutzt dynamische CSS-Masken (`mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%)`), um angeschnittene Karten am rechten Rand sanft auszublenden und weiteren Content subtil anzudeuten. Die Navigationspfeile bleiben davon unberührt und kristallklar sichtbar.
+* **Drag-vs-Click Schwellenwert-Logik:**  
+  * Desktop-Mausziehen ist flüssig unterstützt; ein `hasMoved`-Schwellenwert (5px) verhindert Fehlklicks auf das Projekt-Modal während des Wischens.
+* **Isolierte Bild-Navigation im Detail-Modal (TRE Vehicle Dynamics):**  
+  * Beim Durchklicken (`‹` / `›`), Swipen oder Tastatursteuern wird nun ausschließlich das Bildelement auf der linken Seite aktualisiert (`updateModalMedia()`).
+  * Das gesamte restliche Modal (Kartenpanel, Text-Spalte rechts, Header, Navigationsleiste) bleibt absolut fixiert und ruhig im DOM stehen — kein Neurendern des Modals, kein Springen der `modalUp`-Animation und kein Zurücksetzen der Leseposition.
+  * Horizontale Touch-Swipe-Gesten (`touchstart`/`touchmove`/`touchend` mit Event-Isolierung) und Desktop-Mausziehen wurden direkt auf dem Bildbereich verankert.
+* **PDF-Seitenbereinigungen:**  
+  * **Modernisierung mit Feingefühl:** Die letzten zwei Seiten (Seite 11 & 12) wurden aus `baa-bachelorarbeit.pdf` entfernt (jetzt 10 Seiten im Kernformat).
+  * **Hotelzimmer Ausführungsplanung:** Die letzte Seite (Seite 9, Kostenberechnung) wurde aus `hotelzimmer-ausfuehrungsplanung.pdf` entfernt (jetzt exakt 8 CAD-Planblätter). Metadaten und Bezeichnungen wurden entsprechend auf 8 Pläne angepasst.
+
+---
+
+### 7. 🧩 Sektion „Fähigkeiten & Tools“ — Magic UI Bento Grid Overhaul
+* **Asset-Vorbereitung & 1:1 Aspect Ratio:**
+  * Material-Texturen aus dem lokalen Projektpfad importiert nach `assets/materials/` und `public/images/materials/`:
+    * `warm-light.jpg`: Präziser quadratischer Center-Crop (736×736 px) aus dem Original-Hochformatbild.
+    * `eiche.jpg`, `terrazzo.jpg`, `akustikpaneel.webp`, `stoff.jpg`: Alle Texturen im 1:1-Seitenverhältnis verifiziert (`aspect-ratio: 1/1; object-fit: cover`).
+  * Vektor-Icons der 5 Kern-Werkzeuge als SVG importiert nach `assets/icons/`: Vectorworks, SketchUp, Twinmotion, Photoshop, InDesign.
+* **Kachel 1: Software & Workflow (Magic UI AnimatedBeam):**
+  * Alte statische Prozentbalken vollständig entfernt.
+  * Dynamisches SVG-Overlay berechnet kubische Bezier-Kurven in Echtzeit zwischen den 5 Software-Nodes und dem zentralen Gestaltungs-Core („Entwurf & Raumkonzept“).
+  * Animierte Lichtstrahlen (`@keyframes beamFlow` mit gestrichelten Farbverläufen und Drop-Shadow-Glow) pulsieren kontinuierlich von den Input-CAD-Tools in den Kern und weiter in die Visualisierungs- und Layout-Software.
+  * Zentraler Hub mit pulsierendem Terrakotta-Ring (`@keyframes hubPulse`) und architektonischem Raum-Icon.
+  * Responsive Neuberechnung der Strahlkoordinaten bei Viewport-Änderungen und Scroll-Eintritt.
+* **Kachel 2: Umsetzung & Koordination (Magic UI AnimatedList):**
+  * Dynamischer, lebendiger Aktivitäts-Feed typischer innenarchitektonischer Meilensteine und Freigaben (z. B. Bauherrenfreigabe AUS 2, Terrazzo-Bemusterung, Detailzeichnung 1:20, Lichtberechnung 2700K, 3D-Walkthrough, Ubakus-Bauphysik).
+  * Sanfter Slide-In-Effekt von oben (`transform: translateY(-20px) scale(0.94)` → `scale(1)`), flüssiges Nachuntenrücken und weiches Ausblenden älterer Einträge.
+  * Automatisches Pausieren bei Maus-Hover zur ungestörten Lesbarkeit.
+* **Kachel 3: Entwurf & Raumplanung (Architektur-Quadranten):**
+  * 4-Quadranten-Gitter für architektonische Kernkompetenzen:
+    1. *Grundrisse & Zonierung* (M 1:50 · CAD)
+    2. *3D-Volumen & Raumgefühl* (Modell · 3D)
+    3. *Lichtkonzepte & Akustik* (Atmosphäre · Lux)
+    4. *Detail- & Ausführungsplanung* (M 1:20 bis 1:1)
+  * Edle Micro-Karten mit feinen Konturen, Hover-Lift und typografischen Badges.
+* **Kachel 4: Material & Atmosphäre (Das Moodboard — Magic UI Marquee):**
+  * Physisch wirkendes Material-Sample-Board mit kontinuierlich scrollendem Marquee (`@keyframes marqueeScroll`).
+  * Beidseitiger Edge-Fade (`mask-image: linear-gradient`) für ein nahtloses, unendliches Durchlaufen.
+  * Quadratische 1:1-Texturkarten mit abgerundeten Ecken (`rounded-xl` / 14px), feinem Schlagschatten und semi-transparenten Glassmorphism-Badges („Eiche Natur“, „Terrazzo Fein“, „Akustikpaneel“, „Warmes Licht 2700K“, „Stoff Bouclé“).
+  * Subtiler Hover-Zoom (`scale-105 duration-300`) und interaktiver Pause-on-Hover-Effekt.
+  * Footer-Tags mit architektonischen Qualitätsmerkmalen (*Nachhaltige Werkstoffe*, *Taktile Bemusterung*, etc.).
+* **Design & Responsive Abstimmung:**
+  * Konsistentes Farbschema beibehalten: Warme Beige-Bento-Karten (`#E8DDD0`) mit feinen Sandkanten auf dunklem Anthrazit-Hintergrund (`#2a2a2a`) der Sektion.
+  * Asymmetrisches 12-Spalten-Layout (7+5 / 5+7) auf Desktop, sauberes und unterbrechungsfreies Umbrechen auf mobilen Geräten.
+
+---
+
+### 8. 🚀 Git & Vercel Deployment
 * Alle Änderungen wurden im Git-Repository versioniert und auf den Hauptbranch `origin/main` gepusht:
   * Repository: `https://github.com/eeraj88/schabnam-portfolio.git`
 * Das automatische Deployment auf Vercel baut und veröffentlicht die Website bei jedem Push.

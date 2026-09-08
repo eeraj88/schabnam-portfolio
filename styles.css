@@ -220,34 +220,260 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 .projects-section .section-head.light h2{color:#E8DDD0!important}
 .projects-section .section-head.light .section-kicker{color:rgba(232,221,208,.6)!important}
 .projects-section .section-head p{color:rgba(232,221,208,.65)!important}
-.projects-section .proj-pullbar-label{color:rgba(232,221,208,.5)!important}
-.projects-section .proj-pullbar-track{background:rgba(232,221,208,.15)!important}
-.projects-section .proj-pullbar-thumb{background:#E8DDD0!important}
-
 /* Projekte horizontal gallery */
 #project-grid{display:block!important;width:100%}
-.proj-gallery{display:flex;gap:clamp(6px,.8vw,10px);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;cursor:grab;user-select:none;padding-bottom:4px}
+.proj-gallery-container{position:relative;width:100%;display:flex;align-items:center}
+.proj-gallery{
+  display:flex;
+  gap:clamp(12px,1.4vw,18px);
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:none;
+  cursor:grab;
+  user-select:none;
+  padding:8px 4px 16px 4px;
+  width:100%;
+  -webkit-mask-image:linear-gradient(to right, black 0%, black 85%, transparent 100%);
+  mask-image:linear-gradient(to right, black 0%, black 85%, transparent 100%);
+  transition:-webkit-mask-image .3s ease, mask-image .3s ease;
+}
 .proj-gallery::-webkit-scrollbar{display:none}
 .proj-gallery:active{cursor:grabbing}
-.proj-card{flex:0 0 clamp(260px,29vw,400px);height:clamp(300px,46vh,500px);position:relative;overflow:hidden;border:none;padding:0;background:#1a1714;cursor:pointer;border-radius:4px;display:block}
-.proj-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .4s}
-.proj-card:hover img{transform:scale(1.07);filter:saturate(1.08)}
-.proj-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,16,10,.9) 0%,rgba(20,16,10,.45) 40%,transparent 70%);opacity:0;transition:opacity .3s ease;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding:clamp(14px,2vw,24px)}
-.proj-card:hover .proj-card-overlay{opacity:1}
-.proj-card-type{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,221,208,.7);margin-bottom:6px;transform:translateY(6px);transition:transform .3s .05s ease}
-.proj-card:hover .proj-card-type{transform:translateY(0)}
-.proj-card-title{font-family:Jost,sans-serif;font-size:clamp(14px,1.4vw,20px);font-weight:700;text-transform:uppercase;color:#fff;line-height:1.15;margin-bottom:4px;transform:translateY(8px);transition:transform .3s .08s ease}
-.proj-card:hover .proj-card-title{transform:translateY(0)}
-.proj-card-sub{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;color:rgba(247,244,239,.6);transform:translateY(8px);transition:transform .3s .1s ease}
-.proj-card:hover .proj-card-sub{transform:translateY(0)}
 
-/* pullbar */
-.proj-pullbar-wrap{margin-top:clamp(18px,2.5vw,28px)}
-.proj-pullbar-label{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(57,60,54,.45);margin-bottom:8px}
-.proj-pullbar-track{position:relative;height:4px;background:rgba(57,60,54,.15);border-radius:40px;cursor:pointer}
-.proj-pullbar-thumb{position:absolute;top:-4px;height:12px;background:#393C36;border-radius:40px;cursor:grab;min-width:48px;transition:background .2s}
-.proj-pullbar-thumb:hover{background:#9CAC7F}
-.proj-pullbar-thumb:active{cursor:grabbing;background:#9CAC7F}
+.proj-gallery[data-fade="right"]{
+  -webkit-mask-image:linear-gradient(to right, black 0%, black 85%, transparent 100%);
+  mask-image:linear-gradient(to right, black 0%, black 85%, transparent 100%);
+}
+.proj-gallery[data-fade="both"]{
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, black 4%, black 86%, transparent 100%);
+  mask-image:linear-gradient(to right, transparent 0%, black 4%, black 86%, transparent 100%);
+}
+.proj-gallery[data-fade="left"]{
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, black 5%, black 100%);
+  mask-image:linear-gradient(to right, transparent 0%, black 5%, black 100%);
+}
+
+.proj-card{
+  flex:0 0 clamp(280px,32vw,440px);
+  height:clamp(380px,58vh,620px);
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(232,221,208,0.28);
+  padding:0;
+  background:#1a1714;
+  cursor:pointer;
+  border-radius:6px;
+  display:block;
+  box-sizing:border-box;
+  transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;
+}
+.proj-card:hover{
+  border-color:rgba(232,221,208,0.8);
+  box-shadow:0 16px 40px rgba(0,0,0,.5);
+}
+.proj-card img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  display:block!important;
+  transition:transform .65s cubic-bezier(.16,1,.3,1),filter .4s ease;
+}
+.proj-card:hover img{
+  transform:scale(1.07);
+  filter:brightness(0.84) contrast(1.04);
+}
+
+/* Shiny Gloss Sweep Effect on Hover */
+.proj-card::after{
+  content:"";
+  position:absolute;
+  top:-60%;
+  left:-70%;
+  width:55%;
+  height:220%;
+  background:linear-gradient(
+    to right,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.28) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform:rotate(25deg);
+  pointer-events:none;
+  z-index:5;
+  opacity:0;
+  transition:opacity .15s ease;
+}
+.proj-card:hover::after{
+  opacity:1;
+  animation:shinySweep 0.85s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes shinySweep{
+  0%{left:-70%}
+  100%{left:145%}
+}
+
+/* Card Overlay & Docked Bottom Text Box */
+.proj-card-overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  width:100%;
+  z-index:3;
+  pointer-events:none;
+  padding:0;
+  display:flex;
+}
+.proj-card-text-box{
+  width:100%;
+  box-sizing:border-box;
+  padding:16px 20px;
+  min-height:86px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 -4px 22px rgba(0,0,0,0.28);
+  transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;
+  pointer-events:auto;
+}
+
+/* Alternating Theme: Light (Beige) - Cards 1, 3, 5... */
+.proj-card.theme-light .proj-card-text-box{
+  background:rgba(236,229,220,0.95);
+  border-top:1px solid rgba(255,255,255,0.9);
+}
+.proj-card.theme-light .proj-card-type{
+  color:#9C4F3E;
+  font-weight:700;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:4px;
+  text-align:center;
+}
+.proj-card.theme-light .proj-card-title{
+  color:#140F0D;
+  font-weight:800;
+  font-family:Jost,sans-serif;
+  font-size:clamp(14px,1.35vw,19px);
+  text-transform:uppercase;
+  line-height:1.2;
+  text-align:center;
+}
+.proj-card.theme-light:hover .proj-card-text-box{
+  background:rgba(248,243,238,0.98);
+  border-top-color:#B8614A;
+  box-shadow:0 -6px 28px rgba(0,0,0,0.35);
+}
+
+/* Alternating Theme: Dark (Schwarz) - Cards 2, 4, 6... */
+.proj-card.theme-dark .proj-card-text-box{
+  background:rgba(18,16,14,0.93);
+  border-top:1px solid rgba(232,221,208,0.25);
+}
+.proj-card.theme-dark .proj-card-type{
+  color:rgba(232,221,208,0.78);
+  font-weight:700;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:4px;
+  text-align:center;
+}
+.proj-card.theme-dark .proj-card-title{
+  color:#FFFFFF;
+  font-weight:800;
+  font-family:Jost,sans-serif;
+  font-size:clamp(14px,1.35vw,19px);
+  text-transform:uppercase;
+  line-height:1.2;
+  text-align:center;
+  text-shadow:0 2px 8px rgba(0,0,0,0.4);
+}
+.proj-card.theme-dark:hover .proj-card-text-box{
+  background:rgba(26,22,20,0.98);
+  border-top-color:rgba(232,221,208,0.65);
+  box-shadow:0 -6px 28px rgba(0,0,0,0.45);
+}
+
+/* Carousel Navigation Buttons (Pfeile) */
+.proj-nav-btn{
+  position:absolute;
+  top:50%;
+  z-index:20;
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:rgba(22,19,16,0.76);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1.5px solid rgba(232,221,208,0.42);
+  color:#E8DDD0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 10px 32px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.15);
+  opacity:0;
+  pointer-events:none;
+  user-select:none;
+  outline:none;
+  transition:opacity .3s ease,transform .3s cubic-bezier(.2,.8,.2,1),background .25s ease,border-color .25s ease,color .25s ease,box-shadow .25s ease;
+}
+.proj-nav-prev{
+  left:14px;
+  transform:translateY(-50%) scale(0.9);
+}
+.proj-nav-next{
+  right:14px;
+  transform:translateY(-50%) scale(0.9);
+}
+.proj-nav-btn.visible{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(-50%) scale(1);
+}
+.proj-nav-btn:hover{
+  background:#B8614A;
+  border-color:#FFFFFF;
+  color:#FFFFFF;
+  transform:translateY(-50%) scale(1.1);
+  box-shadow:0 16px 42px rgba(184,97,74,0.65),0 4px 14px rgba(0,0,0,0.45);
+}
+.proj-nav-btn:active{
+  transform:translateY(-50%) scale(0.96);
+}
+.proj-nav-btn svg{
+  width:26px;
+  height:26px;
+  stroke-width:2.4;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.proj-nav-prev:hover svg{transform:translateX(-3px)}
+.proj-nav-next:hover svg{transform:translateX(3px)}
+
+@media(max-width:600px){
+  .proj-card{
+    flex:0 0 clamp(260px,78vw,340px);
+    height:clamp(360px,54vh,480px);
+  }
+  .proj-nav-btn{
+    width:48px;
+    height:48px;
+  }
+  .proj-nav-prev{left:8px}
+  .proj-nav-next{right:8px}
+  .proj-nav-btn svg{
+    width:20px;
+    height:20px;
+  }
+}
 .projects-section .pc:hover{border-color:transparent!important;box-shadow:0 10px 32px rgba(0,0,0,.18)!important}
 .projects-section .project-cell.feature .pc{background:#f5f2ee!important;border:none!important;box-shadow:0 6px 28px rgba(0,0,0,.1)!important;border-radius:10px!important}
 .projects-section .pc .pc-meta{color:rgba(26,32,40,.45)!important}
@@ -271,34 +497,503 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 #ueber .about-tags span{background:rgba(145,88,81,.08)!important;backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important;border-color:rgba(145,88,81,.35)!important;color:#915851!important;border-radius:40px!important}
 #ueber .about-tags span:hover{background:rgba(145,88,81,.18)!important;border-color:rgba(145,88,81,.6)!important;color:#2a2a2a!important}
 
-/* Fähigkeiten → dark gray bento */
+/* Fähigkeiten → Magic UI Bento Grid */
 .skills-section{background:#2a2a2a!important;color:#E8DDD0!important}
 .skills-section h2,.skills-section h3{color:#E8DDD0!important}
 .skills-section .section-kicker{color:rgba(232,221,208,.55)!important}
-.skills-section .section-head p{color:rgba(232,221,208,.62)!important}
-/* Bento grid */
-#faehigkeiten .skills-layout{display:grid!important;grid-template-columns:1.4fr 1fr 1fr!important;gap:clamp(10px,1.2vw,14px)!important;align-items:stretch!important}
-#faehigkeiten .skills-card-left{grid-column:1!important;background:#E8DDD0!important;border:none!important;border-radius:10px!important;padding:clamp(28px,3vw,42px)!important}
-#faehigkeiten .skills-card-left h3{color:rgba(42,42,42,.45)!important}
-#faehigkeiten .software-row strong{color:#2a2a2a!important}
-#faehigkeiten .skill-pct{color:#915851!important}
-#faehigkeiten .bar{background:rgba(42,42,42,.15)!important}
-#faehigkeiten .bar-fill{background:linear-gradient(90deg,#915851,#c47a72)!important}
-#faehigkeiten .skill-desc{color:rgba(42,42,42,.5)!important}
-#faehigkeiten .software-row:hover{background:rgba(42,42,42,.06)!important}
-#faehigkeiten .software-row:hover .skill-pct{color:#c47a72!important}
-/* cluster-list → 2×2 sub-grid spanning cols 2-3 */
-#faehigkeiten .skills-card-right{grid-column:2 / 4!important;display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:1fr 1fr!important;gap:clamp(10px,1.2vw,14px)!important;flex-direction:unset!important;align-items:stretch!important}
-#faehigkeiten .cat-card{background:#E8DDD0!important;border:none!important;border-radius:10px!important;flex:none!important;width:100%!important;box-sizing:border-box!important;padding:clamp(24px,2.8vw,36px)!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;transition:transform .28s ease,box-shadow .28s ease,background .25s!important}
-#faehigkeiten .cat-card:hover{transform:translateY(-5px)!important;box-shadow:0 14px 36px rgba(0,0,0,.32)!important;background:#ddd0c0!important}
-#faehigkeiten .cat-card-title{color:#2a2a2a!important;margin-bottom:10px!important}
-#faehigkeiten .cat-kicker{color:#915851!important;opacity:.7!important}
-#faehigkeiten .cat-tags{gap:6px!important}
-#faehigkeiten .cat-tags span{color:#915851!important;border-color:rgba(145,88,81,.35)!important;background:rgba(145,88,81,.08)!important;backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important}
-#faehigkeiten .cat-tags span:hover{background:rgba(145,88,81,.18)!important;transform:scale(1.04)!important;border-color:rgba(145,88,81,.55)!important}
-@media(max-width:960px){
-  #faehigkeiten .skills-layout{grid-template-columns:1fr!important}
-  #faehigkeiten .skills-card-right{grid-column:1!important;grid-template-columns:1fr 1fr!important}
+.skills-section .section-head p{color:rgba(232,221,208,.65)!important}
+
+/* Bento Grid Container */
+#faehigkeiten .skills-bento-grid{
+  display:grid!important;
+  grid-template-columns:repeat(12, 1fr)!important;
+  gap:clamp(16px, 1.8vw, 24px)!important;
+  align-items:stretch!important;
+  width:100%!important;
+}
+
+/* Base Bento Card */
+#faehigkeiten .bento-card{
+  background:#E8DDD0!important;
+  border-radius:14px!important;
+  padding:clamp(24px, 2.5vw, 34px)!important;
+  border:1px solid rgba(232, 221, 208, 0.25)!important;
+  box-shadow:0 10px 32px rgba(0, 0, 0, 0.28)!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  position:relative!important;
+  overflow:hidden!important;
+  color:#2a2a2a!important;
+}
+#faehigkeiten .bento-card-header{margin-bottom:clamp(16px, 1.8vw, 24px)!important}
+#faehigkeiten .bento-card-kicker{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:10px!important;
+  font-weight:600!important;
+  text-transform:uppercase!important;
+  letter-spacing:.16em!important;
+  color:#915851!important;
+  margin-bottom:6px!important;
+}
+#faehigkeiten .bento-card-title{
+  font-family:'Jost',sans-serif!important;
+  font-size:clamp(20px, 1.9vw, 26px)!important;
+  font-weight:700!important;
+  color:#2a2a2a!important;
+  margin:0 0 6px 0!important;
+  text-transform:uppercase!important;
+  letter-spacing:.03em!important;
+  line-height:1.2!important;
+}
+#faehigkeiten .bento-card-desc{
+  font-size:clamp(12px, 1vw, 13.5px)!important;
+  line-height:1.55!important;
+  color:rgba(42, 42, 42, .72)!important;
+  margin:0!important;
+}
+
+/* ── Kachel 1: Software & Workflow (Magic UI AnimatedBeam) ── */
+#faehigkeiten .bento-card-workflow{grid-column:span 7!important}
+#faehigkeiten .beam-stage{
+  position:relative!important;
+  min-height:280px!important;
+  flex:1!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  padding:12px clamp(8px, 1.6vw, 24px)!important;
+  box-sizing:border-box!important;
+}
+#faehigkeiten .beam-svg{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  pointer-events:none!important;
+  overflow:visible!important;
+  z-index:1!important;
+}
+#faehigkeiten .beam-track{
+  stroke:rgba(42, 42, 42, .14)!important;
+  stroke-width:2px!important;
+  fill:none!important;
+  stroke-linecap:round!important;
+}
+#faehigkeiten .beam-active{
+  stroke:#915851!important;
+  stroke-width:2.8px!important;
+  fill:none!important;
+  stroke-linecap:round!important;
+  stroke-dasharray:60 180!important;
+  animation:beamFlow 2.8s linear infinite!important;
+  filter:drop-shadow(0 0 4px rgba(145, 88, 81, .45))!important;
+}
+@keyframes beamFlow{
+  0%{stroke-dashoffset:240}
+  100%{stroke-dashoffset:0}
+}
+#faehigkeiten .beam-col{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  z-index:2!important;
+  position:relative!important;
+}
+#faehigkeiten .beam-col-left{gap:clamp(14px, 1.8vw, 22px)!important}
+#faehigkeiten .beam-col-right{gap:clamp(28px, 3.2vw, 42px)!important}
+#faehigkeiten .beam-node{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  cursor:default!important;
+  transition:transform .25s ease!important;
+  user-select:none!important;
+}
+#faehigkeiten .beam-node:hover{transform:scale(1.08)!important}
+#faehigkeiten .beam-node-icon{
+  width:clamp(44px, 4vw, 52px)!important;
+  height:clamp(44px, 4vw, 52px)!important;
+  border-radius:50%!important;
+  background:#FFFFFF!important;
+  border:1px solid rgba(42, 42, 42, .12)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:0 4px 14px rgba(0, 0, 0, .08)!important;
+  transition:border-color .25s,box-shadow .25s!important;
+}
+#faehigkeiten .beam-node:hover .beam-node-icon{
+  border-color:#915851!important;
+  box-shadow:0 6px 20px rgba(145, 88, 81, .28)!important;
+}
+#faehigkeiten .beam-node-icon img{
+  width:clamp(20px, 1.8vw, 24px)!important;
+  height:clamp(20px, 1.8vw, 24px)!important;
+  object-fit:contain!important;
+  display:block!important;
+}
+#faehigkeiten .beam-node-label{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:clamp(9px, .75vw, 10.5px)!important;
+  font-weight:600!important;
+  letter-spacing:.04em!important;
+  color:#2a2a2a!important;
+  margin-top:6px!important;
+  text-transform:uppercase!important;
+  text-align:center!important;
+}
+#faehigkeiten .beam-hub-container{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  z-index:2!important;
+  position:relative!important;
+  text-align:center!important;
+  margin:0 clamp(8px, 1.5vw, 20px)!important;
+}
+#faehigkeiten .beam-hub{
+  position:relative!important;
+  width:clamp(62px, 5.5vw, 72px)!important;
+  height:clamp(62px, 5.5vw, 72px)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin-bottom:8px!important;
+}
+#faehigkeiten .beam-hub-inner{
+  width:100%!important;
+  height:100%!important;
+  border-radius:50%!important;
+  background:linear-gradient(135deg, #FAF7F2, #E8DDD0)!important;
+  border:2.2px solid #915851!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:0 8px 24px rgba(145, 88, 81, .28)!important;
+  color:#915851!important;
+  position:relative!important;
+  z-index:2!important;
+  transition:transform .3s ease!important;
+}
+#faehigkeiten .beam-hub:hover .beam-hub-inner{transform:scale(1.05)!important}
+#faehigkeiten .beam-hub-pulse{
+  position:absolute!important;
+  inset:-10px!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle, rgba(145, 88, 81, .38) 0%, rgba(145, 88, 81, 0) 70%)!important;
+  animation:hubPulse 2.8s ease-in-out infinite!important;
+  z-index:1!important;
+  pointer-events:none!important;
+}
+@keyframes hubPulse{
+  0%,100%{transform:scale(1);opacity:.5}
+  50%{transform:scale(1.3);opacity:.95}
+}
+#faehigkeiten .beam-hub-text strong{
+  display:block!important;
+  font-family:'Jost',sans-serif!important;
+  font-size:clamp(11px, .95vw, 13px)!important;
+  font-weight:700!important;
+  color:#2a2a2a!important;
+  text-transform:uppercase!important;
+  letter-spacing:.04em!important;
+  line-height:1.2!important;
+}
+#faehigkeiten .beam-hub-text span{
+  display:block!important;
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:9.5px!important;
+  color:#915851!important;
+  letter-spacing:.04em!important;
+  margin-top:3px!important;
+}
+
+/* ── Kachel 2: Meilensteine (Magic UI AnimatedList) ── */
+#faehigkeiten .bento-card-milestones{grid-column:span 5!important}
+#faehigkeiten .anim-list-wrapper{
+  position:relative!important;
+  height:280px!important;
+  overflow:hidden!important;
+  margin-top:4px!important;
+}
+#faehigkeiten .anim-list-container{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:10px!important;
+  width:100%!important;
+}
+#faehigkeiten .anim-list-fade{
+  position:absolute!important;
+  bottom:0!important;
+  left:0!important;
+  right:0!important;
+  height:40px!important;
+  background:linear-gradient(to top, #E8DDD0 15%, transparent 100%)!important;
+  pointer-events:none!important;
+  z-index:4!important;
+}
+#faehigkeiten .anim-item{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  background:#FFFFFF!important;
+  border-radius:12px!important;
+  padding:11px 14px!important;
+  box-shadow:0 2px 8px rgba(42, 42, 42, .05)!important;
+  border:1px solid rgba(42, 42, 42, .06)!important;
+  transition:transform .45s cubic-bezier(.16, 1, .3, 1),opacity .45s ease,max-height .45s ease,margin .45s ease,padding .45s ease!important;
+  max-height:80px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+#faehigkeiten .anim-item:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 6px 18px rgba(42, 42, 42, .12)!important;
+  border-color:rgba(145, 88, 81, .3)!important;
+}
+#faehigkeiten .anim-item-entering{
+  opacity:0!important;
+  transform:translateY(-20px) scale(.94)!important;
+  max-height:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  margin-bottom:0!important;
+}
+#faehigkeiten .anim-item-leaving{
+  opacity:0!important;
+  transform:translateY(12px) scale(.94)!important;
+  max-height:0!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  margin-bottom:0!important;
+}
+#faehigkeiten .anim-item-icon{
+  width:36px!important;
+  height:36px!important;
+  border-radius:9px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex-shrink:0!important;
+  background:rgba(145, 88, 81, .09)!important;
+  color:#915851!important;
+}
+#faehigkeiten .anim-item-content{flex:1!important;min-width:0!important}
+#faehigkeiten .anim-item-title{
+  font-family:'Jost',sans-serif!important;
+  font-size:13px!important;
+  font-weight:600!important;
+  color:#2a2a2a!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  line-height:1.2!important;
+  margin-bottom:2px!important;
+}
+#faehigkeiten .anim-item-sub{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:10px!important;
+  color:rgba(42, 42, 42, .55)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#faehigkeiten .anim-item-meta{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-end!important;
+  gap:4px!important;
+  flex-shrink:0!important;
+}
+#faehigkeiten .anim-item-badge{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:9px!important;
+  font-weight:600!important;
+  text-transform:uppercase!important;
+  letter-spacing:.06em!important;
+  padding:2px 8px!important;
+  border-radius:12px!important;
+}
+#faehigkeiten .badge-success{background:rgba(74, 104, 88, .12)!important;color:#3d5941!important}
+#faehigkeiten .badge-accent{background:rgba(145, 88, 81, .12)!important;color:#915851!important}
+#faehigkeiten .badge-warm{background:rgba(184, 92, 56, .12)!important;color:#B85C38!important}
+#faehigkeiten .badge-neutral{background:rgba(42, 42, 42, .08)!important;color:#2a2a2a!important}
+#faehigkeiten .anim-item-time{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:9.5px!important;
+  color:rgba(42, 42, 42, .45)!important;
+}
+
+/* ── Kachel 3: Entwurf & Konzept (4 Architectural Quadrants) ── */
+#faehigkeiten .bento-card-concepts{grid-column:span 5!important}
+#faehigkeiten .concepts-grid{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:12px!important;
+  flex:1!important;
+  align-items:stretch!important;
+}
+#faehigkeiten .concept-item{
+  background:rgba(255, 255, 255, .55)!important;
+  border:1px solid rgba(42, 42, 42, .08)!important;
+  border-radius:10px!important;
+  padding:14px 16px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  transition:all .25s ease!important;
+}
+#faehigkeiten .concept-item:hover{
+  background:#FFFFFF!important;
+  transform:translateY(-2px)!important;
+  box-shadow:0 6px 18px rgba(0, 0, 0, .06)!important;
+  border-color:rgba(145, 88, 81, .3)!important;
+}
+#faehigkeiten .concept-item-num{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:11px!important;
+  font-weight:600!important;
+  color:#915851!important;
+  margin-bottom:4px!important;
+}
+#faehigkeiten .concept-item h4{
+  font-family:'Jost',sans-serif!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  color:#2a2a2a!important;
+  text-transform:uppercase!important;
+  letter-spacing:.04em!important;
+  margin:0 0 6px!important;
+  line-height:1.25!important;
+}
+#faehigkeiten .concept-item p{
+  font-size:11.5px!important;
+  line-height:1.45!important;
+  color:rgba(42, 42, 42, .72)!important;
+  margin:0 0 10px!important;
+}
+#faehigkeiten .concept-item-tag{
+  align-self:flex-start!important;
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:9px!important;
+  font-weight:600!important;
+  text-transform:uppercase!important;
+  letter-spacing:.08em!important;
+  color:#915851!important;
+  background:rgba(145, 88, 81, .08)!important;
+  padding:3px 8px!important;
+  border-radius:20px!important;
+}
+
+/* ── Kachel 4: Material & Atmosphäre (Das Moodboard Marquee) ── */
+#faehigkeiten .bento-card-materials{grid-column:span 7!important}
+#faehigkeiten .material-marquee-outer{
+  position:relative!important;
+  overflow:hidden!important;
+  width:100%!important;
+  padding:10px 0!important;
+  margin-bottom:16px!important;
+  mask-image:linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)!important;
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)!important;
+}
+#faehigkeiten .material-marquee-track{
+  display:flex!important;
+  gap:14px!important;
+  width:max-content!important;
+  animation:marqueeScroll 25s linear infinite!important;
+}
+#faehigkeiten .material-marquee-track:hover{animation-play-state:paused!important}
+@keyframes marqueeScroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+#faehigkeiten .material-tile{
+  flex:0 0 135px!important;
+  width:135px!important;
+  height:135px!important;
+  aspect-ratio:1/1!important;
+  border-radius:14px!important;
+  position:relative!important;
+  overflow:hidden!important;
+  box-shadow:0 4px 14px rgba(0, 0, 0, .12)!important;
+  border:1px solid rgba(255, 255, 255, .4)!important;
+  cursor:pointer!important;
+}
+#faehigkeiten .material-tile-img{
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+#faehigkeiten .material-tile-img img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  aspect-ratio:1/1!important;
+  display:block!important;
+  transition:transform .4s cubic-bezier(.16, 1, .3, 1)!important;
+}
+#faehigkeiten .material-tile:hover .material-tile-img img{transform:scale(1.08)!important}
+#faehigkeiten .material-tile-badge{
+  position:absolute!important;
+  bottom:8px!important;
+  left:8px!important;
+  right:8px!important;
+  background:rgba(26, 23, 20, .68)!important;
+  backdrop-filter:blur(8px)!important;
+  -webkit-backdrop-filter:blur(8px)!important;
+  border:1px solid rgba(255, 255, 255, .22)!important;
+  border-radius:8px!important;
+  padding:4px 6px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:5px!important;
+  color:#FFFFFF!important;
+  font-family:'Jost',sans-serif!important;
+  font-size:11px!important;
+  font-weight:500!important;
+  letter-spacing:.02em!important;
+  transition:background .3s ease!important;
+}
+#faehigkeiten .material-tile:hover .material-tile-badge{background:rgba(26, 23, 20, .88)!important}
+#faehigkeiten .material-tile-dot{
+  width:5px!important;
+  height:5px!important;
+  border-radius:50%!important;
+  background:#c47a72!important;
+  flex-shrink:0!important;
+}
+#faehigkeiten .materials-footer-tags{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  margin-top:auto!important;
+}
+#faehigkeiten .materials-footer-tags span{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:10px!important;
+  letter-spacing:.06em!important;
+  text-transform:uppercase!important;
+  color:#915851!important;
+  background:rgba(145, 88, 81, .08)!important;
+  border:1px solid rgba(145, 88, 81, .25)!important;
+  border-radius:30px!important;
+  padding:5px 12px!important;
+}
+
+/* ── Bento Responsive Queries ── */
+@media(max-width:1024px){
+  #faehigkeiten .bento-card-workflow,
+  #faehigkeiten .bento-card-milestones,
+  #faehigkeiten .bento-card-concepts,
+  #faehigkeiten .bento-card-materials{grid-column:span 12!important}
+}
+@media(max-width:640px){
+  #faehigkeiten .concepts-grid{grid-template-columns:1fr!important}
+  #faehigkeiten .material-tile{flex:0 0 115px!important;width:115px!important;height:115px!important}
+  #faehigkeiten .beam-stage{padding:10px 4px!important}
 }
 
 /* Werdegang → beige + vertical scrollable dark cards */
@@ -431,13 +1126,16 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 .mp-tools{color:rgba(42,42,42,.35)}
 .mp-close{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(232,221,208,.1);border:none;color:#E8DDD0;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .mp-close:hover{background:rgba(232,221,208,.22)}
-.mp-media{grid-column:1;grid-row:2;position:relative;height:auto;min-height:0;background:#1a1a1a;overflow:hidden;display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(232,221,208,.08)}
-.mp-media img{width:100%;height:100%;object-fit:cover;display:block}
-.mp-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(232,221,208,.12);backdrop-filter:blur(6px);border:1px solid rgba(232,221,208,.25);color:#E8DDD0;border-radius:40px;padding:6px 12px;font-size:18px;cursor:pointer;z-index:2;transition:background .2s;line-height:1}
-.mp-arrow:hover{background:rgba(232,221,208,.28)}
-.mp-prev{left:12px}
-.mp-next{right:12px}
-.mp-caption{position:absolute;bottom:8px;right:12px;font-family:"IBM Plex Mono",monospace;font-size:10px;color:rgba(232,221,208,.55);letter-spacing:.06em}
+.mp-media{grid-column:1;grid-row:2;position:relative;height:auto;min-height:0;background:#1a1a1a;overflow:hidden;display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(232,221,208,.08);cursor:grab;user-select:none;touch-action:pan-y pinch-zoom}
+.mp-media:active{cursor:grabbing}
+.mp-media img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .18s ease;pointer-events:none}
+.mp-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(22,19,16,0.68);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(232,221,208,.32);color:#E8DDD0;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:10;transition:background .25s,border-color .25s,transform .2s,color .25s;line-height:1}
+.mp-arrow:hover{background:#B8614A;border-color:#FFFFFF;color:#FFFFFF;transform:translateY(-50%) scale(1.1)}
+.mp-arrow:active{transform:translateY(-50%) scale(0.95)}
+.mp-prev{left:14px}
+.mp-next{right:14px}
+.mp-counter{position:absolute;bottom:12px;left:14px;font-family:"IBM Plex Mono",monospace;font-size:10px;color:rgba(232,221,208,.8);letter-spacing:.08em;background:rgba(20,16,14,.7);padding:3px 9px;border-radius:4px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,221,208,.15);pointer-events:none;z-index:5}
+.mp-caption{position:absolute;bottom:12px;right:14px;font-family:"IBM Plex Mono",monospace;font-size:10px;color:rgba(232,221,208,.8);letter-spacing:.08em;background:rgba(20,16,14,.7);padding:3px 9px;border-radius:4px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(232,221,208,.15);pointer-events:none;z-index:5}
 .mp-controls{display:none!important;grid-column:1;grid-row:3;display:flex;align-items:center;gap:clamp(8px,1.2vw,16px);padding:8px clamp(12px,1.5vw,22px);border-top:1px solid rgba(232,221,208,.1);border-right:1px solid rgba(232,221,208,.08)}
 .mp-controls .filter-row{margin:0;flex-shrink:0;gap:5px;flex-wrap:nowrap}
 .mp-controls .thumb-row{margin:0;flex:1;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:5px}
@@ -748,125 +1446,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 
 .mp-pdf-frame{flex:1;width:100%;height:100%;border:none;background:#2b2b2b}
 
-/* === Dynamic Bento Card Themes & Text Positioning === */
-.proj-card { position: relative; overflow: hidden; background: transparent; }
-.proj-card img {
-  width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important;
-  filter: brightness(1) contrast(1);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
-}
 
-/* Hover State: Image Scales and Darkens */
-.proj-card:hover img {
-  transform: scale(1.09);
-  filter: brightness(0.78) contrast(1.06);
-}
-
-/* Shiny Gloss Sweep Effect on Hover */
-.proj-card::after {
-  content: "";
-  position: absolute;
-  top: -60%;
-  left: -70%;
-  width: 55%;
-  height: 220%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.35) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: rotate(25deg);
-  pointer-events: none;
-  z-index: 5;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-.proj-card:hover::after {
-  opacity: 1;
-  animation: shinySweep 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes shinySweep {
-  0% { left: -70%; }
-  100% { left: 145%; }
-}
-
-.proj-card-overlay {
-  position: absolute; inset: 0; padding: 18px; display: flex; z-index: 3; pointer-events: none;
-  background: transparent;
-  opacity: 1; visibility: visible;
-  transition: background 0.4s ease;
-}
-.proj-card:hover .proj-card-overlay {
-  background: rgba(0, 0, 0, 0.18);
-}
-
-/* Card Positions */
-.proj-card.pos-bottom-left .proj-card-overlay { align-items: flex-end; justify-content: flex-start; }
-.proj-card.pos-top-right .proj-card-overlay { align-items: flex-start; justify-content: flex-end; }
-.proj-card.pos-top-left .proj-card-overlay { align-items: flex-start; justify-content: flex-start; }
-.proj-card.pos-bottom-right .proj-card-overlay { align-items: flex-end; justify-content: flex-end; }
-.proj-card.pos-center .proj-card-overlay { align-items: center; justify-content: center; text-align: center; }
-
-/* Text Box Badge (Fits exact text length dynamically) */
-.proj-card-text-box {
-  padding: 10px 16px; border-radius: 8px;
-  width: fit-content; max-width: 90%;
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.32);
-  opacity: 1; visibility: visible;
-  transition: transform .35s cubic-bezier(0.16, 1, 0.3, 1), background .3s ease, border-color .3s ease, box-shadow .3s ease;
-  pointer-events: auto; text-align: left;
-  display: flex; flex-direction: column; align-items: flex-start;
-}
-.proj-card.pos-center .proj-card-text-box { align-items: center; text-align: center; }
-.proj-card.pos-top-right .proj-card-text-box,
-.proj-card.pos-bottom-right .proj-card-text-box { align-items: flex-end; text-align: right; }
-
-/* Theme Light: Dark Bold Text on Light Frosted Glass */
-.proj-card.theme-light .proj-card-text-box {
-  background: rgba(245, 240, 236, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.88);
-}
-.proj-card.theme-light .proj-card-type {
-  color: #915851; font-weight: 700; font-family: "IBM Plex Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px;
-}
-.proj-card.theme-light .proj-card-title {
-  color: #140f0d; font-weight: 900; font-family: Jost, sans-serif; font-size: clamp(15px, 1.7vw, 22px); text-transform: uppercase; line-height: 1.15; margin-bottom: 3px;
-}
-.proj-card.theme-light .proj-card-sub {
-  color: rgba(26, 20, 18, 0.75); font-family: "IBM Plex Mono", monospace; font-size: 10px; opacity: 0.9;
-}
-
-/* Theme Dark: Bold Light Text on Dark Glass */
-.proj-card.theme-dark .proj-card-text-box {
-  background: rgba(18, 16, 14, 0.88);
-  border: 1px solid rgba(232, 221, 208, 0.28);
-}
-.proj-card.theme-dark .proj-card-type {
-  color: rgba(232, 221, 208, 0.7); font-weight: 700; font-family: "IBM Plex Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px;
-}
-.proj-card.theme-dark .proj-card-title {
-  color: #FFFFFF; font-weight: 900; font-family: Jost, sans-serif; font-size: clamp(15px, 1.7vw, 22px); text-transform: uppercase; line-height: 1.15; margin-bottom: 3px; text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-}
-.proj-card.theme-dark .proj-card-sub {
-  color: rgba(232, 221, 208, 0.85); font-family: "IBM Plex Mono", monospace; font-size: 10px;
-}
-
-/* Hover States: Smooth Zoom + Floating Elevation + Shiny Shimmer */
-.proj-card:hover .proj-card-text-box {
-  transform: translateY(-5px) scale(1.025);
-}
-.proj-card.theme-light:hover .proj-card-text-box {
-  background: rgba(255, 255, 255, 0.98);
-  border-color: #915851;
-  box-shadow: 0 16px 40px rgba(0,0,0,0.42);
-}
-.proj-card.theme-dark:hover .proj-card-text-box {
-  background: rgba(28, 24, 22, 0.96);
-  border-color: rgba(232, 221, 208, 0.68);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.55);
-}
 
 
 
