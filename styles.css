@@ -1228,7 +1228,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   #faehigkeiten .beam-station-3{gap:24px!important}
 }
 
-/* Werdegang → Magic UI Marquee3D / Perspective Grid */
+/* Werdegang → Einzelnes 3D-geneigtes Band mit interaktivem Drag & Auto-Move */
 .werdegang-section{
   background:#E8DDD0!important;
   position:relative;
@@ -1257,140 +1257,109 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 }
 .werdegang-section::after{display:none!important}
 
-/* 1. 3D-Container & Perspective-Setup */
-.werdegang-section .wd-3d-container{
+/* 1. Layout & 3D-Bühne (Nur 1 zentraler Stream, perspective: 800px) */
+.werdegang-section .wd-stream-container{
   position:relative;
-  width:100%;
-  height:clamp(520px,64vh,640px);
+  width:min(500px,calc(100% - 32px));
+  height:clamp(520px,65vh,660px);
+  margin:0 auto;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  perspective:600px;
-  -webkit-perspective:600px;
+  perspective:800px;
+  -webkit-perspective:800px;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:none;
+}
+.werdegang-section .wd-stream-container.is-dragging{
+  cursor:grabbing!important;
 }
 
-/* 3D Spalten-Gruppe mit dezenter Rotation */
-.werdegang-section .wd-3d-stage{
+/* 3D-Neigung: rotateX(16deg) rotateY(-10deg) rotateZ(6deg) */
+.werdegang-section .wd-stream-stage{
+  position:absolute;
+  inset:0;
   display:flex;
-  flex-direction:row;
-  align-items:center;
   justify-content:center;
-  gap:clamp(16px,2.4vw,28px);
   transform-style:preserve-3d;
   -webkit-transform-style:preserve-3d;
-  transform:translateX(-50px) translateY(0px) translateZ(-50px) rotateX(15deg) rotateY(-8deg) rotateZ(8deg);
+  transform:rotateX(16deg) rotateY(-10deg) rotateZ(6deg);
   will-change:transform;
 }
 
-/* 2. Spalten & Vertikales Marquee Motion */
-.werdegang-section .wd-marquee-col{
-  position:relative;
-  height:clamp(560px,70vh,700px);
-  overflow:hidden;
+.werdegang-section .wd-stream-track{
   display:flex;
   flex-direction:column;
-  mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 88%,transparent 100%);
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 88%,transparent 100%);
-}
-
-.werdegang-section .wd-col-track{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
+  gap:22px;
+  width:100%;
+  max-width:460px;
+  margin:0 auto;
   will-change:transform;
 }
 
-/* Spalte 1: läuft nach oben, 28s */
-.werdegang-section .wd-col-1 .wd-col-track{
-  animation:marqueeUp var(--duration, 28s) linear infinite;
-}
-/* Spalte 2: reverse / läuft nach unten, 32s */
-.werdegang-section .wd-col-2 .wd-col-track{
-  animation:marqueeDown var(--duration, 32s) linear infinite;
-}
-/* Spalte 3: läuft nach oben, 26s */
-.werdegang-section .wd-col-3 .wd-col-track{
-  animation:marqueeUp var(--duration, 26s) linear infinite;
-}
-
-@keyframes marqueeUp{
-  from{transform:translateY(0)}
-  to{transform:translateY(-50%)}
-}
-@keyframes marqueeDown{
-  from{transform:translateY(-50%)}
-  to{transform:translateY(0)}
-}
-
-/* WICHTIG: pauseOnHover - sobald Cursor über Spalte oder Karte fährt, stoppt die Bewegung komplett */
-.werdegang-section .wd-3d-stage:hover .wd-col-track,
-.werdegang-section .wd-marquee-col:hover .wd-col-track,
-.werdegang-section .wd-col-track:hover,
-.werdegang-section .wd-card-3d:hover{
-  animation-play-state:paused!important;
-}
-
-/* 3. & 4. Card-Design (Pure Architektur-Typo) */
-.werdegang-section .wd-card-3d{
-  width:clamp(256px,20vw,288px);
-  min-height:130px;
+/* 2. & 3. Kartengröße & Design (Groß & Präsent) */
+.werdegang-section .wd-stream-card{
+  width:100%;
+  min-width:clamp(320px,85vw,420px);
+  min-height:152px;
   background:#242220;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:14px;
-  padding:16px 20px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:18px;
+  padding:clamp(22px,3.5vw,28px) clamp(24px,4vw,32px);
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  box-shadow:0 6px 20px rgba(0,0,0,.2);
-  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease,background-color .25s ease;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background-color .2s ease;
   box-sizing:border-box;
-  cursor:default;
-  user-select:none;
-}
-.werdegang-section .wd-card-3d:hover{
-  border-color:rgba(255,255,255,.45)!important;
-  box-shadow:0 14px 34px rgba(0,0,0,.38),0 0 18px rgba(255,255,255,.05)!important;
-  background:#2A2724!important;
-  transform:translateY(-3px)!important;
 }
 
-/* Oben: Kategorie & Zeitraum in hellem Kontrast-Font */
-.werdegang-section .wd-card-kicker{
+/* Hover-Feedback: Rand leuchtet auf, minimaler Lift */
+.werdegang-section .wd-stream-card:hover{
+  border-color:rgba(255,255,255,.5)!important;
+  transform:scale(1.02)!important;
+  background:#2A2724!important;
+  box-shadow:0 18px 44px rgba(0,0,0,.4)!important;
+}
+
+/* Oben: Status & Zeitraum kontrastreich und klar lesbar */
+.werdegang-section .wd-stream-kicker{
   font-family:"IBM Plex Mono",monospace;
-  font-size:11px;
+  font-size:clamp(11.5px,1vw,13px);
   font-weight:600;
-  letter-spacing:.08em;
+  letter-spacing:.1em;
   text-transform:uppercase;
-  color:#D4D4D4;
+  color:#D4745F;
   line-height:1.3;
-  margin-bottom:8px;
 }
-/* Mitte: Titel / Rolle fett */
-.werdegang-section .wd-card-title{
+
+/* Mitte: Rolle / Abschluss groß und fett (text-lg font-bold text-white) */
+.werdegang-section .wd-stream-title{
   font-family:Jost,sans-serif;
-  font-size:14px;
-  font-weight:600;
+  font-size:clamp(18px,1.8vw,22px);
+  font-weight:700;
   color:#FFFFFF;
-  line-height:1.35;
-  margin:0 0 8px;
+  line-height:1.3;
+  margin:10px 0 8px;
+  text-transform:none;
 }
-/* Unten: Institution / Unternehmen */
-.werdegang-section .wd-card-org{
+
+/* Unten: Institution / Unternehmen (text-sm text-neutral-300) */
+.werdegang-section .wd-stream-org{
   font-family:Jost,sans-serif;
-  font-size:12px;
-  color:#A3A3A3;
-  line-height:1.35;
+  font-size:clamp(13px,1.1vw,14.5px);
+  color:#D4D4D4;
+  line-height:1.4;
   margin:0;
 }
 
-/* 4 Kanten Rand-Maskierung Gradients in Hintergrundfarbe (#E8DDD0) */
+/* Sanfte Gradients oben und unten */
 .werdegang-section .wd-edge-top{
   position:absolute;
   top:0;
   left:0;
   right:0;
-  height:26%;
+  height:28%;
   pointer-events:none;
   z-index:10;
   background:linear-gradient(to bottom,#E8DDD0 0%,transparent 100%);
@@ -1400,50 +1369,21 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   bottom:0;
   left:0;
   right:0;
-  height:26%;
+  height:28%;
   pointer-events:none;
   z-index:10;
   background:linear-gradient(to top,#E8DDD0 0%,transparent 100%);
 }
-.werdegang-section .wd-edge-left{
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  width:20%;
-  pointer-events:none;
-  z-index:10;
-  background:linear-gradient(to right,#E8DDD0 0%,transparent 100%);
-}
-.werdegang-section .wd-edge-right{
-  position:absolute;
-  top:0;
-  bottom:0;
-  right:0;
-  width:20%;
-  pointer-events:none;
-  z-index:10;
-  background:linear-gradient(to left,#E8DDD0 0%,transparent 100%);
-}
 
-/* Responsive Skalierung der 3D-Bühne auf mobilen Geräten */
-@media (max-width: 900px){
-  .werdegang-section .wd-3d-stage{
-    transform:scale(0.82) translateX(-30px) translateY(0px) translateZ(-40px) rotateX(15deg) rotateY(-8deg) rotateZ(8deg);
+/* Mobile Responsiveness */
+@media (max-width: 640px){
+  .werdegang-section .wd-stream-stage{
+    transform:scale(0.88) rotateX(15deg) rotateY(-8deg) rotateZ(5deg);
   }
 }
-@media (max-width: 680px){
-  .werdegang-section .wd-3d-stage{
-    transform:scale(0.68) translateX(-15px) translateY(0px) translateZ(-30px) rotateX(15deg) rotateY(-8deg) rotateZ(8deg);
-  }
-  .werdegang-section .wd-edge-left,
-  .werdegang-section .wd-edge-right{
-    width:14%;
-  }
-}
-@media (max-width: 460px){
-  .werdegang-section .wd-3d-stage{
-    transform:scale(0.58) translateX(0px) translateY(0px) translateZ(-20px) rotateX(14deg) rotateY(-6deg) rotateZ(6deg);
+@media (max-width: 440px){
+  .werdegang-section .wd-stream-stage{
+    transform:scale(0.80) rotateX(14deg) rotateY(-6deg) rotateZ(4deg);
   }
 }
 

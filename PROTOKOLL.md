@@ -136,32 +136,32 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 8. 🧊 Sektion „Stationen & Erfahrung“ (Werdegang) — 3D-Marquee (Magic UI Marquee3D / Perspective Grid)
-* **3D-Container & Perspective-Setup:**
-  * **3D-Bühne (`.wd-3d-container`):** Mit `overflow: hidden` und `perspective: 600px` (`-webkit-perspective: 600px`) für immersive Raumtiefe.
-  * **3D-Rotation der Spaltengruppe (`.wd-3d-stage`):**
-    `transform: translateX(-50px) translateY(0px) translateZ(-50px) rotateX(15deg) rotateY(-8deg) rotateZ(8deg);` mit `transform-style: preserve-3d;` für eine architektonisch geneigte, elegante Perspektive bei optimal lesbarer Typografie.
-  * **4-Kanten-Maskierung (Edge Gradients):** 4 sanfte Gradients an allen Kanten (oben, unten, links, rechts) im exakten Hintergrundfarbton `#E8DDD0` mit `pointer-events: none; z-index: 10;`, wodurch die Karten nahtlos in den Raum schweben und ein- bzw. ausblenden.
-* **3 vertikale Marquee-Spalten & Motion:**
-  * **Spalte 1 (`.wd-col-1`):** Läuft vertikal nach oben (`marqueeUp`), animiert über 28s (`--duration: 28s`).
-  * **Spalte 2 (`.wd-col-2`):** Läuft vertikal nach unten (`marqueeDown` / reverse), animiert über 32s (`--duration: 32s`).
-  * **Spalte 3 (`.wd-col-3`):** Läuft vertikal nach oben (`marqueeUp`), animiert über 26s (`--duration: 26s`).
-  * **`pauseOnHover` Interaktions-Garantie:** Sobald der Mauszeiger die Bühne, eine Spalte oder eine Karte berührt, pausiert die gesamte Bewegung sofort (`animation-play-state: paused !important` via CSS und JS Event-Listener). Beim Verlassen läuft die Bewegung nahtlos weiter.
+### 8. 🧊 Sektion „Stationen & Erfahrung“ (Werdegang) — Einzelnes 3D-Band mit interaktivem Drag & Auto-Move
+* **Layout & 3D-Bühne (1 zentraler Stream):**
+  * **Zentraler Container (`.wd-stream-container`):** Mittig zentriert (`width: min(500px, calc(100% - 32px))`, `margin: 0 auto`), `perspective: 800px` (`-webkit-perspective: 800px`) und `overflow: hidden`.
+  * **3D-Neigung (`.wd-stream-stage`):**
+    `transform: rotateX(16deg) rotateY(-10deg) rotateZ(6deg);` mit `transform-style: preserve-3d;` für eine ausbalancierte Raumschräge und optimale typografische Lesbarkeit.
+  * **Sanfte Gradients oben und unten:** Ausblend-Verläufe oben (`.wd-edge-top`) und unten (`.wd-edge-bottom`) im Hintergrundton `#E8DDD0` mit `pointer-events: none; z-index: 10;`, wodurch die Karten schwebend ein- und ausblenden.
+* **Interaktion & Drag-Funktion (Maus-Steuerung + Auto-Move):**
+  * **Interaktives Drag & Drop (`cursor: grab` / `cursor: grabbing`):** Unified Pointer-Events (`pointerdown`, `pointermove`, `pointerup` mit `setPointerCapture`) ermöglichen das freie Hoch- und Runterziehen des Bands mit der Maus und auf Touchscreens.
+  * **Flüssige Trägheit (Momentum Physics):** Beim Loslassen gleitet das Band dank berechneter Abwurfgeschwindigkeit mit sanfter Reibung (`velocity *= 0.92`) aus.
+  * **Sanfter Auto-Move & `pauseOnHover`:** Läuft im Ruhezustand kontinuierlich mit ruhiger Geschwindigkeit nach oben (`autoSpeed = 0.55`). Stoppt sofort bei Hover (`isHovered = true`) oder bei manuellem Eingriff (Drag / Wheel).
+  * **Nahtlose Endlos-Schleife (Infinite Looping):** Durch 3-fache Duplizierung (21 Karten) und automatischen Modulo-Wrap (`wrapY`) kann das Band unbegrenzt nach oben oder unten gezogen werden, ohne jemals an ein Ende zu stoßen.
+* **Großes Card-Design & Pure Architektur-Typografie:**
+  * **Dimensionen & Shape (`.wd-stream-card`):** Feste Präsenz (`min-width: clamp(320px, 85vw, 420px)`), `min-height: 152px`, großzügiges Innen-Padding (`clamp(22px, 3.5vw, 28px) clamp(24px, 4vw, 32px)`), `rounded-2xl` (18px Radius).
+  * **Styling & Hover:** Dunkler Hintergrund (`#242220`), feine Kontur (`border: 1px solid rgba(255, 255, 255, 0.15)`). Bei Hover akzentuiert der Rand sauber (`border-color: rgba(255, 255, 255, 0.5)`), mit minimalem Lift (`scale(1.02)`) und tiefem Raumschatten (`box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4)`).
+  * **Typografischer Aufbau:**
+    * *Oben:* Status & Zeitraum kontrastreich (`IBM Plex Mono`, `clamp(11.5px, 1vw, 13px)`, uppercase, `#D4745F`).
+    * *Mitte:* Rolle / Abschluss groß und fett (`Jost`, `clamp(18px, 1.8vw, 22px)`, font-bold, `#FFFFFF`).
+    * *Unten:* Institution / Unternehmen (`Jost`, `clamp(13px, 1.1vw, 14.5px)`, `#D4D4D4`).
 * **Datenbasis (7 Stationen):**
-  1. *Studium:* Master of Arts Innenarchitektur | Hochschule Kaiserslautern (03.2025 – HEUTE)
-  2. *Beruf:* Recruiter & HR Administrator | Reline Europe GmbH (08.2023 – HEUTE)
-  3. *Auslandssemester:* D-EVA Studios | Bali (2024)
-  4. *Studium:* Bachelor of Arts Innenarchitektur | Hochschule Kaiserslautern (2020 – 2024)
+  1. *03.2025 – HEUTE · Studium:* Master of Arts Innenarchitektur | Hochschule Kaiserslautern
+  2. *08.2023 – HEUTE · Beruf:* Recruiter & HR Administrator | Reline Europe GmbH
+  3. *2024 · Auslandssemester:* D-EVA Studios | Bali
+  4. *2020 – 2024 · Studium:* Bachelor of Arts Innenarchitektur | Hochschule Kaiserslautern
   5. *Ehrenamt:* Dolmetscherin & Integration | Arbeitskreis Asyl / Stadt Neustadt a. d. W.
   6. *Gastronomie:* Servicekraft | Komami
   7. *Studium:* Rechtswissenschaften | Universität zu Köln
-* **Card-Design (Pure Architektur-Typografie):**
-  * **Dimensionen:** Einheitliche Kartenbreite (`w-64 sm:w-72`, `clamp(256px, 20vw, 288px)`) mit abgerundeten Ecken (`rounded-xl` / 14px) und fester Mindesthöhe.
-  * **Styling & Hover:** Dunkler Hintergrund (`#242220`) mit feiner Kontur (`border: 1px solid rgba(255, 255, 255, 0.12)`). Bei Hover strahlt der Rand hell auf (`rgba(255, 255, 255, 0.45)`), mit feinem Lift (`translateY(-3px)`) und tiefem Raumschatten.
-  * **Typografischer Aufbau:**
-    * *Oben:* Kategorie & Zeitraum in hellem Kontrast-Font (`IBM Plex Mono`, `text-xs uppercase`, `#D4D4D4`).
-    * *Mitte:* Rolle / Titel fett (`Jost`, `text-sm font-semibold`, `#FFFFFF`).
-    * *Unten:* Institution / Unternehmen in dezentem Grau (`Jost`, `text-xs`, `#A3A3A3`).
 
 ---
 

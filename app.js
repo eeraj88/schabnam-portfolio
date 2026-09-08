@@ -462,63 +462,148 @@ function renderSkills() {
   initConceptShowcase();
 }
 function renderTimeline() {
-  var col1 = document.getElementById("wd-col-1");
-  var col2 = document.getElementById("wd-col-2");
-  var col3 = document.getElementById("wd-col-3");
-  if (!col1 || !col2 || !col3) return;
+  var container = document.getElementById("wd-stream-container");
+  var track = document.getElementById("wd-stream-track");
+  if (!container || !track) return;
 
   function cardHtml(item) {
-    var kicker = item.kicker || (item.category + (item.period ? ' · ' + item.period : ''));
-    return '<div class="wd-card-3d">' +
-      '<div class="wd-card-kicker">' + kicker + '</div>' +
-      '<div class="wd-card-title">' + item.title + '</div>' +
-      '<div class="wd-card-org">' + item.org + '</div>' +
+    return '<div class="wd-stream-card">' +
+      '<div class="wd-stream-kicker">' + item.kicker + '</div>' +
+      '<div class="wd-stream-title">' + item.title + '</div>' +
+      '<div class="wd-stream-org">' + item.org + '</div>' +
     '</div>';
   }
 
-  // Distribution across 3 columns (4 items each, duplicated for seamless loop)
-  // Col 1: Studium Fokus + Beruf (Master, Bachelor, Jura, Recruiter)
-  // Col 2: Beruf & Auslandssemester & Ehrenamt (Recruiter, Ehrenamt, D-EVA, Komami)
-  // Col 3: Auslandssemester & Gastronomie & Studium (D-EVA, Komami, Master, Bachelor)
-  var col1Items = [timeline[0], timeline[3], timeline[6], timeline[1]];
-  var col2Items = [timeline[1], timeline[4], timeline[2], timeline[5]];
-  var col3Items = [timeline[2], timeline[5], timeline[0], timeline[3]];
+  // 3 repetitions of all 7 items (21 cards) for seamless infinite looping
+  var allItems = timeline.concat(timeline).concat(timeline);
+  track.innerHTML = allItems.map(cardHtml).join('');
 
-  function populateCol(el, items) {
-    var allItems = items.concat(items);
-    el.innerHTML = '<div class="wd-col-track">' +
-      allItems.map(cardHtml).join('') +
-    '</div>';
+  var singleSetHeight = 0;
+  function measure() {
+    var cards = track.querySelectorAll(".wd-stream-card");
+    if (cards.length >= 14) {
+      var rect0 = cards[0].getBoundingClientRect();
+      var rect7 = cards[7].getBoundingClientRect();
+      singleSetHeight = Math.abs(rect7.top - rect0.top);
+      if (singleSetHeight <= 0) {
+        singleSetHeight = 7 * (152 + 22);
+      }
+    }
   }
 
-  populateCol(col1, col1Items);
-  populateCol(col2, col2Items);
-  populateCol(col3, col3Items);
+  measure();
+  requestAnimationFrame(measure);
+  setTimeout(measure, 150);
 
-  // pauseOnHover: Pause when cursor enters the 3D stage or any column
-  var stage = document.getElementById("wd-3d-stage");
-  if (stage) {
-    stage.addEventListener("mouseenter", function() {
-      stage.querySelectorAll(".wd-col-track").forEach(function(tr) {
-        tr.style.animationPlayState = "paused";
-      });
-    });
-    stage.addEventListener("mouseleave", function() {
-      stage.querySelectorAll(".wd-col-track").forEach(function(tr) {
-        tr.style.animationPlayState = "running";
-      });
-    });
-    stage.addEventListener("touchstart", function() {
-      stage.querySelectorAll(".wd-col-track").forEach(function(tr) {
-        tr.style.animationPlayState = "paused";
-      });
-    }, { passive: true });
-    stage.addEventListener("touchend", function() {
-      stage.querySelectorAll(".wd-col-track").forEach(function(tr) {
-        tr.style.animationPlayState = "running";
-      });
-    }, { passive: true });
+  // Position & Motion State
+  var currentY = -1200;
+  var targetY = -1200;
+  var isDragging = false;
+  var isHovered = false;
+  var startY = 0;
+  var dragStartY = 0;
+  var velocity = 0;
+  var lastPointerY = 0;
+  var lastPointerTime = 0;
+  var autoSpeed = 0.55; // calm, elegant continuous crawl
+  var animFrameId = null;
+
+  function wrapY(y) {
+    if (singleSetHeight <= 0) return y;
+    while (y < -2 * singleSetHeight) {
+      y += singleSetHeight;
+      currentY += singleSetHeight;
+    }
+    while (y > -singleSetHeight) {
+      y -= singleSetHeight;
+      currentY -= singleSetHeight;
+    }
+    return y;
   }
+
+  function tick() {
+    if (!isDragging) {
+      if (Math.abs(velocity) > 0.05) {
+        targetY += velocity;
+        velocity *= 0.92;
+      } else if (!isHovered) {
+        targetY -= autoSpeed;
+      }
+      targetY = wrapY(targetY);
+      currentY += (targetY - currentY) * 0.18;
+    } else {
+      currentY = targetY;
+    }
+
+    track.style.transform = "translate3d(0, " + currentY.toFixed(2) + "px, 0)";
+    animFrameId = requestAnimationFrame(tick);
+  }
+
+  if (animFrameId) cancelAnimationFrame(animFrameId);
+  animFrameId = requestAnimationFrame(tick);
+
+  // Pause on hover
+  container.addEventListener("mouseenter", function() {
+    isHovered = true;
+  });
+  container.addEventListener("mouseleave", function() {
+    isHovered = false;
+  });
+
+  // Unified Pointer Drag (Mouse & Touch)
+  container.addEventListener("pointerdown", function(e) {
+    if (e.button !== 0 && e.pointerType === "mouse") return;
+    isDragging = true;
+    container.classList.add("is-dragging");
+    startY = e.clientY;
+    dragStartY = currentY;
+    targetY = currentY;
+    velocity = 0;
+    lastPointerY = e.clientY;
+    lastPointerTime = performance.now();
+    try {
+      container.setPointerCapture(e.pointerId);
+    } catch (_) {}
+  });
+
+  container.addEventListener("pointermove", function(e) {
+    if (!isDragging) return;
+    var deltaY = e.clientY - startY;
+    targetY = dragStartY + deltaY;
+    targetY = wrapY(targetY);
+
+    var now = performance.now();
+    var dt = Math.max(1, now - lastPointerTime);
+    velocity = ((e.clientY - lastPointerY) / dt) * 16;
+    lastPointerY = e.clientY;
+    lastPointerTime = now;
+  });
+
+  function endDrag(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    container.classList.remove("is-dragging");
+    try {
+      container.releasePointerCapture(e.pointerId);
+    } catch (_) {}
+  }
+
+  container.addEventListener("pointerup", endDrag);
+  container.addEventListener("pointercancel", endDrag);
+
+  // Mouse wheel interaction
+  container.addEventListener("wheel", function(e) {
+    if (Math.abs(e.deltaY) > 2) {
+      targetY -= e.deltaY * 0.6;
+      targetY = wrapY(targetY);
+      velocity = -e.deltaY * 0.12;
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  window.addEventListener("resize", function() {
+    measure();
+  }, { passive: true });
 }
 function activeProject(){return projects.find(p=>p.id===state.modalId)}
 function visibleImages(){const p=activeProject();if(!p)return[];return state.filter==="alle"?p.images:p.images.filter(im=>im.cat===state.filter)}
