@@ -26,14 +26,14 @@ const timeline=[
     title: "Master of Arts Innenarchitektur",
     org: "Hochschule Kaiserslautern",
     kind: "Studium",
-    logo: { type: "img", src: "assets/logos/hs-kl-light.png", alt: "Hochschule Kaiserslautern" }
+    logo: { type: "img", src: "assets/logos/hs-kl-light.png", alt: "Hochschule Kaiserslautern", isHsKl: true }
   },
   {
     period: "08.2023 – HEUTE",
     title: "Recruiter & HR Administrator",
     org: "Reline Europe GmbH",
     kind: "Beruf",
-    logo: { type: "img", src: "assets/logos/reline-europe-light.png", alt: "Reline Europe" }
+    logo: { type: "img", src: "assets/logos/reline-europe-light.png", alt: "Reline Europe", isReline: true }
   },
   {
     period: "08.2023 – 03.2024",
@@ -54,7 +54,7 @@ const timeline=[
     title: "Bachelor of Arts Innenarchitektur",
     org: "Hochschule Kaiserslautern",
     kind: "Studium",
-    logo: { type: "img", src: "assets/logos/hs-kl-light.png", alt: "Hochschule Kaiserslautern" }
+    logo: { type: "img", src: "assets/logos/hs-kl-light.png", alt: "Hochschule Kaiserslautern", isHsKl: true }
   },
   {
     period: "08.2020 – HEUTE",
@@ -68,7 +68,7 @@ const timeline=[
     title: "Servicekraft & Gastronomie",
     org: "Komami",
     kind: "Beruf",
-    logo: { type: "img", src: "assets/logos/komami.png", alt: "Komami", isRound: true }
+    logo: { type: "img", src: "assets/logos/komami.png", alt: "Komami", isKomami: true, isRound: true }
   },
   {
     period: "2015 – 2017",
@@ -484,7 +484,6 @@ function renderTimeline() {
       return '<div class="tl-logo-slot">' +
         '<div class="tl-brand-deva">' +
           '<span class="deva-title">D-EVA STUDIOS</span>' +
-          '<span class="deva-sub">BALI &middot; INTERIOR</span>' +
         '</div>' +
       '</div>';
     }
@@ -497,7 +496,11 @@ function renderTimeline() {
       '</div>';
     }
     if (logo.type === "img") {
-      var extraCls = logo.isRound ? ' tl-logo-round' : (logo.isSeal ? ' tl-logo-seal' : '');
+      var extraCls = '';
+      if (logo.isHsKl) extraCls += ' tl-logo-hskl';
+      if (logo.isReline) extraCls += ' tl-logo-reline';
+      if (logo.isKomami || logo.isRound) extraCls += ' tl-logo-komami tl-logo-round';
+      if (logo.isSeal) extraCls += ' tl-logo-seal';
       return '<div class="tl-logo-slot">' +
         '<img src="' + logo.src + '" alt="' + (logo.alt || '') + '" class="tl-logo-img' + extraCls + '" loading="lazy">' +
       '</div>';
@@ -533,6 +536,7 @@ function renderTimeline() {
 
   var barEl = document.getElementById("wd-bar");
   var yearEl = document.getElementById("wd-year");
+  var hintEl = document.getElementById("wd-scroll-hint");
 
   function update() {
     var max = vp.scrollHeight - vp.clientHeight;
@@ -542,10 +546,27 @@ function renderTimeline() {
       var idx = Math.min(Math.round(p * (timeline.length - 1)), timeline.length - 1);
       yearEl.textContent = years[idx] || curYear;
     }
+    if (hintEl) {
+      hintEl.style.opacity = p >= 0.94 ? '0' : '1';
+      hintEl.style.pointerEvents = p >= 0.94 ? 'none' : 'auto';
+    }
   }
 
   vp.addEventListener("scroll", update, { passive: true });
   update();
+
+  if (hintEl && !hintEl.dataset.clickBound) {
+    hintEl.dataset.clickBound = "true";
+    hintEl.addEventListener("click", function() {
+      vp.scrollBy({ top: 196, behavior: "smooth" });
+    });
+    hintEl.addEventListener("keydown", function(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        vp.scrollBy({ top: 196, behavior: "smooth" });
+      }
+    });
+  }
 
   // Pin-Scroll / Wheel forwarder on Werdegang section
   var section = document.getElementById("werdegang");

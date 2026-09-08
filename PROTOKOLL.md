@@ -136,34 +136,30 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 8. ⏳ Sektion „Stationen & Erfahrung“ (Werdegang) — Timeline-Overhaul & Logo-Integration
-* **Asset-Vorbereitung & Logo-Integration:**
-  * Lokale Logo-Dateien aus `C:\Users\eeraj\Documents\PROJEKTE\Schabnam Portfolio\bilder` nach `assets/logos/` und `public/images/logos/` importiert:
-    * *Hochschule Kaiserslautern:* Original & Dark-Background optimierte Version (`hs-kl-light.png`) mit leuchtendem Teal-Symbol und sandweißem Text.
-    * *Reline Europe GmbH:* Optimierte Version (`reline-europe-light.png`) mit markantem orangem Akzent und hellem Schriftzug.
-    * *Stadt Neustadt an der Weinstraße:* Goldockerfarbenes Wappen & Schriftzug (`stadt-neustadt.png`).
-    * *Komami:* Rundes Gastronomie-Badge (`komami.png`).
-    * *Universität zu Köln:* Traditionelles Universitätssiegel (`uni-koeln-light.svg`) in elegantem Eisblau.
-  * **Dedizierte Logo-Area (`.tl-logo-slot`):**
-    * Jede Karte besitzt rechts einen zentrierten Bereich mit einheitlicher Maximalhöhe (`max-height: 44px`, `max-width: 160px`), sodass alle Logos dasselbe optische Gewicht besitzen.
-  * **Typografische Branding-Elemente:**
-    * *Auslandssemester D-EVA:* Typografisches Studio-Branding (`D-EVA STUDIOS · BALI`) in eleganter Serif-Schrift (*Playfair Display*) mit extrem weitem Letter-Spacing (`0.22em`) und feiner Monospace-Subline.
-    * *TRE Vehicle Dynamics:* Technisch-prägnanter Sans-Serif-Schriftzug `|TRE|` mit vertikalen Terrakotta-Trennern und daneben kleiner, zweizeiliger Monospace-Typografie `VEHICLE DYNAMICS`.
-* **Karten-Layout & Dimensionen:**
-  * **Präsente Ausdehnung:** Kartenbreite deutlich vergrößert auf `width: min(880px, 100%)` (im Bereich `max-w-3xl` bis `max-w-4xl`).
-  * **Informations-Spalte (links):**
-    * Status und Zeitraum oben als kombinierte Kicker-Zeile (`STUDIUM · 03.2025 – HEUTE`) mit kräftigem Terrakotta-Status (`#D4745F`) und hellem, kontrastreichem Zeitraum (`rgba(232,221,208,.82)`).
-    * Darunter der Projekttitel fett in reinem Weiß (`#FFFFFF`) und die Institution in hellem Sandton.
-  * **Edler Rand & Hover-Effekt:**
-    * Feine Kontur (`border: 1px solid rgba(255, 255, 255, 0.12)`) auf tiefem Anthrazit (`#242220`).
-    * Bei Hover: Subtiles Anheben (`translateY(-4px)`), Aufhellung der Kontur (`rgba(255, 255, 255, 0.4)`), satter Hintergrundfarbton (`#2D2A27`) und weicher Umgebungs-Glow.
-* **Scroll-Setup, „Peek“-Fade & Pin-Scroll:**
-  * **Exakte Viewport-Geometrie (226px Höhe):**
-    * *Karte 1 (Master of Arts):* Zu 100 % vollständig sichtbar, ohne Beschneidung oder Unschärfe.
-    * *Karte 2 (Reline Europe):* Ragt zu ca. 50–60 % von unten in das Sichtfeld hinein.
-    * *Weicher Gradient-Fade:* `-webkit-mask-image` und `mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgba(0,0,0,.5) 82%, transparent 100%)`, wodurch die zweite Karte nach unten sanft verblasst und signalisiert, dass weitere Stationen folgen.
-  * **Pin-Scroll / Wheel-Interaktion:**
-    * Mausrad-Events über der Werdegang-Sektion werden automatisch weitergeleitet, um die Stationen flüssig durchzublättern, bis die letzte Station erreicht ist, bevor die Seite nahtlos weiter nach unten scrollt.
+### 8. ⏳ Sektion „Stationen & Erfahrung“ (Werdegang) — 1,5x Karten, Rebalanced Logos & Scroll-Indicator
+* **Karten-Dimensionen (1,5x) & Großzügige Abstände:**
+  * **Vergrößerte Dimensionen:** Breite auf `width: min(1040px, 100%)` (Bereich `max-w-4xl` bis `max-w-5xl`) und großzügiges Innen-Padding (`30px clamp(28px, 3.8vw, 48px)`, entsprechend `py-8 px-10`).
+  * **Vertikaler Abstand:** Erhöhter Abstand zwischen den Stationen (`gap: 28px`) für ein luftiges, museales Erscheinungsbild.
+  * **Exaktes „Peek“-Verhalten (302px Viewport):**
+    * *Karte 1 (Master of Arts):* Zu **100 % vollständig sichtbar** (ohne jeglichen Blur oder Kantenbeschnitt).
+    * *Karte 2 (Reline Europe):* Ragt zu ca. 50–60 % von unten in den Viewport hinein.
+    * *Weicher Gradient-Fade:* Maske via `-webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, rgba(0,0,0,.45) 80%, transparent 100%)`.
+* **Outline & Dynamisches Hover-Styling:**
+  * **Basis:** Feine, elegante Kontur (`border: 1px solid rgba(255, 255, 255, 0.1)`), edel und keinesfalls klobig.
+  * **Hover-Effekt:** Sanftes Schweben (`transform: translateY(-4px)`), Aufhellung der Kontur (`border-color: rgba(255, 255, 255, 0.4)`), satter Kartenhintergrund (`#2A2724`), tiefer Raumschatten (`box-shadow: 0 18px 44px rgba(0,0,0,.35)`) und dezenter Glow mit flüssiger Transition (`transition: all .3s ease-out`).
+* **Visuelle Logo-Neuabstimmung (rechtsbündig):**
+  * **Hochschule Kaiserslautern (Master & Bachelor):** Deutlich vergrößert auf ca. doppelte Pixelhöhe (`max-height: 72px`, `max-width: 220px`).
+  * **Reline Europe:** Harmonisch verkleinert (`max-height: 34px`, `max-width: 135px`), um die Gesamtbalance nicht zu überlagern.
+  * **D-EVA Studios:** Typo-Schriftzug dominant vergrößert (*Playfair Display*, `letter-spacing: 0.24em`), die Unterzeilen („Bali“ / „Interior“) wurden komplett entfernt.
+  * **TRE Vehicle Dynamics:** Der dritte dünne Strich hinter dem Kasten (`border-left`) wurde entfernt, der Abstand zu `VEHICLE DYNAMICS` verringert und die Typografie insgesamt markanter skaliert (`28px / 11px`).
+  * **Komami:** Auf doppelte Größe skaliert (`76×76px` rundes Gastronomie-Badge).
+  * **Stadt Neustadt an der Weinstraße:** Aktuelle, bewährte Größe beibehalten (`max-height: 44px`).
+* **Minimalistischer animierter Scroll-Indicator:**
+  * Zentriert unterhalb des Viewports platziert:
+    * Feines Maus-Icon (`15×22px`) mit kontinuierlich herabgleitendem Scroll-Dot (`@keyframes mouseScrollDot`).
+    * Monospace-Schriftzug `SCROLLEN` (`font-size: 10px`, `letter-spacing: 0.16em`).
+    * Sanft bouncender Chevron-Pfeil (`@keyframes chevronBounce`).
+    * Interaktiv: Klick auf den Indicator scrollt die Timeline automatisch um eine Kartenhöhe weiter; blendet am Ende sanft aus.
 
 ---
 
