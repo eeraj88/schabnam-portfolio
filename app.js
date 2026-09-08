@@ -21,14 +21,62 @@ const projects=[
 const projectBentoOrder=["modernisierung","creative-quarter","tre","hotelzimmer","dach","functional-furniture","exr","sparkasse"];
 const projectBentoClasses={modernisierung:"feature",tre:"tall",sparkasse:"wide"};
 const timeline=[
-["03.2025 - heute","Master of Arts Innenarchitektur","Hochschule Kaiserslautern","Studium",["Vertiefung Interior Architecture","Raumkonzepte, Materialität und atmosphärische Gestaltung"]],
-["08.2023 - heute","Recruiter & HR Administrator","Reline Europe GmbH","Beruf",["Bewerbungsmanagement und Koordination von Gesprächen","Kommunikation mit Bewerbern, HR-Administration"]],
-["08.2023 - 03.2024","Auslandspraktikum","D-Eva Studio, Indonesien","Praktikum",["Gestaltung des Beachclubs für Desa Kitsuné","Raumkonzepte und Layouts für Villen","Content-Strategie für Social Media"]],
-["05.2023 - 11.2024","Interior Designer / Innenraumausstatterin","Team Rossberg Engineering","Beruf",["Beratung von Kunden und Entwicklung individueller Raumkonzepte","Auswahl, Beschaffung und Visualisierung von Materialien","Koordination und Überwachung von Umsetzungsprojekten"]],
-["10.2020 - 03.2025","Bachelor of Arts Innenarchitektur","Hochschule Kaiserslautern","Studium",["Schwerpunkte: Design, Raumplanung, kreative Konzepte","Abschlussarbeit: Modernisierung mit Feingefühl"]],
-["08.2020 - heute","Ehrenamtliche Dolmetscherin","Arbeitskreis Humanitäre Hilfe für Asylbewerber e.V.","Ehrenamt",["Dolmetschen bei Terminen mit Ämtern, Ärzten und Helfenden","Unterstützung bei der Verständigung im Alltag Geflüchteter"]],
-["2021 - 2023","Servicekraft","Commami","Beruf",["Kundenkontakt und direkter Umgang mit Menschen","Professionelles Verhalten in stressigen Situationen"]],
-["2015 - 2017","Rechtswissenschaft","Köln","Studium",["Begonnen, später bewusster Wechsel zur kreativen Leidenschaft Innenarchitektur"]]
+  {
+    period: "03.2025 – HEUTE",
+    title: "Master of Arts Innenarchitektur",
+    org: "Hochschule Kaiserslautern",
+    kind: "Studium",
+    logo: { type: "img", src: "assets/logos/hs-kl-light.png", alt: "Hochschule Kaiserslautern" }
+  },
+  {
+    period: "08.2023 – HEUTE",
+    title: "Recruiter & HR Administrator",
+    org: "Reline Europe GmbH",
+    kind: "Beruf",
+    logo: { type: "img", src: "assets/logos/reline-europe-light.png", alt: "Reline Europe" }
+  },
+  {
+    period: "08.2023 – 03.2024",
+    title: "Auslandssemester · Interior Design",
+    org: "D-Eva Studio · Bali, Indonesien",
+    kind: "Praktikum",
+    logo: { type: "deva" }
+  },
+  {
+    period: "05.2023 – 11.2024",
+    title: "Interior Designer / Innenraumausstatterin",
+    org: "TRE Vehicle Dynamics · Team Rossberg Engineering",
+    kind: "Beruf",
+    logo: { type: "tre" }
+  },
+  {
+    period: "10.2020 – 03.2025",
+    title: "Bachelor of Arts Innenarchitektur",
+    org: "Hochschule Kaiserslautern",
+    kind: "Studium",
+    logo: { type: "img", src: "assets/logos/hs-kl-light.png", alt: "Hochschule Kaiserslautern" }
+  },
+  {
+    period: "08.2020 – HEUTE",
+    title: "Ehrenamtliche Dolmetscherin",
+    org: "Arbeitskreis Asylbewerber · Stadt Neustadt a. d. W.",
+    kind: "Ehrenamt",
+    logo: { type: "img", src: "assets/logos/stadt-neustadt.png", alt: "Stadt Neustadt an der Weinstraße" }
+  },
+  {
+    period: "2021 – 2023",
+    title: "Servicekraft & Gastronomie",
+    org: "Komami",
+    kind: "Beruf",
+    logo: { type: "img", src: "assets/logos/komami.png", alt: "Komami", isRound: true }
+  },
+  {
+    period: "2015 – 2017",
+    title: "Studium Rechtswissenschaft",
+    org: "Universität zu Köln",
+    kind: "Studium",
+    logo: { type: "img", src: "assets/logos/uni-koeln-light.svg", alt: "Universität zu Köln", isSeal: true }
+  }
 ];
 const software=[["VectorWorks","CAD · Grundrisse, Schnitte, Konstruktionspläne",92],["SketchUp","3D-Modelle, Explosionszeichnungen, Entwürfe",86],["Twinmotion","Innen- & Außenrenderings, Atmosphäre",84],["Adobe Photoshop","Bildbearbeitung, Moodboards, Aufbereitung",76],["Adobe InDesign","Layout, Portfolio, Projektdokumentation",72]];
 const clusters=[["Design & Konzept",["Raumkonzepte","Moodboards","Farbtheorie","Materialauswahl","Storytelling","Funktionale Planung"]],["Planung & Visualisierung",["Grundrisse","Schnitte","Renderings","3D-Visualisierung","Lichtkonzepte","Detailzeichnungen"]],["Material & Atmosphäre",["Terrazzo","Holz","Akustikpaneele","Begrünung","Licht","Möbeldesign"]],["Umsetzung & Kommunikation",["Kundenberatung","Projektkoordination","Teamarbeit","HR & Recruiting","Präsentation"]]];
@@ -420,41 +468,101 @@ function renderSkills() {
   initAnimatedBeam();
   initConceptShowcase();
 }
-function renderTimeline(){
-  var vp=document.getElementById("wd-viewport");
-  if(!vp)return;
-  vp.className="tl-viewport";
-  var curYear=String(new Date().getFullYear());
-  var years=timeline.map(function(t){var s=t[0];return s.indexOf("heute")!==-1?curYear:(s.match(/\d{4}/)||["2025"])[0];});
-  var html='<div class="tl-track">';
-  html+=timeline.map(function(t,i){
-    return'<div class="tl-event" style="--i:'+i+'">'+
-      '<div class="tl-content">'+
-        '<div class="tl-meta">'+
-          '<div class="tl-kind">'+t[3]+'</div>'+
-          '<div class="tl-date">'+t[0]+'</div>'+
-        '</div>'+
-        '<div class="tl-body">'+
-          '<div class="tl-title">'+t[1]+'</div>'+
-          '<div class="tl-org">'+t[2]+'</div>'+
-        '</div>'+
-      '</div>'+
+function renderTimeline() {
+  var vp = document.getElementById("wd-viewport");
+  if (!vp) return;
+  vp.className = "tl-viewport";
+  var curYear = String(new Date().getFullYear());
+  var years = timeline.map(function(t) {
+    var s = t.period || (Array.isArray(t) ? t[0] : "");
+    return s.indexOf("HEUTE") !== -1 || s.indexOf("heute") !== -1 ? curYear : (s.match(/\d{4}/) || ["2025"])[0];
+  });
+
+  function renderLogoHtml(logo) {
+    if (!logo) return '<div class="tl-logo-slot"></div>';
+    if (logo.type === "deva") {
+      return '<div class="tl-logo-slot">' +
+        '<div class="tl-brand-deva">' +
+          '<span class="deva-title">D-EVA STUDIOS</span>' +
+          '<span class="deva-sub">BALI &middot; INTERIOR</span>' +
+        '</div>' +
+      '</div>';
+    }
+    if (logo.type === "tre") {
+      return '<div class="tl-logo-slot">' +
+        '<div class="tl-brand-tre">' +
+          '<div class="tre-mark"><span class="tre-pipe">|</span><span>TRE</span><span class="tre-pipe">|</span></div>' +
+          '<div class="tre-label"><span>VEHICLE</span><span>DYNAMICS</span></div>' +
+        '</div>' +
+      '</div>';
+    }
+    if (logo.type === "img") {
+      var extraCls = logo.isRound ? ' tl-logo-round' : (logo.isSeal ? ' tl-logo-seal' : '');
+      return '<div class="tl-logo-slot">' +
+        '<img src="' + logo.src + '" alt="' + (logo.alt || '') + '" class="tl-logo-img' + extraCls + '" loading="lazy">' +
+      '</div>';
+    }
+    return '<div class="tl-logo-slot"></div>';
+  }
+
+  var html = '<div class="tl-track">';
+  html += timeline.map(function(t, i) {
+    var period = t.period || t[0];
+    var title = t.title || t[1];
+    var org = t.org || t[2];
+    var kind = (t.kind || t[3] || '').toUpperCase();
+    var logoHtml = renderLogoHtml(t.logo);
+
+    return '<div class="tl-event" style="--i:' + i + '">' +
+      '<div class="tl-content">' +
+        '<div class="tl-info-col">' +
+          '<div class="tl-kicker-row">' +
+            '<span class="tl-kind-badge">' + kind + '</span>' +
+            '<span class="tl-kicker-sep">&middot;</span>' +
+            '<span class="tl-period-badge">' + period + '</span>' +
+          '</div>' +
+          '<h3 class="tl-title">' + title + '</h3>' +
+          '<div class="tl-org">' + org + '</div>' +
+        '</div>' +
+        logoHtml +
+      '</div>' +
     '</div>';
   }).join('');
-  html+='<div class="tl-pgblur"></div></div>';
-  vp.innerHTML=html;
-  var pgblur=vp.querySelector(".tl-pgblur");
-  var barEl=document.getElementById("wd-bar");
-  var yearEl=document.getElementById("wd-year");
-  function update(){
-    var max=vp.scrollHeight-vp.clientHeight;
-    var p=max>0?vp.scrollTop/max:0;
-    if(barEl)barEl.style.width=(p*100).toFixed(1)+"%";
-    if(yearEl){var idx=Math.min(Math.round(p*(timeline.length-1)),timeline.length-1);yearEl.textContent=years[idx]||curYear;}
-    if(pgblur)pgblur.style.opacity=p>=0.9?'0':'1';
+  html += '</div>';
+  vp.innerHTML = html;
+
+  var barEl = document.getElementById("wd-bar");
+  var yearEl = document.getElementById("wd-year");
+
+  function update() {
+    var max = vp.scrollHeight - vp.clientHeight;
+    var p = max > 0 ? vp.scrollTop / max : 0;
+    if (barEl) barEl.style.width = (p * 100).toFixed(1) + "%";
+    if (yearEl) {
+      var idx = Math.min(Math.round(p * (timeline.length - 1)), timeline.length - 1);
+      yearEl.textContent = years[idx] || curYear;
+    }
   }
-  vp.addEventListener("scroll",update,{passive:true});
+
+  vp.addEventListener("scroll", update, { passive: true });
   update();
+
+  // Pin-Scroll / Wheel forwarder on Werdegang section
+  var section = document.getElementById("werdegang");
+  if (section && !section.dataset.wheelBound) {
+    section.dataset.wheelBound = "true";
+    section.addEventListener("wheel", function(e) {
+      var max = vp.scrollHeight - vp.clientHeight;
+      if (max <= 0) return;
+      if (e.deltaY > 0 && vp.scrollTop < max - 3) {
+        vp.scrollTop += e.deltaY;
+        e.preventDefault();
+      } else if (e.deltaY < 0 && vp.scrollTop > 3) {
+        vp.scrollTop += e.deltaY;
+        e.preventDefault();
+      }
+    }, { passive: false });
+  }
 }
 function activeProject(){return projects.find(p=>p.id===state.modalId)}
 function visibleImages(){const p=activeProject();if(!p)return[];return state.filter==="alle"?p.images:p.images.filter(im=>im.cat===state.filter)}

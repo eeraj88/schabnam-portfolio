@@ -1229,48 +1229,259 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 }
 
 /* Werdegang → beige + vertical scrollable dark cards */
-.werdegang-section{background:#E8DDD0!important}
-.werdegang-section h2,.werdegang-section .section-kicker{color:#2a2a2a!important}
-.werdegang-section .wd-meta strong{color:rgba(42,42,42,.7)!important}
-.werdegang-section .wd-progress-bar{background:rgba(42,42,42,.15)!important}
-#wd-bar{background:#2a2a2a!important}
+.werdegang-section{background:#E8DDD0!important;position:relative;overflow:hidden;padding:clamp(44px,5.5vw,78px) 0 clamp(48px,6vw,84px)!important}
+.werdegang-section h2{color:#141210!important;font-family:Jost,sans-serif!important;font-weight:600!important}
+.werdegang-section .section-kicker{color:#915851!important;font-family:"IBM Plex Mono",monospace!important;font-size:11px!important;letter-spacing:.16em!important;text-transform:uppercase!important;font-weight:600!important}
+.werdegang-section .wd-meta strong{color:#141210!important;font-family:Jost,sans-serif!important;font-size:clamp(30px,3.4vw,44px)!important;font-weight:600!important}
+.werdegang-section .wd-progress-bar{background:rgba(20,18,16,.14)!important;border-radius:4px!important;width:clamp(110px,14vw,190px)!important;height:4px!important}
+#wd-bar{background:#915851!important;border-radius:4px!important;transition:width 80ms ease-out!important}
 .werdegang-section::after{display:none!important}
-/* Vertical scroll viewport — ~1 card visible + blur peek of next */
-.werdegang-section .tl-viewport{height:clamp(240px,30vh,340px)!important;overflow-y:auto!important;overflow-x:hidden!important;cursor:default!important;scrollbar-width:none!important;-ms-overflow-style:none!important;position:relative!important}
+
+/* Vertical scroll viewport — Card 1 100% visible, Card 2 peeks ~50%, bottom gradient fade */
+.werdegang-section .tl-viewport{
+  height:226px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  cursor:default!important;
+  scrollbar-width:none!important;
+  -ms-overflow-style:none!important;
+  position:relative!important;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 62%,rgba(0,0,0,.5) 82%,transparent 100%)!important;
+  mask-image:linear-gradient(to bottom,#000 0%,#000 62%,rgba(0,0,0,.5) 82%,transparent 100%)!important;
+  scroll-behavior:smooth!important;
+}
 .werdegang-section .tl-viewport::-webkit-scrollbar{display:none!important}
 .werdegang-section .tl-viewport.dragging{cursor:default!important}
-/* Vertical track — centered, not full-width cards */
-.werdegang-section .tl-track{display:flex!important;flex-direction:column!important;gap:clamp(10px,1.2vw,16px)!important;width:100%!important;min-width:0!important;height:auto!important;padding:clamp(16px,2vw,24px) clamp(24px,5vw,72px) 0!important;box-sizing:border-box!important;transform:none!important;align-items:center!important}
-/* Hide horizontal-only elements */
+
+/* Vertical track — centered, wide cards */
+.werdegang-section .tl-track{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:16px!important;
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  padding:16px clamp(16px,4vw,48px) 74px!important;
+  box-sizing:border-box!important;
+  transform:none!important;
+  align-items:center!important;
+}
 .werdegang-section .tl-axis{display:none!important}
 .werdegang-section .tl-stem{display:none!important}
 .werdegang-section .tl-dot{display:none!important}
-/* Each event: constrained width, centered */
-.werdegang-section .tl-event{position:static!important;flex:none!important;height:auto!important;width:min(clamp(420px,62vw,760px),100%)!important}
-/* Card — horizontal row: meta left, body right, tall */
+
+/* Cards: broadened (max-w-3xl bis max-w-4xl), rich dark background, subtle noble border */
+.werdegang-section .tl-event{
+  position:static!important;
+  flex:none!important;
+  height:auto!important;
+  width:min(880px,100%)!important;
+  margin:0 auto!important;
+}
 .werdegang-section .tl-content,
 .werdegang-section .tl-above .tl-content,
 .werdegang-section .tl-below .tl-content{
-  position:static!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;
-  display:flex!important;flex-direction:row!important;align-items:center!important;gap:clamp(20px,3vw,40px)!important;
-  width:100%!important;min-height:clamp(160px,19vh,220px)!important;background:#2a2a2a!important;border-radius:10px!important;
-  padding:clamp(24px,2.8vw,38px) clamp(28px,3.5vw,52px)!important;
-  box-shadow:0 4px 20px rgba(0,0,0,.22)!important;
-  transition:box-shadow .25s ease,background .2s,transform .25s ease!important;
+  position:static!important;
+  left:auto!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:auto!important;
+  transform:none!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:clamp(20px,3.5vw,44px)!important;
+  width:100%!important;
+  min-height:118px!important;
+  background:#242220!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:14px!important;
+  padding:18px clamp(24px,3.2vw,40px)!important;
+  box-shadow:0 6px 22px rgba(0,0,0,.18)!important;
+  transition:all .3s cubic-bezier(.16,1,.3,1)!important;
+  cursor:default!important;
+  box-sizing:border-box!important;
 }
-.werdegang-section .tl-event:hover .tl-content{box-shadow:0 14px 36px rgba(0,0,0,.38)!important;background:#323232!important;transform:translateY(-2px)!important}
-/* Left meta: kind + date stacked */
-.werdegang-section .tl-meta{display:flex!important;flex-direction:column!important;align-items:flex-start!important;flex-shrink:0!important;width:clamp(100px,12vw,160px)!important;gap:8px!important}
-/* Right body: title + org */
-.werdegang-section .tl-body{flex:1!important;min-width:0!important}
-/* Text colors — larger */
-.werdegang-section .tl-kind{color:#915851!important;font-size:clamp(9px,.75vw,11px)!important;letter-spacing:.18em!important;text-transform:uppercase!important;margin:0!important}
-.werdegang-section .tl-title{color:#E8DDD0!important;font-size:clamp(16px,1.6vw,22px)!important;font-weight:700!important;text-transform:uppercase!important;line-height:1.2!important;margin-bottom:6px!important}
-.werdegang-section .tl-org{color:rgba(232,221,208,.5)!important;font-size:clamp(12px,1vw,14px)!important}
-.werdegang-section .tl-date{color:rgba(232,221,208,.28)!important;font-size:clamp(9px,.7vw,11px)!important;letter-spacing:.06em!important;margin:0!important}
-/* Progressive blur — sticky bottom of scroll track */
-.werdegang-section .tl-pgblur{position:sticky!important;bottom:0!important;height:clamp(100px,14vh,140px)!important;margin-top:calc(-1 * clamp(100px,14vh,140px))!important;pointer-events:none!important;z-index:20!important;flex-shrink:0!important;width:100%!important;transition:opacity .5s ease!important;background:linear-gradient(to top,#E8DDD0 25%,rgba(232,221,208,.6) 60%,transparent 100%)}
-.werdegang-section .tl-pgblur::after{content:'';position:absolute;bottom:0;left:0;right:0;height:55%;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);mask-image:linear-gradient(to top,rgba(0,0,0,.8),transparent);-webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.8),transparent)}
+/* Hover-Effekt: Border-Highlight, sanftes Anheben (-translate-y-1) und satter Glow */
+.werdegang-section .tl-event:hover .tl-content{
+  transform:translateY(-4px)!important;
+  border-color:rgba(255,255,255,.4)!important;
+  background:#2D2A27!important;
+  box-shadow:0 16px 40px rgba(0,0,0,.32),0 0 24px rgba(255,255,255,.06)!important;
+}
+
+/* Left side: Info-Column with Status, Zeitraum, Title, Institution */
+.werdegang-section .tl-info-col{
+  flex:1!important;
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+}
+.werdegang-section .tl-kicker-row{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin-bottom:6px!important;
+}
+.werdegang-section .tl-kind-badge{
+  font-family:"IBM Plex Mono",monospace!important;
+  font-size:clamp(10.5px,.85vw,12px)!important;
+  font-weight:600!important;
+  letter-spacing:.14em!important;
+  text-transform:uppercase!important;
+  color:#D4745F!important;
+}
+.werdegang-section .tl-kicker-sep{
+  color:rgba(232,221,208,.35)!important;
+  font-size:13px!important;
+  line-height:1!important;
+}
+.werdegang-section .tl-period-badge{
+  font-family:"IBM Plex Mono",monospace!important;
+  font-size:clamp(10px,.8vw,11.5px)!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase!important;
+  color:rgba(232,221,208,.82)!important;
+  font-weight:500!important;
+}
+.werdegang-section .tl-title{
+  font-family:Jost,sans-serif!important;
+  font-size:clamp(18px,1.7vw,22px)!important;
+  font-weight:700!important;
+  color:#FFFFFF!important;
+  line-height:1.25!important;
+  margin:0 0 4px!important;
+  text-transform:none!important;
+}
+.werdegang-section .tl-org{
+  font-family:"IBM Plex Mono",monospace!important;
+  font-size:clamp(11.5px,.95vw,13.5px)!important;
+  color:rgba(232,221,208,.62)!important;
+  line-height:1.4!important;
+  margin:0!important;
+}
+
+/* Right side: dedicated logo area, vertically centered, uniform max-height */
+.werdegang-section .tl-logo-slot{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex-shrink:0!important;
+  min-width:140px!important;
+  max-width:190px!important;
+  height:50px!important;
+}
+.werdegang-section .tl-logo-img{
+  max-height:44px!important;
+  max-width:160px!important;
+  width:auto!important;
+  height:auto!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))!important;
+  transition:transform .3s ease,filter .3s ease!important;
+}
+.werdegang-section .tl-event:hover .tl-logo-img{
+  transform:scale(1.04)!important;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.35))!important;
+}
+.werdegang-section .tl-logo-round{
+  border-radius:50%!important;
+  max-height:46px!important;
+  max-width:46px!important;
+  box-shadow:0 3px 12px rgba(0,0,0,.35)!important;
+}
+.werdegang-section .tl-logo-seal{
+  max-height:48px!important;
+}
+
+/* Typo-Branding: D-EVA STUDIOS */
+.tl-brand-deva{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:4px 8px;
+}
+.tl-brand-deva .deva-title{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(15px,1.35vw,17px);
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#FAF7F2;
+  line-height:1.15;
+  text-shadow:0 0 14px rgba(255,255,255,.2);
+}
+.tl-brand-deva .deva-sub{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:8.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(232,221,208,.55);
+  margin-top:4px;
+}
+
+/* Typo-Branding: TRE VEHICLE DYNAMICS */
+.tl-brand-tre{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:4px 6px;
+}
+.tl-brand-tre .tre-mark{
+  display:flex;
+  align-items:center;
+  gap:3px;
+  font-family:Jost,sans-serif;
+  font-weight:800;
+  font-size:clamp(19px,1.8vw,22px);
+  letter-spacing:.06em;
+  color:#FFFFFF;
+  line-height:1;
+}
+.tl-brand-tre .tre-pipe{
+  color:#B8614A;
+  font-weight:300;
+  font-size:clamp(20px,1.9vw,24px);
+  line-height:1;
+}
+.tl-brand-tre .tre-label{
+  display:flex;
+  flex-direction:column;
+  border-left:1.5px solid rgba(255,255,255,.22);
+  padding-left:10px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:8.5px;
+  font-weight:600;
+  line-height:1.25;
+  letter-spacing:.16em;
+  color:rgba(232,221,208,.78);
+  text-align:left;
+}
+
+@media (max-width: 680px) {
+  .werdegang-section .tl-viewport{
+    height:250px!important;
+  }
+  .werdegang-section .tl-event{
+    width:100%!important;
+  }
+  .werdegang-section .tl-content{
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:14px!important;
+    padding:16px 20px!important;
+    min-height:auto!important;
+  }
+  .werdegang-section .tl-logo-slot{
+    align-self:flex-start!important;
+    justify-content:flex-start!important;
+    min-width:0!important;
+    height:auto!important;
+  }
+}
 
 /* Perspectives → dark gray */
 #perspectives{background:#2a2a2a!important;color:#E8DDD0!important}

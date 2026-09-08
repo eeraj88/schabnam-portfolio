@@ -136,7 +136,38 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 8. 🚀 Git & Vercel Deployment
+### 8. ⏳ Sektion „Stationen & Erfahrung“ (Werdegang) — Timeline-Overhaul & Logo-Integration
+* **Asset-Vorbereitung & Logo-Integration:**
+  * Lokale Logo-Dateien aus `C:\Users\eeraj\Documents\PROJEKTE\Schabnam Portfolio\bilder` nach `assets/logos/` und `public/images/logos/` importiert:
+    * *Hochschule Kaiserslautern:* Original & Dark-Background optimierte Version (`hs-kl-light.png`) mit leuchtendem Teal-Symbol und sandweißem Text.
+    * *Reline Europe GmbH:* Optimierte Version (`reline-europe-light.png`) mit markantem orangem Akzent und hellem Schriftzug.
+    * *Stadt Neustadt an der Weinstraße:* Goldockerfarbenes Wappen & Schriftzug (`stadt-neustadt.png`).
+    * *Komami:* Rundes Gastronomie-Badge (`komami.png`).
+    * *Universität zu Köln:* Traditionelles Universitätssiegel (`uni-koeln-light.svg`) in elegantem Eisblau.
+  * **Dedizierte Logo-Area (`.tl-logo-slot`):**
+    * Jede Karte besitzt rechts einen zentrierten Bereich mit einheitlicher Maximalhöhe (`max-height: 44px`, `max-width: 160px`), sodass alle Logos dasselbe optische Gewicht besitzen.
+  * **Typografische Branding-Elemente:**
+    * *Auslandssemester D-EVA:* Typografisches Studio-Branding (`D-EVA STUDIOS · BALI`) in eleganter Serif-Schrift (*Playfair Display*) mit extrem weitem Letter-Spacing (`0.22em`) und feiner Monospace-Subline.
+    * *TRE Vehicle Dynamics:* Technisch-prägnanter Sans-Serif-Schriftzug `|TRE|` mit vertikalen Terrakotta-Trennern und daneben kleiner, zweizeiliger Monospace-Typografie `VEHICLE DYNAMICS`.
+* **Karten-Layout & Dimensionen:**
+  * **Präsente Ausdehnung:** Kartenbreite deutlich vergrößert auf `width: min(880px, 100%)` (im Bereich `max-w-3xl` bis `max-w-4xl`).
+  * **Informations-Spalte (links):**
+    * Status und Zeitraum oben als kombinierte Kicker-Zeile (`STUDIUM · 03.2025 – HEUTE`) mit kräftigem Terrakotta-Status (`#D4745F`) und hellem, kontrastreichem Zeitraum (`rgba(232,221,208,.82)`).
+    * Darunter der Projekttitel fett in reinem Weiß (`#FFFFFF`) und die Institution in hellem Sandton.
+  * **Edler Rand & Hover-Effekt:**
+    * Feine Kontur (`border: 1px solid rgba(255, 255, 255, 0.12)`) auf tiefem Anthrazit (`#242220`).
+    * Bei Hover: Subtiles Anheben (`translateY(-4px)`), Aufhellung der Kontur (`rgba(255, 255, 255, 0.4)`), satter Hintergrundfarbton (`#2D2A27`) und weicher Umgebungs-Glow.
+* **Scroll-Setup, „Peek“-Fade & Pin-Scroll:**
+  * **Exakte Viewport-Geometrie (226px Höhe):**
+    * *Karte 1 (Master of Arts):* Zu 100 % vollständig sichtbar, ohne Beschneidung oder Unschärfe.
+    * *Karte 2 (Reline Europe):* Ragt zu ca. 50–60 % von unten in das Sichtfeld hinein.
+    * *Weicher Gradient-Fade:* `-webkit-mask-image` und `mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgba(0,0,0,.5) 82%, transparent 100%)`, wodurch die zweite Karte nach unten sanft verblasst und signalisiert, dass weitere Stationen folgen.
+  * **Pin-Scroll / Wheel-Interaktion:**
+    * Mausrad-Events über der Werdegang-Sektion werden automatisch weitergeleitet, um die Stationen flüssig durchzublättern, bis die letzte Station erreicht ist, bevor die Seite nahtlos weiter nach unten scrollt.
+
+---
+
+### 9. 🚀 Git & Vercel Deployment
 * Alle Änderungen wurden im Git-Repository versioniert und auf den Hauptbranch `origin/main` gepusht:
   * Repository: `https://github.com/eeraj88/schabnam-portfolio.git`
 * Das automatische Deployment auf Vercel baut und veröffentlicht die Website bei jedem Push.
