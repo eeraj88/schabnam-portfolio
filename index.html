@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio von Schabnam Shor mit Projekten in Innenarchitektur, Raumplanung, Visualisierung, Corporate Interior und Bestandsmodernisierung.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Instrument+Serif:ital@0;1&family=Jost:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -42,15 +42,50 @@
     <main>
       <section id="hero" class="hero" data-screen-label="Hero">
         <div class="hero-sticky">
-          <canvas id="hero-canvas"></canvas>
-          <div id="hero-right-panel" class="hero-right-panel">
-            <img id="hero-portrait" class="hero-panel-portrait" src="assets/schabnam-remove-bg-io.png" alt="Schabnam Shor">
-            <div id="hero-name-reveal" class="hero-name-reveal">
-              <div class="hnr-name"><span>SCHABNAM</span><span>SHOR</span></div>
-              <div class="hnr-sub">INTERIOR ARCHITECT</div>
+          <!-- Linke Spalte (ca. 62 %): Kuratierte Canvas-Bühne -->
+          <div class="hero-canvas-col">
+            <div class="hero-canvas-stage">
+              <canvas id="hero-canvas"></canvas>
             </div>
           </div>
+
+          <!-- Freigestelltes Porträt (Rechts verankert, vollständige Silhouette) -->
+          <img id="hero-portrait" class="hero-freisteller" src="assets/schabnam-remove-bg-io.png" alt="Schabnam Shor">
+
+          <!-- Rechte Spalte (ca. 38 %): Typografie & MorphingText -->
+          <div class="hero-info-col">
+            <div class="hero-brand-block">
+              <h1 class="hero-brand-name">
+                <span>SCHABNAM</span>
+                <span>SHOR</span>
+              </h1>
+              <div class="hero-morph-wrapper">
+                <div class="hero-morph-text" id="morph-container">
+                  <span id="morph-word-1" class="morph-word">Interior Architect</span>
+                  <span id="morph-word-2" class="morph-word"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SVG Filter for MorphingText (Threshold / Liquid Blur) -->
+          <svg class="morph-svg-defs" aria-hidden="true">
+            <defs>
+              <filter id="morph-threshold" x="-60%" y="-60%" width="220%" height="220%">
+                <feColorMatrix
+                  in="SourceGraphic"
+                  type="matrix"
+                  values="1 0 0 0 0
+                          0 1 0 0 0
+                          0 0 1 0 0
+                          0 0 0 255 -140" />
+              </filter>
+            </defs>
+          </svg>
+
+          <!-- Scroll-Fortschrittsbalken & sanfter Fade-Out zur nächsten Sektion -->
           <div class="hero-scroll-bar"><div id="hero-progress"></div></div>
+          <div id="hero-bottom-fade" class="hero-bottom-fade" aria-hidden="true"></div>
         </div>
       </section>
 
@@ -109,23 +144,38 @@
       <section id="ueber" class="section about-section">
         <div class="section-pattern-dk"></div>
         <div class="big-section-number pos-br">03</div>
-        <div class="section-inner about-grid">
-          <div class="about-image">
-            <img src="assets/ueber-mich-remove-bg-io (4).png" alt="Schabnam Shor am Zeichentisch">
+        <div class="about-grid">
+          <div class="about-image-col">
+            <img src="assets/ueber-mich-remove-bg-io (4).png" alt="Schabnam Shor am Zeichentisch" class="about-photo">
           </div>
-          <div class="about-text">
-            <div class="section-kicker">Über mich</div>
-            <h2 class="typewriter-h2" data-tw="Ich gestalte Räume."><span class="tw-text"></span><span class="tw-cursor" aria-hidden="true">|</span></h2>
-            <p class="about-lead">Mit dem Blick für Atmosphäre, Materialität und Licht — für Räume, die technisch funktionieren und emotional treffen.</p>
-            <p>Ich entwickle Innenräume, die funktionale Anforderungen mit Materialgefühl und einer klaren visuellen Sprache verbinden. Meine Projekte bewegen sich zwischen Bestand, Licht, Farbe, Corporate Interior und handwerklich nachvollziehbarer Umsetzung — von der Bachelorarbeit in einer denkmalgeschützten Bibliothek bis zur Corporate-Welt von Team Rossberg Engineering.</p>
-            <p>Neben dem Studium habe ich praktische Erfahrung in Indonesien gesammelt und arbeite heute parallel als Recruiterin. Mehrsprachigkeit und interkultureller Austausch prägen meinen Blick auf Räume und Menschen.</p>
-            <div class="about-tags">
-              <span>Innenarchitektur MA</span>
-              <span>Kaiserslautern</span>
-              <span>Licht & Material</span>
-              <span>Bestand & Denkmal</span>
-              <span>Auslandserfahrung · Indonesien</span>
-              <span>Mehrsprachig</span>
+          <div class="about-content-col">
+            <div class="about-two-col-grid">
+              <!-- Linker Textbereich (col-span-7) -->
+              <div class="about-main-text">
+                <div class="about-kicker">Über mich</div>
+                <h2 class="typewriter-h2 about-headline" data-tw="ICH GESTALTE RÄUME."><span class="tw-text">ICH GESTALTE RÄUME.</span><span class="tw-cursor" aria-hidden="true">|</span></h2>
+                <p class="about-lead">Mit dem Blick für Atmosphäre, Materialität und Licht — für Räume, die technisch funktionieren und emotional treffen.</p>
+                <div class="about-body-text">
+                  <p>Ich entwickle Innenräume, die funktionale Anforderungen mit Materialgefühl und einer klaren visuellen Sprache verbinden. Meine Projekte bewegen sich zwischen denkmalgeschütztem Bestand, Licht, Farbe und handwerklich präziser Ausführung.</p>
+                  <p>Internationale Projekterfahrung in Indonesien sowie meine parallele Arbeit im HR- und Recruiting-Bereich schärfen mein Gespür für interkulturelle Kommunikation und die echten Bedürfnisse der Menschen im Raum.</p>
+                </div>
+              </div>
+
+              <!-- Rechter Bereich / Profil & Disziplinen (col-span-5) -->
+              <div class="about-profile-col">
+                <div class="about-profile-item">
+                  <span class="about-profile-label">Disziplinen</span>
+                  <p class="about-profile-val">Hospitality, Rauminszenierung, Wohnen &amp; New Work</p>
+                </div>
+                <div class="about-profile-item">
+                  <span class="about-profile-label">Ausbildung</span>
+                  <p class="about-profile-val">M.A. Innenarchitektur (i. A.) · B.A. Innenarchitektur</p>
+                </div>
+                <div class="about-profile-item">
+                  <span class="about-profile-label">Ansatz</span>
+                  <p class="about-profile-val">Haptik &amp; Licht vor Dekoration — Räume als erlebbare Identität</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -435,35 +485,35 @@
             <h2>Experimenteller Raum<br>im Gespräch</h2>
             <p class="ps-subhead">Ein Podcast-Gespräch über zeitgenössische Raumtheorie, experimentelle Architektur und Design als Dialog</p>
           </div>
-          <div class="ps-grid">
-            <div class="ps-video-col">
-              <div class="ps-video-wrap">
-                <iframe src="https://www.youtube.com/embed/lV4hfcyT2D8" title="Experimenteller Raum im Gespräch – Sascha Bauer × Schabnam Shor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-              </div>
-              <div class="ps-meta">
-                <div><small>Seminar</small><strong>Raumtheorie – Experimenteller Raum im Gespräch</strong></div>
-                <div><small>Hochschule</small><strong>Kaiserslautern &middot; Prof. Benedikt Hartl</strong></div>
-                <div><small>Dauer</small><strong>ca. 45 Min</strong></div>
-                <div><small>Datum</small><strong>Januar 2025</strong></div>
-              </div>
+          <div class="ps-cinema-wrap">
+            <!-- 1. Video-Player (Zentrierter Cinema-View 16:9) -->
+            <div class="ps-video-stage">
+              <iframe src="https://www.youtube.com/embed/lV4hfcyT2D8" title="Experimenteller Raum im Gespräch – Sascha Bauer × Schabnam Shor" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
             </div>
-            <div class="ps-text">
-              <p>Wie geht die jüngere Generation an Gestalter*innen mit Raum um? Wie lässt sich daraus eine zeitgenössische Raumtheorie entwickeln?</p>
-              <p>In diesem Podcast-Gespräch mit Sascha Bauer (Founder, Studio Cross Scale) erkunden wir, wie experimentelle Architektur klassische Raumkonzepte adaptiert, kritisch hinterfragt und für unsere Zeit neu interpretiert.</p>
-              <p class="ps-topics-label">Wir diskutieren:</p>
-              <div class="ps-topic-tags">
-                <span>Materialität</span>
-                <span>Atmosphäre</span>
-                <span>Design als Dialog</span>
-                <span>Nachhaltigkeit</span>
-                <span>Experimentelle Ansätze</span>
+
+            <!-- 2. Zwei Cards unter dem Video (50/50 Grid) -->
+            <div class="ps-cards-grid">
+              <!-- Linke Card: Gast-Steckbrief -->
+              <div class="ps-card ps-card-guest">
+                <div>
+                  <div class="ps-card-badge">Zu Gast</div>
+                  <h3 class="ps-guest-title">Sascha Bauer</h3>
+                  <div class="ps-guest-subline">Architect &amp; Founder, Studio Cross Scale</div>
+                  <p class="ps-card-bio">Sascha Bauer gründete Studio Cross Scale in Berlin mit Fokus auf experimentelle, innovative Architektur. Das Büro konzentriert sich auf Materialität, Raumkonzepte und nachhaltige Praktiken.</p>
+                </div>
+                <div class="ps-card-action">
+                  <a href="https://studiocrossscale.com" target="_blank" rel="noopener" class="ps-card-link">studiocrossscale.com ↗</a>
+                </div>
               </div>
-              <div class="ps-guest">
-                <div class="ps-guest-label">Zu Gast</div>
-                <div class="ps-guest-name">Sascha Bauer</div>
-                <div class="ps-guest-role">Architect &amp; Founder, Studio Cross Scale</div>
-                <p class="ps-guest-bio">Sascha Bauer gründete Studio Cross Scale in Berlin mit Fokus auf experimentelle, innovative Architektur. Das Büro konzentriert sich auf Materialität, Raumkonzepte und nachhaltige Praktiken.</p>
-                <a href="https://studiocrossscale.com" target="_blank" rel="noopener" class="ps-guest-link">studiocrossscale.com ↗</a>
+
+              <!-- Rechte Card: Thema & Kontext -->
+              <div class="ps-card ps-card-context">
+                <div>
+                  <div class="ps-card-badge">Thema &amp; Kontext</div>
+                  <h3 class="ps-context-title">Zeitgenössische Raumtheorie</h3>
+                  <p class="ps-card-lead">Wie geht die jüngere Generation an Gestalter*innen mit dem Raum um? Wie lässt sich daraus eine zeitgenössische Raumtheorie entwickeln?</p>
+                  <p class="ps-card-body">In diesem Podcast-Gespräch mit Sascha Bauer erkunden wir, wie experimentelle Architektur klassische Raumkonzepte adaptiert, kritisch hinterfragt und für unsere Zeit neu interpretiert.</p>
+                </div>
               </div>
             </div>
           </div>

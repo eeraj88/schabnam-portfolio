@@ -85,10 +85,8 @@ const frames=[];
 let framesLoaded=0;
 let currentFrameF=0;
 const heroPortrait=document.getElementById("hero-portrait");
-const heroNameReveal=document.getElementById("hero-name-reveal");
-const heroRightPanel=document.getElementById("hero-right-panel");
 function preloadFrames(){for(let i=1;i<=TOTAL_FRAMES;i++){const img=new Image();img.src=`assets/frames/f${String(i).padStart(3,"0")}.jpg`;img.onload=()=>{framesLoaded++;if(i===1)drawFrame();};frames.push(img);}}
-function sizeCanvas(){if(!canvas)return;const w=canvas.offsetWidth||canvas.clientWidth||window.innerWidth;const h=canvas.offsetHeight||canvas.clientHeight||window.innerHeight;canvas.width=w;canvas.height=h;}
+function sizeCanvas(){if(!canvas)return;const rect=canvas.getBoundingClientRect();const dpr=Math.max(window.devicePixelRatio||1,1);const w=rect.width||canvas.offsetWidth||canvas.clientWidth||window.innerWidth;const h=rect.height||canvas.offsetHeight||canvas.clientHeight||window.innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas._cssW=Math.round(w);canvas._cssH=Math.round(h);if(ctx){ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";}}
 function navTo(id){const el=document.getElementById(id);if(!el)return;const top=sc.scrollTop+(el.getBoundingClientRect().top-sc.getBoundingClientRect().top)-64;sc.scrollTo({top,behavior:"smooth"})}
 document.querySelectorAll("[data-target]").forEach(b=>b.addEventListener("click",()=>navTo(b.dataset.target)));
 function initMarquee(){const track=$("#marquee-track");track.innerHTML=[...marqueeWords,...marqueeWords].map(w=>`<span>${w}</span>`).join("")}
@@ -477,29 +475,51 @@ function renderTimeline() {
   // 1. Keine Endlos-Schleife: Exakt die 7 definierten Stationen (keine Duplizierung!)
   track.innerHTML = timeline.map(cardHtml).join('');
 
-  var maxScroll = 0;
+  var yStart = 0;
+  var yEnd = 0;
+  var travelDistance = 0;
+
   function measure() {
     var cards = track.querySelectorAll(".wd-stream-card");
     if (cards.length === 0) return;
+    var firstCard = cards[0];
     var lastCard = cards[cards.length - 1];
-    // Center of the last card relative to track top
-    var lastCardCenterInTrack = lastCard.offsetTop + (lastCard.offsetHeight / 2);
-    // Vertical center of the container
     var containerCenter = container.clientHeight / 2;
-    // Endanschlag: Sobald die letzte Karte ("Rechtswissenschaften") die vertikale Mitte erreicht hat
-    maxScroll = Math.max(0, lastCardCenterInTrack - containerCenter);
+
+    var card1CenterInTrack = firstCard.offsetTop + (firstCard.offsetHeight / 2);
+    var card7CenterInTrack = lastCard.offsetTop + (lastCard.offsetHeight / 2);
+
+    // Robust fallback if offsetTop is not calculated yet or is 0
+    if (card7CenterInTrack <= (lastCard.offsetHeight / 2) && cards.length > 1) {
+      var c1H = firstCard.offsetHeight || 164;
+      card1CenterInTrack = c1H / 2;
+      var accum = 0;
+      for (var i = 0; i < cards.length; i++) {
+        var h = cards[i].offsetHeight || 164;
+        if (i < cards.length - 1) {
+          accum += h + 32;
+        } else {
+          accum += h / 2;
+        }
+      }
+      card7CenterInTrack = accum;
+    }
+
+    // 1. Startposition: Karte 1 ("Master of Arts") exakt in der vertikalen Mitte zentriert
+    yStart = containerCenter - card1CenterInTrack;
+
+    // 2. Endanschlag: Letzte Karte ("Rechtswissenschaften") exakt in der vertikalen Mitte zentriert
+    yEnd = containerCenter - card7CenterInTrack;
+
+    travelDistance = Math.max(0, yStart - yEnd);
   }
 
   measure();
-  requestAnimationFrame(measure);
-  setTimeout(measure, 150);
-  setTimeout(measure, 500);
 
   // Ping-Pong Animation & Drag State
-  var currentY = 0;
-  var targetY = 0;
-  var u = 0;           // Progress [0, 1] along easeInOut curve
-  var dir = 1;         // 1 = glides towards -maxScroll; -1 = glides back to 0
+  var currentY = yStart;
+  var u = 0;           // Progress [0, 1] along easeInOut curve (0 = Karte 1 zentriert, 1 = Karte 7 zentriert)
+  var dir = 1;         // 1 = glides upwards towards yEnd (Karte 7); -1 = glides back to yStart (Karte 1)
   var duration = 24;   // 24s half-cycle
   var isDragging = false;
   var isHovered = false;
@@ -511,6 +531,31 @@ function renderTimeline() {
   var lastFrameTime = performance.now();
   var animFrameId = null;
 
+  function setTrackY(y) {
+    track.style.transform = "translate3d(0, " + y.toFixed(2) + "px, 0)";
+  }
+
+  setTrackY(currentY);
+
+  function syncInitialPosition() {
+    measure();
+    if (!isDragging && u === 0) {
+      currentY = yStart;
+      setTrackY(currentY);
+    }
+  }
+
+  requestAnimationFrame(syncInitialPosition);
+  setTimeout(syncInitialPosition, 150);
+  setTimeout(syncInitialPosition, 500);
+  window.addEventListener("resize", function() {
+    measure();
+    if (!isDragging && u === 0) {
+      currentY = yStart;
+      setTrackY(currentY);
+    }
+  }, { passive: true });
+
   function tick(now) {
     var dt = Math.min(0.1, (now - lastFrameTime) / 1000);
     lastFrameTime = now;
@@ -520,39 +565,38 @@ function renderTimeline() {
         // Coasting with inertia from drag
         currentY += velocity;
         velocity *= 0.88;
-        // Clamp with bounce back
-        if (currentY > 0) {
-          currentY *= 0.6;
+        // Clamp with bounce back to [yEnd, yStart]
+        if (currentY > yStart) {
+          currentY = yStart + (currentY - yStart) * 0.6;
           velocity = 0;
-        } else if (currentY < -maxScroll) {
-          currentY = -maxScroll + (currentY - (-maxScroll)) * 0.6;
+        } else if (currentY < yEnd) {
+          currentY = yEnd + (currentY - yEnd) * 0.6;
           velocity = 0;
         }
         // Sync u to currentY
-        var p = maxScroll > 0 ? Math.max(0, Math.min(1, -currentY / maxScroll)) : 0;
+        var p = travelDistance > 0 ? Math.max(0, Math.min(1, (yStart - currentY) / travelDistance)) : 0;
         u = Math.acos(Math.max(-1, Math.min(1, 1 - 2 * p))) / Math.PI;
       } else if (!isHovered) {
         // Continuous ping-pong animation (ease: easeInOut, duration: 24s)
-        if (maxScroll > 0) {
+        if (travelDistance > 0) {
           u += dir * (dt / duration);
           if (u >= 1) {
             u = 1;
-            dir = -1; // Reverse direction: slide back down to "Master of Arts"
+            dir = -1; // Reverse direction: slide back down towards Karte 1 ("Master of Arts")
           } else if (u <= 0) {
             u = 0;
-            dir = 1;  // Reverse direction: slide up towards "Rechtswissenschaften"
+            dir = 1;  // Reverse direction: slide up towards Karte 7 ("Rechtswissenschaften")
           }
           // easeInOut: 0.5 * (1 - cos(pi * u))
           var progress = 0.5 * (1 - Math.cos(Math.PI * u));
-          targetY = -progress * maxScroll;
-          currentY += (targetY - currentY) * 0.14;
+          currentY = yStart - progress * travelDistance;
         } else {
-          currentY = 0;
+          currentY = yStart;
         }
       }
     }
 
-    track.style.transform = "translate3d(0, " + currentY.toFixed(2) + "px, 0)";
+    setTrackY(currentY);
     animFrameId = requestAnimationFrame(tick);
   }
 
@@ -568,7 +612,9 @@ function renderTimeline() {
     lastFrameTime = performance.now();
   });
 
-  // Maus-Drag (drag="y") mit Drag-Constraints [0, -maxScroll]
+  // Maus-Drag (drag="y") mit Drag-Constraints [yEnd, yStart]
+  // Oberer Anschlag = Karte 1 zentriert (yStart)
+  // Unterer Anschlag = Karte 7 zentriert (yEnd)
   container.addEventListener("pointerdown", function(e) {
     if (e.button !== 0 && e.pointerType === "mouse") return;
     isDragging = true;
@@ -588,11 +634,11 @@ function renderTimeline() {
     var deltaY = e.clientY - startY;
     var rawY = dragStartY + deltaY;
 
-    // Soft drag constraints: resistance when pulled past top (0) or bottom (-maxScroll)
-    if (rawY > 0) {
-      currentY = rawY * 0.22;
-    } else if (rawY < -maxScroll) {
-      currentY = -maxScroll + (rawY - (-maxScroll)) * 0.22;
+    // Soft drag constraints: resistance when pulled past yStart (Karte 1) or yEnd (Karte 7)
+    if (rawY > yStart) {
+      currentY = yStart + (rawY - yStart) * 0.22;
+    } else if (rawY < yEnd) {
+      currentY = yEnd + (rawY - yEnd) * 0.22;
     } else {
       currentY = rawY;
     }
@@ -612,14 +658,15 @@ function renderTimeline() {
       container.releasePointerCapture(e.pointerId);
     } catch (_) {}
 
-    // Snap back into strict constraints if pulled outside
-    var clampedY = Math.max(-maxScroll, Math.min(0, currentY));
-    var p = maxScroll > 0 ? -clampedY / maxScroll : 0;
+    // Snap back into strict constraints [yEnd, yStart]
+    var clampedY = Math.max(yEnd, Math.min(yStart, currentY));
+    var p = travelDistance > 0 ? (yStart - clampedY) / travelDistance : 0;
+    p = Math.max(0, Math.min(1, p));
     u = Math.acos(Math.max(-1, Math.min(1, 1 - 2 * p))) / Math.PI;
     if (velocity < -1) {
-      dir = 1;  // Thrown upwards towards the end
+      dir = 1;  // Thrown upwards towards Karte 7
     } else if (velocity > 1) {
-      dir = -1; // Thrown downwards towards the beginning
+      dir = -1; // Thrown downwards towards Karte 1
     }
     lastFrameTime = performance.now();
   }
@@ -627,12 +674,12 @@ function renderTimeline() {
   container.addEventListener("pointerup", endDrag);
   container.addEventListener("pointercancel", endDrag);
 
-  // Wheel interaction (constrained to [0, -maxScroll])
+  // Wheel interaction (constrained to [yEnd, yStart])
   container.addEventListener("wheel", function(e) {
     if (Math.abs(e.deltaY) > 2) {
       var nextY = currentY - e.deltaY * 0.5;
-      currentY = Math.max(-maxScroll, Math.min(0, nextY));
-      var p = maxScroll > 0 ? -currentY / maxScroll : 0;
+      currentY = Math.max(yEnd, Math.min(yStart, nextY));
+      var p = travelDistance > 0 ? (yStart - currentY) / travelDistance : 0;
       u = Math.acos(Math.max(-1, Math.min(1, 1 - 2 * p))) / Math.PI;
       dir = e.deltaY > 0 ? 1 : -1;
       velocity = -e.deltaY * 0.08;
@@ -640,10 +687,6 @@ function renderTimeline() {
       e.preventDefault();
     }
   }, { passive: false });
-
-  window.addEventListener("resize", function() {
-    measure();
-  }, { passive: true });
 }
 function activeProject(){return projects.find(p=>p.id===state.modalId)}
 function visibleImages(){const p=activeProject();if(!p)return[];return state.filter==="alle"?p.images:p.images.filter(im=>im.cat===state.filter)}
@@ -889,9 +932,9 @@ function waldVisible(){return state.waldTab==="alle"?waldAssets:waldAssets.filte
 function openWaldModal(tab="fotos"){state.waldTab=tab;state.waldIdx=0;document.body.style.overflow="hidden";renderWaldModal()}
 function renderWaldModal(){const lb=$("#lightbox"),items=waldAssets,current=items[state.waldIdx]||items[0];state.lightbox=current.src;lb.innerHTML=`<div class="wald-modal-panel"><button class="wald-modal-close" id="close-lightbox">✕</button><div class="wald-modal-head"><small>Aktuelles · Laufende Masterarbeit</small><strong>Waldmannsburg</strong></div><figure class="wald-modal-stage"><img class="wald-modal-image" src="${current.src}" alt="${current.label}" loading="lazy"><figcaption>${current.label}</figcaption></figure><div class="wald-modal-controls"><button id="wald-prev">‹</button><span>${state.waldIdx+1} / ${items.length}</span><button id="wald-next">›</button></div></div>`;lb.classList.add("open");lb.setAttribute("aria-hidden","false");$("#close-lightbox").onclick=closeLightbox;$("#wald-prev").onclick=()=>{state.waldIdx=(state.waldIdx-1+items.length)%items.length;renderWaldModal()};$("#wald-next").onclick=()=>{state.waldIdx=(state.waldIdx+1)%items.length;renderWaldModal()}}
 function openDocsOverlay(){openWaldModal("grundrisse")}
-function computeHero(){if(!hero)return;const scrollTop=(sc&&sc.scrollTop>0)?sc.scrollTop:(window.scrollY||document.documentElement.scrollTop||0);const clientHeight=(sc&&sc.clientHeight)?sc.clientHeight:window.innerHeight;const total=hero.offsetHeight-clientHeight;let p=total>0?scrollTop/total:0;p=Math.max(0,Math.min(1,p));state.scrollP=p;if(bar)bar.style.transform=`scaleX(${p.toFixed(4)})`;}
+function computeHero(){if(!hero)return;const scrollTop=(sc&&sc.scrollTop>0)?sc.scrollTop:(window.scrollY||document.documentElement.scrollTop||0);const clientHeight=(sc&&sc.clientHeight)?sc.clientHeight:window.innerHeight;const total=hero.offsetHeight-clientHeight;let p=total>0?scrollTop/total:0;p=Math.max(0,Math.min(1,p));state.scrollP=p;if(bar)bar.style.transform=`scaleX(${p.toFixed(4)})`;const bottomFade=document.getElementById("hero-bottom-fade");if(bottomFade){const fadeP=p>0.86?Math.min(1,(p-0.86)/0.14):0;bottomFade.style.opacity=fadeP.toFixed(3);}}
 function drawCoverImage(c,img,cw,ch){const nw=img.naturalWidth||1920,nh=img.naturalHeight||1080,ir=nw/nh,cr=cw/ch;let dw,dh,dx,dy;if(cr>ir){dw=cw;dh=cw/ir;dx=0;dy=(ch-dh)/2;}else{dw=ch*ir;dh=ch;dx=(cw-dw)/2;dy=0;}c.drawImage(img,dx,dy,dw,dh);}
-function drawFrame(){if(!canvas||!ctx||framesLoaded===0)return;const targetF=state.scrollP*(TOTAL_FRAMES-1);currentFrameF+=(targetF-currentFrameF)*0.08;const idx=Math.min(Math.round(currentFrameF),TOTAL_FRAMES-1);const img=frames[idx];if(!img||!img.complete||!img.naturalWidth)return;if(canvas.width!==canvas.offsetWidth||canvas.height!==canvas.offsetHeight)sizeCanvas();ctx.drawImage(img,0,0,canvas.width,canvas.height);if(heroRightPanel)heroRightPanel.classList.toggle("visible",currentFrameF>=270);}
+function drawFrame(){if(!canvas||!ctx||framesLoaded===0)return;const targetF=state.scrollP*(TOTAL_FRAMES-1);currentFrameF+=(targetF-currentFrameF)*0.08;const idx=Math.min(Math.round(currentFrameF),TOTAL_FRAMES-1);const img=frames[idx];if(!img||!img.complete||!img.naturalWidth)return;const curW=canvas.offsetWidth,curH=canvas.offsetHeight;if(canvas._cssW!==curW||canvas._cssH!==curH)sizeCanvas();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality="high";drawCoverImage(ctx,img,canvas.width,canvas.height);}
 function layoutTimeline(){}
 function scrubTimeline(){}
 function loop(){state.frame++;computeHero();drawFrame();requestAnimationFrame(loop)}
@@ -950,7 +993,87 @@ function initSkillsAnim(){
   },{threshold:0.1, root:sc});
   obs.observe(sec);
 }
-initMarquee();renderDocs();renderProjects();renderSkills();initSkillsAnim();renderTimeline();initTypewriter();computeHero();requestAnimationFrame(loop);
+function initMorphingText(){
+  var texts = [
+    "Interior Architect",
+    "Raumkonzepte",
+    "Material & Atmosphäre",
+    "Ausführungsplanung",
+    "Visualisierung"
+  ];
+  var el1 = document.getElementById("morph-word-1");
+  var el2 = document.getElementById("morph-word-2");
+  if (!el1 || !el2) return;
+
+  var textIndex = 0;
+  var time = performance.now();
+  var morph = 0;
+  var morphTime = 1.1;
+  var cooldownTime = 1.7;
+  var cooldown = cooldownTime;
+
+  el1.textContent = texts[0];
+  el2.textContent = texts[1];
+  el1.style.opacity = "100%";
+  el2.style.opacity = "0%";
+
+  function setMorph(fraction) {
+    el2.style.filter = "blur(" + Math.min(8 / fraction - 8, 100) + "px)";
+    el2.style.opacity = (Math.pow(fraction, 0.4) * 100) + "%";
+
+    fraction = 1 - fraction;
+    el1.style.filter = "blur(" + Math.min(8 / fraction - 8, 100) + "px)";
+    el1.style.opacity = (Math.pow(fraction, 0.4) * 100) + "%";
+  }
+
+  function doMorph() {
+    morph -= cooldown;
+    cooldown = 0;
+    var fraction = morph / morphTime;
+    if (fraction > 1) {
+      cooldown = cooldownTime;
+      fraction = 1;
+    }
+    setMorph(fraction);
+  }
+
+  function doCooldown() {
+    morph = 0;
+    el1.style.filter = "";
+    el1.style.opacity = "100%";
+    el2.style.filter = "";
+    el2.style.opacity = "0%";
+  }
+
+  function animate(now) {
+    requestAnimationFrame(animate);
+    var dt = (now - time) / 1000;
+    time = now;
+
+    cooldown -= dt;
+    if (cooldown <= 0) {
+      if (morph === 0) {
+        textIndex++;
+        el1.textContent = texts[(textIndex - 1 + texts.length) % texts.length];
+        el2.textContent = texts[textIndex % texts.length];
+      }
+      morph += dt;
+      if (morph >= morphTime) {
+        cooldown = cooldownTime;
+        morph = 0;
+        el1.textContent = texts[textIndex % texts.length];
+        doCooldown();
+      } else {
+        setMorph(morph / morphTime);
+      }
+    } else {
+      doCooldown();
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+initMarquee();renderDocs();renderProjects();renderSkills();initSkillsAnim();renderTimeline();initTypewriter();initMorphingText();computeHero();requestAnimationFrame(loop);
 (function(){
   const overlay=document.getElementById('wald-info-overlay');
   const btn=document.getElementById('wald-mehr-btn');
