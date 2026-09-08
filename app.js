@@ -1133,17 +1133,45 @@ initMarquee();renderDocs();renderProjects();renderSkills();initSkillsAnim();rend
   setTimeout(updateDesktopClearance, 50);
 })();
 
-/* === "Cat Mom" Easter-Egg: Tap support for touch devices === */
+/* === "Cat Mom" Easter-Egg: Shelf slide-up & touch support === */
 (function(){
   const trigger = document.querySelector('.cat-mom-trigger');
-  if(!trigger) return;
+  const shelf = document.getElementById('cats-shelf');
+  if(!trigger || !shelf) return;
+
+  function showShelf(){
+    shelf.classList.add('show-cats');
+    trigger.classList.add('active');
+  }
+  function hideShelf(){
+    shelf.classList.remove('show-cats');
+    trigger.classList.remove('active');
+  }
+
+  trigger.addEventListener('mouseenter', showShelf);
+  trigger.addEventListener('mouseleave', function(e){
+    // Keep visible if moving into the cats shelf itself
+    if(shelf.contains(e.relatedTarget)) return;
+    hideShelf();
+  });
+  shelf.addEventListener('mouseleave', function(e){
+    if(trigger.contains(e.relatedTarget)) return;
+    hideShelf();
+  });
+
   trigger.addEventListener('click', function(e){
     e.stopPropagation();
-    this.classList.toggle('active');
+    if(shelf.classList.contains('show-cats')){
+      hideShelf();
+    } else {
+      showShelf();
+    }
   });
+
   document.addEventListener('click', function(e){
-    if(!trigger.contains(e.target)){
-      trigger.classList.remove('active');
+    if(!trigger.contains(e.target) && !shelf.contains(e.target)){
+      hideShelf();
     }
   });
 })();
+

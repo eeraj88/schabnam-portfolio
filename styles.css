@@ -599,7 +599,8 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   grid-column:span 5;
   display:flex;
   flex-direction:column;
-  margin-top:8px;
+  position:relative;
+  margin-top:clamp(120px, 16vh, 180px);
   overflow:visible!important;
 }
 #ueber .about-profile-item{
@@ -631,7 +632,39 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   overflow:visible!important;
 }
 
-/* === Cat Mom Easter Egg (Polaroid-Card) === */
+/* === Freigestelltes Katzen-Element auf oberer Trennlinie (Shelf) === */
+.cats-shelf-container{
+  position:absolute;
+  bottom:100%;
+  left:0;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  margin-bottom:0;
+  padding-bottom:0;
+  pointer-events:none;
+  z-index:20;
+  line-height:0;
+  opacity:0;
+  transform:translateY(15px);
+  transition:opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cats-shelf-img{
+  display:block;
+  height:clamp(120px, 16vh, 180px);
+  width:auto;
+  object-fit:contain;
+  object-position:bottom;
+  margin:0;
+  padding:0;
+  vertical-align:bottom;
+  pointer-events:none;
+  user-select:none;
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,.1));
+}
+
+/* Trigger: "Cat Mom" */
 .cat-mom-trigger{
   position:relative;
   display:inline-block;
@@ -640,67 +673,22 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   padding-bottom:2px;
   color:#1E1E1E;
   font-weight:600;
-  transition:color .2s ease,border-color .2s ease;
+  transition:color .2s ease, border-bottom-color .2s ease;
 }
 .cat-mom-trigger:hover,
 .cat-mom-trigger.active{
   color:#8A7A63;
   border-bottom-color:#8A7A63;
 }
-.cat-mom-card{
-  pointer-events:none;
-  position:absolute;
-  bottom:100%;
-  left:50%;
-  transform:translate(-50%,12px) rotate(0deg);
-  margin-bottom:12px;
-  width:192px;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 25px 50px -12px rgba(0,0,0,.28),0 10px 20px -5px rgba(0,0,0,.15);
-  border:2px solid #FFFFFF;
-  background:#FFFFFF;
-  padding:6px;
-  opacity:0;
-  transition:all .3s cubic-bezier(.16,1,.3,1);
-  z-index:50;
-  box-sizing:border-box;
-}
-.cat-mom-trigger:hover .cat-mom-card,
-.group:hover .cat-mom-card,
-.cat-mom-trigger.active .cat-mom-card{
-  opacity:1;
+
+/* Hover- & Active-Zustand: Slide-Up bündig auf die Linie */
+#ueber .about-profile-col:has(.cat-mom-trigger:hover) .cats-shelf-container,
+#ueber .about-profile-col:has(.cat-mom-trigger.active) .cats-shelf-container,
+#ueber .about-profile-col:has(.cats-shelf-container:hover) .cats-shelf-container,
+.cats-shelf-container.show-cats{
+  opacity:1!important;
+  transform:translateY(0)!important;
   pointer-events:auto;
-  transform:translate(-50%,0) rotate(-2deg);
-}
-.cat-mom-card img{
-  width:100%;
-  height:128px;
-  object-fit:cover;
-  border-radius:8px;
-  display:block;
-}
-.cat-mom-card p{
-  font-size:11px!important;
-  color:#525252!important;
-  text-align:center!important;
-  margin-top:6px!important;
-  margin-bottom:2px!important;
-  font-family:'Cormorant Garamond',serif!important;
-  font-style:italic!important;
-  line-height:1.3!important;
-}
-@media(max-width:480px){
-  .cat-mom-card{
-    left:auto;
-    right:-8px;
-    transform:translateY(12px) rotate(0deg);
-  }
-  .cat-mom-trigger:hover .cat-mom-card,
-  .group:hover .cat-mom-card,
-  .cat-mom-trigger.active .cat-mom-card{
-    transform:translateY(0) rotate(-2deg);
-  }
 }
 
 /* Fähigkeiten → Magic UI Bento Grid */
@@ -1888,7 +1876,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   }
   #ueber .about-profile-col{
     grid-column:span 1!important;
-    margin-top:0!important;
+    margin-top:clamp(110px, 15vh, 160px)!important;
   }
 }
 @media(max-width:880px){

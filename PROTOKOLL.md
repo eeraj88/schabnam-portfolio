@@ -72,11 +72,14 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
       * **LEIDENSCHAFT:** Wohnkultur, Freihandzeichnen & Materialästhetik
       * **KREATIVITÄT:** Raumgefühl, Skizzieren & Szenografie
       * **PERSÖNLICHES:** Vintage-Design, Altbau-Liebe & [Cat Mom]
-* **Interaktives „Cat Mom“ Easter-Egg (Polaroid-Hover):**
+* **Interaktives „Cat Mom“ Easter-Egg (Freigestellte Katzen bündig auf Regal-Linie):**
   * Das Stichwort „Cat Mom“ ist dezent gestrichelt unterstrichen und dient als interaktiver Trigger (`cursor: pointer`).
-  * **Polaroid-Card (`z-index: 50`):** Erscheint beim Hovern (bzw. bei mobilem Antippen) mit einer sanften Drehung (`rotate(-2deg)`), weichem Schatten und weißem Polaroid-Rahmen oberhalb des Textes.
-  * **Bild:** Integriert [`assets/images/cats.png`](file:///C:/Users/eeraj/Documents/PROJEKTE/Schabnam%20Portfolio/schabnam-portfolio-site/assets/images/cats.png) mit `object-fit: cover`.
-  * **Signatur:** Feine handschriftlich-typografische Notiz im unteren Bildrand: *„The real project managers 🐾“*.
+  * **Exakte Verankerung an der Linie:** Die freigestellten Katzen (`cats.png`, ohne Hintergrund und transparent auf den exakten Pfoten-Abschluss getrimmt) sitzen in [`.cats-shelf-container`](file:///C:/Users/eeraj/Documents/PROJEKTE/Schabnam%20Portfolio/schabnam-portfolio-site/styles.css) mit `position: absolute; bottom: 100%; left: 0; width: 100%; display: flex; justify-content: center; align-items: flex-end; margin-bottom: 0;` bündig direkt auf der oberen horizontalen Haarlinie oberhalb von „LEIDENSCHAFT“.
+  * **Skalierung & Bild:** `height: clamp(120px, 16vh, 180px); width: auto; object-fit: contain; object-position: bottom;`.
+  * **Slide-Up Bewegung:**
+    * *Ruhezustand:* `opacity: 0; transform: translateY(15px); pointer-events: none; transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);`.
+    * *Hover/Aktivierung über „Cat Mom“:* `opacity: 1; transform: translateY(0);` — die Katzen gleiten geschmeidig nach oben und rasten exakt auf der Haarlinie ein.
+  * **Touch-Unterstützung:** Antippen auf mobilen Endgeräten schaltet das Katzen-Element ebenfalls flüssig ein und aus.
 
 ---
 
