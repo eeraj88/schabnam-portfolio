@@ -101,43 +101,60 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 7. 🧩 Sektion „Fähigkeiten & Tools“ — Magic UI Bento Grid Overhaul & Reduktion
-* **Asset-Vorbereitung & 1:1 Aspect Ratio:**
+### 7. 🧩 Sektion „Fähigkeiten & Tools“ — Magic UI Bento Grid Overhaul & 4-Stationen-Pipeline
+* **Asset-Vorbereitung & Bereinigung des Icon-Designs:**
   * Material-Texturen aus dem lokalen Projektpfad importiert nach `assets/materials/` und `public/images/materials/`:
     * `warm-light.jpg`: Präziser quadratischer Center-Crop (736×736 px) aus dem Original-Hochformatbild.
     * `eiche.jpg`, `terrazzo.jpg`, `akustikpaneel.webp`, `stoff.jpg`: Alle Texturen im 1:1-Seitenverhältnis verifiziert (`aspect-ratio: 1/1; object-fit: cover`).
-  * Vektor-Icons der 5 Kern-Werkzeuge (Vectorworks, SketchUp, Twinmotion, Photoshop, InDesign) direkt als verlustfreie, native Inline-SVGs in das DOM eingebettet — verhindert broken images und MIME-Type-Probleme vollständig.
-* **Kachel 1: Software & Workflow (1-2-3 Pipeline & Magic UI AnimatedBeam):**
-  * Alter statischer Hub durch einen linearen, logischen 3-Phasen-Workflow von links nach rechts ersetzt:
-    * **Phase 1 (Input / CAD):** Vectorworks & SketchUp (2D-Werkplanung, 3D-Modellierung)
-    * **Phase 2 (Visualisierung):** Twinmotion (Echtzeit-Rendering, Licht & Atmosphäre)
-    * **Phase 3 (Finalisierung):** Photoshop & InDesign (Bildbearbeitung, Layout & Portfolio)
-  * Dynamisches SVG-Overlay berechnet kubische Bezier-Kurven in Echtzeit, die flüssig von Phase 1 in Phase 2 konvergieren und von Phase 2 zu Phase 3 divergieren.
-  * Animierte Lichtstrahlen (`@keyframes beamFlow`) pulsieren kontinuierlich entlang der Arbeitskette mit Terrakotta-Glow.
+  * Logos für **Pinterest** und **Miro** aus dem lokalen Bildpfad importiert (`assets/icons/pinterest.svg`, `assets/icons/miro.svg`) und direkt als verlustfreie, native Inline-SVGs eingebunden.
+  * **Bereinigtes Icon-Design:**
+    * Keine weißen runden Container oder Rahmen mehr um die Logos — alle Logos wirken direkt, transparent freigestellt und mit edlem Drop-Shadow auf dem warmen Sandhintergrund der Bento-Karte.
+    * Deutliche Skalierung auf `clamp(48px, 4.4vw, 56px)` für maximale Fernwirkung und sofortige Wiedererkennbarkeit.
+    * Sämtliche Subtexte und Beschriftungen unter den Logos wurden entfernt (Informationen sind clean per nativer Hover-Tooltip `title` erreichbar).
+    * Obere Spaltenüberschriften („1. INPUT / PLANUNG“, etc.) restlos entfernt für ein ruhiges, unaufdringliches Gesamtbild.
+* **Kachel 1: Software & Tools (4-Stationen-Workflow & Magic UI AnimatedBeam):**
+  * **Station 1 (Start links · Recherche, Konzept & Skizze):**
+    * Zusammenhängender 2×2-Knotenpunkt-Cluster in edlem Frosted Glass mit feiner Sand-Perforation:
+      1. *Pinterest* (Stil- und Bildrecherche)
+      2. *Miro* (Digitales Moodboard & Konzeptentwicklung)
+      3. *Freihand-Skizze* (Architektonisches Entwurfs- und Stift-Icon)
+      4. *Material- & Haptikrecherche* (Taktile Layer- und Werkstoffbemusterung)
+  * **Station 2 (Mitte-Links · Technische Planung & Modellierung):**
+    * Verzweigt vertikal versetzt in 3 Kern-Software-Knoten:
+      1. *Vectorworks* (CAD & Werkplanung)
+      2. *SketchUp* (3D-Volumenmodellierung)
+      3. *Twinmotion* (Echtzeit-Rendering & Lichtstimmung)
+  * **Station 3 (Mitte-Rechts · Visualisierung & Layout):**
+    * Führt die Planungsdaten zur Veredelung zusammen in:
+      1. *Adobe Photoshop* (Bildbearbeitung & Bildatmosphäre)
+      2. *Adobe InDesign* (Planlayout & Präsentationsportfolio)
+  * **Station 4 (Endpunkt rechts · Realisiertes Projekt):**
+    * Mündet in einem zentralen, architektonischen Ziel-Icon (`Building2`) mit kontinuierlich pulsierendem Terrakotta-Beacon (`@keyframes targetBeacon`), das das fertig gebaute Objekt symbolisiert.
+  * **AnimatedBeam-Netzwerk:**
+    * 10 flüssig berechnete kubische Bezier-Kurven mit horizontalen Tangenten verbinden die Stationen von links nach rechts:
+      * Station 1 (Cluster) ➔ Station 2 (Vectorworks, SketchUp, Twinmotion)
+      * Station 2 ➔ Station 3 (Photoshop, InDesign)
+      * Station 3 ➔ Station 4 (Realisiertes Gebäude)
+    * Gestaffelte Lichtstrahl-Pulse (`@keyframes beamFlow` mit 3,2s Zyklus) leiten das Auge harmonisch durch den gesamten architektonischen Schaffensprozess.
 * **Kachel 2: Kommunikation & Projektführung (Magic UI AnimatedList):**
-  * Entfernen des SaaS-artigen Feeds mit Zeitstempeln („vor 14 Min“, etc.).
-  * Neuer Fokus: „Kommunikation & Projektführung“ mit Untertitel „Strukturierte Abstimmung, Teamwork und Präsentation“.
   * Sanft durchwechselnde Liste aus 4 authentischen innenarchitektonischen Kernkompetenzen:
     1. *Präsentationen & Pitch:* Visuelle Aufbereitung für Auftraggeber & Bauherren
     2. *Projektkoordination:* Schnittstelle zwischen Planung, Handwerk & Team
     3. *Teamwork & Führung:* Empathische Zusammenarbeit, HR & Recruiting-Erfahrung
     4. *Kundenberatung:* Bedürfnisanalyse und individuelle Raumkonzepte
-  * Kein Zeitticker, sondern klare Rollen- und Kategorie-Tags (`Präsentation`, `Koordination`, `Leadership`, `Beratung`).
+  * Kein Saas-Zeitticker, sondern klare Rollen- und Kategorie-Tags (`Präsentation`, `Koordination`, `Leadership`, `Beratung`).
 * **Kachel 3: Entwurf & Raumplanung (Minimalistische Architektur-Quadranten):**
-  * Entfernen künstlicher Ziffern („01“, „02“, „03“, „04“) und Maßstabs-Badges („M 1:50 · CAD“, etc.) für ein ruhiges, unaufdringliches Erscheinungsbild.
-  * 4 fokussierte Fachdisziplinen:
-    1. *Grundrisse & Zonierung:* Strukturierung komplexer Flächen, optimierte Wegeführung und funktionale Raumzonen.
-    2. *3D-Visualisierung & Rendering:* Räumliche Proportionen, Sichtachsen und fotorealistische Lichtstimmungen vor Baubeginn.
-    3. *Lichtkonzepte & Atmosphäre:* Warmweißes Zonierungslicht, Akzentbeleuchtung und behagliche Raumakustik.
-    4. *Detail- & Ausführungsplanung:* Maßgeschneiderte Einbaumöbel, präzise Fugenbilder und materialgerechte Konstruktion.
+  * 4 fokussierte Fachdisziplinen ohne künstliche Ziffern oder Maßstabs-Badges:
+    1. *Grundrisse & Zonierung*
+    2. *3D-Visualisierung & Rendering*
+    3. *Lichtkonzepte & Atmosphäre*
+    4. *Detail- & Ausführungsplanung*
 * **Kachel 4: Material & Atmosphäre (Das Moodboard — Großzügiges Marquee):**
-  * Vollständig von Text-Overlays („Eiche Natur“, „2700K“, etc.) und störenden Badges befreit — die physischen Werkstoffe sprechen für sich.
-  * Entfernen der Footer-Pillen („Nachhaltige Werkstoffe“, etc.) für maximale Ruhe.
-  * Deutliche Vergrößerung der Materialkarten auf `clamp(200px, 19vw, 250px)` (`160px` mobil) — das Marquee füllt die Kachelhöhe satt und harmonisch aus.
-  * Kontinuierliches, seidenweiches horizontales Marquee mit beidseitigem Rand-Fadeout (`mask-image: linear-gradient`) und Pause bei Hover.
+  * Vollständig von störenden Text-Overlays („Eiche Natur“, „2700K“, etc.) und Footer-Pills befreit.
+  * Großzügige quadratische Samples (`clamp(200px, 19vw, 250px)`) im kontinuierlichen Endlos-Marquee mit beidseitigem Rand-Fade (`mask-image: linear-gradient`) und Pause bei Maus-Hover.
 * **Design & Responsive Abstimmung:**
   * Konsistentes Farbschema beibehalten: Warme Beige-Bento-Karten (`#E8DDD0`) mit feinen Sandkanten auf dunklem Anthrazit-Hintergrund (`#2a2a2a`) der Sektion.
-  * Perfekt responsive Ausrichtung der 1-2-3 Workflow-Spalten und Marquee-Kacheln auf allen Bildschirmgrößen.
+  * Vollständig responsive Anpassung für Desktop, Tablet und Smartphones.
 
 ---
 

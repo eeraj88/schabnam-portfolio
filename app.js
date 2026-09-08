@@ -277,8 +277,7 @@ function initAnimatedList() {
 function updateAnimatedBeams() {
   var stage = document.getElementById("beam-stage");
   var svg = document.getElementById("beam-svg");
-  var centerTarget = document.getElementById("node-tm");
-  if (!stage || !svg || !centerTarget) return;
+  if (!stage || !svg) return;
 
   var sRect = stage.getBoundingClientRect();
   if (sRect.width === 0 || sRect.height === 0) return;
@@ -289,30 +288,56 @@ function updateAnimatedBeams() {
   svg.setAttribute("width", w);
   svg.setAttribute("height", h);
 
-  var cIcon = centerTarget.querySelector(".beam-hub-inner") || centerTarget.querySelector(".beam-node-icon") || centerTarget;
-  var cRect = cIcon.getBoundingClientRect();
-  var cX = (cRect.left - sRect.left) + (cRect.width / 2);
-  var cY = (cRect.top - sRect.top) + (cRect.height / 2);
-
-  var leftNodes = ["node-vw", "node-su"];
-  var rightNodes = ["node-ps", "node-id"];
-
   svg.querySelectorAll(".beam-track, .beam-active").forEach(function(p) { p.remove(); });
 
-  leftNodes.forEach(function(id, idx) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    var icon = el.querySelector(".beam-node-icon") || el;
-    var nRect = icon.getBoundingClientRect();
-    var nx = (nRect.left - sRect.left) + (nRect.width / 2);
-    var ny = (nRect.top - sRect.top) + (nRect.height / 2);
+  function getNodeCenter(el, fromSide) {
+    var rect = el.getBoundingClientRect();
+    var x;
+    if (fromSide === "right") {
+      x = (rect.right - sRect.left) - 3;
+    } else if (fromSide === "left") {
+      x = (rect.left - sRect.left) + 3;
+    } else {
+      x = (rect.left - sRect.left) + (rect.width / 2);
+    }
+    var y = (rect.top - sRect.top) + (rect.height / 2);
+    return { x: x, y: y };
+  }
 
-    var dx = cX - nx;
-    var cp1x = nx + dx * 0.46;
-    var cp1y = ny;
-    var cp2x = cX - dx * 0.46;
-    var cp2y = cY;
-    var d = "M " + nx + " " + ny + " C " + cp1x + " " + cp1y + ", " + cp2x + " " + cp2y + ", " + cX + " " + cY;
+  var connections = [
+    // Station 1 -> Station 2
+    { from: "node-miro", to: "node-vw", delay: 0.0, fromSide: "right" },
+    { from: "station-1", to: "node-su", delay: 0.35, fromSide: "right" },
+    { from: "node-material", to: "node-tm", delay: 0.7, fromSide: "right" },
+
+    // Station 2 -> Station 3
+    { from: "node-vw", to: "node-ps", delay: 1.0 },
+    { from: "node-vw", to: "node-id", delay: 1.3 },
+    { from: "node-su", to: "node-ps", delay: 1.6 },
+    { from: "node-tm", to: "node-ps", delay: 1.9 },
+    { from: "node-tm", to: "node-id", delay: 2.2 },
+
+    // Station 3 -> Station 4
+    { from: "node-ps", to: "node-target", delay: 2.5 },
+    { from: "node-id", to: "node-target", delay: 2.8 }
+  ];
+
+  connections.forEach(function(conn) {
+    var fromEl = document.getElementById(conn.from);
+    var toEl = document.getElementById(conn.to);
+    if (!fromEl || !toEl) return;
+
+    var fromPt = getNodeCenter(fromEl, conn.fromSide);
+    var toPt = getNodeCenter(toEl, null);
+
+    var dx = toPt.x - fromPt.x;
+    if (dx <= 0) return;
+
+    var cp1x = fromPt.x + dx * 0.46;
+    var cp1y = fromPt.y;
+    var cp2x = toPt.x - dx * 0.46;
+    var cp2y = toPt.y;
+    var d = "M " + fromPt.x + " " + fromPt.y + " C " + cp1x + " " + cp1y + ", " + cp2x + " " + cp2y + ", " + toPt.x + " " + toPt.y;
 
     var track = document.createElementNS("http://www.w3.org/2000/svg", "path");
     track.setAttribute("d", d);
@@ -322,34 +347,7 @@ function updateAnimatedBeams() {
     var beam = document.createElementNS("http://www.w3.org/2000/svg", "path");
     beam.setAttribute("d", d);
     beam.setAttribute("class", "beam-active");
-    beam.style.animationDelay = (idx * 0.5) + "s";
-    svg.appendChild(beam);
-  });
-
-  rightNodes.forEach(function(id, idx) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    var icon = el.querySelector(".beam-node-icon") || el;
-    var nRect = icon.getBoundingClientRect();
-    var nx = (nRect.left - sRect.left) + (nRect.width / 2);
-    var ny = (nRect.top - sRect.top) + (nRect.height / 2);
-
-    var dx = nx - cX;
-    var cp1x = cX + dx * 0.46;
-    var cp1y = cY;
-    var cp2x = nx - dx * 0.46;
-    var cp2y = ny;
-    var d = "M " + cX + " " + cY + " C " + cp1x + " " + cp1y + ", " + cp2x + " " + cp2y + ", " + nx + " " + ny;
-
-    var track = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    track.setAttribute("d", d);
-    track.setAttribute("class", "beam-track");
-    svg.appendChild(track);
-
-    var beam = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    beam.setAttribute("d", d);
-    beam.setAttribute("class", "beam-active");
-    beam.style.animationDelay = ((idx + 2) * 0.5) + "s";
+    beam.style.animationDelay = conn.delay + "s";
     svg.appendChild(beam);
   });
 }
