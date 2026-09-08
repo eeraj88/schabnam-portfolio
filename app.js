@@ -558,12 +558,12 @@ function renderTimeline() {
   if (hintEl && !hintEl.dataset.clickBound) {
     hintEl.dataset.clickBound = "true";
     hintEl.addEventListener("click", function() {
-      vp.scrollBy({ top: 196, behavior: "smooth" });
+      vp.scrollBy({ top: 176, behavior: "smooth" });
     });
     hintEl.addEventListener("keydown", function(e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        vp.scrollBy({ top: 196, behavior: "smooth" });
+        vp.scrollBy({ top: 176, behavior: "smooth" });
       }
     });
   }

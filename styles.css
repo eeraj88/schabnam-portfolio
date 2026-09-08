@@ -1237,31 +1237,31 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 #wd-bar{background:#915851!important;border-radius:4px!important;transition:width 80ms ease-out!important}
 .werdegang-section::after{display:none!important}
 
-/* Vertical scroll viewport — Card 1 100% visible, Card 2 peeks ~50%, bottom gradient fade */
+/* Vertical scroll viewport — Exactly 2.5 cards visible: Card 1 & 2 at 100%, Card 3 peeks ~50% with bottom gradient fade */
 .werdegang-section .tl-viewport{
-  height:302px!important;
+  height:452px!important;
   overflow-y:auto!important;
   overflow-x:hidden!important;
   cursor:default!important;
   scrollbar-width:none!important;
   -ms-overflow-style:none!important;
   position:relative!important;
-  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 58%,rgba(0,0,0,.45) 80%,transparent 100%)!important;
-  mask-image:linear-gradient(to bottom,#000 0%,#000 58%,rgba(0,0,0,.45) 80%,transparent 100%)!important;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 76%,rgba(0,0,0,.6) 88%,transparent 100%)!important;
+  mask-image:linear-gradient(to bottom,#000 0%,#000 76%,rgba(0,0,0,.6) 88%,transparent 100%)!important;
   scroll-behavior:smooth!important;
 }
 .werdegang-section .tl-viewport::-webkit-scrollbar{display:none!important}
 .werdegang-section .tl-viewport.dragging{cursor:default!important}
 
-/* Vertical track — centered, wide 1.5x cards with generous gap */
+/* Vertical track — centered, compact high-value box cards with generous gap */
 .werdegang-section .tl-track{
   display:flex!important;
   flex-direction:column!important;
-  gap:28px!important;
+  gap:20px!important;
   width:100%!important;
   min-width:0!important;
   height:auto!important;
-  padding:16px clamp(16px,4vw,48px) 96px!important;
+  padding:16px clamp(16px,4vw,48px) 110px!important;
   box-sizing:border-box!important;
   transform:none!important;
   align-items:center!important;
@@ -1270,12 +1270,12 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 .werdegang-section .tl-stem{display:none!important}
 .werdegang-section .tl-dot{display:none!important}
 
-/* Cards: broadened (max-w-4xl bis max-w-5xl, 1.5x), generous padding py-8 px-10, fine outline */
+/* Cards: max-w-2xl bis max-w-3xl (740px), generous vertical padding py-8 bis py-10, visible border */
 .werdegang-section .tl-event{
   position:static!important;
   flex:none!important;
   height:auto!important;
-  width:min(1040px,100%)!important;
+  width:min(740px,100%)!important;
   margin:0 auto!important;
 }
 .werdegang-section .tl-content,
@@ -1291,24 +1291,24 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   flex-direction:row!important;
   align-items:center!important;
   justify-content:space-between!important;
-  gap:clamp(24px,4vw,56px)!important;
+  gap:clamp(20px,3.5vw,44px)!important;
   width:100%!important;
-  min-height:154px!important;
+  min-height:156px!important;
   background:#242220!important;
-  border:1px solid rgba(255,255,255,.1)!important;
+  border:1px solid rgba(255,255,255,.22)!important;
   border-radius:16px!important;
-  padding:30px clamp(28px,3.8vw,48px)!important;
-  box-shadow:0 8px 28px rgba(0,0,0,.2)!important;
+  padding:clamp(32px,3.6vw,38px) clamp(28px,3.2vw,36px)!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.22)!important;
   transition:all .3s ease-out!important;
   cursor:default!important;
   box-sizing:border-box!important;
 }
-/* Hover-Effekt: Outline-Highlight, sanftes Schweben (-translate-y-1) und dezenter Glow */
+/* Hover-Effekt: Rand leuchtet deutlich auf (hover:border-white/70), sanftes Schweben und tiefer Schatten */
 .werdegang-section .tl-event:hover .tl-content{
   transform:translateY(-4px)!important;
-  border-color:rgba(255,255,255,.4)!important;
-  background:#2A2724!important;
-  box-shadow:0 18px 44px rgba(0,0,0,.35),0 0 24px rgba(255,255,255,.05)!important;
+  border-color:rgba(255,255,255,.72)!important;
+  background:#2B2825!important;
+  box-shadow:0 20px 48px rgba(0,0,0,.42),0 0 24px rgba(255,255,255,.08)!important;
 }
 
 /* Left side: Info-Column with Status, Zeitraum, Title, Institution */
@@ -1327,28 +1327,29 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 }
 .werdegang-section .tl-kind-badge{
   font-family:"IBM Plex Mono",monospace!important;
-  font-size:clamp(11.5px,.95vw,13px)!important;
+  font-size:clamp(11px,.9vw,12.5px)!important;
   font-weight:600!important;
   letter-spacing:.14em!important;
   text-transform:uppercase!important;
   color:#D4745F!important;
 }
 .werdegang-section .tl-kicker-sep{
-  color:rgba(232,221,208,.35)!important;
+  color:rgba(232,221,208,.45)!important;
   font-size:14px!important;
   line-height:1!important;
 }
+/* Datums-Label: spürbar größer (text-sm/base), helles Off-White/Neutral-200, feines Tracking */
 .werdegang-section .tl-period-badge{
   font-family:"IBM Plex Mono",monospace!important;
-  font-size:clamp(11px,.9vw,12.5px)!important;
+  font-size:clamp(13px,1.05vw,14.5px)!important;
   letter-spacing:.08em!important;
   text-transform:uppercase!important;
-  color:rgba(232,221,208,.82)!important;
+  color:#FAF7F2!important;
   font-weight:500!important;
 }
 .werdegang-section .tl-title{
   font-family:Jost,sans-serif!important;
-  font-size:clamp(21px,2vw,26px)!important;
+  font-size:clamp(20px,1.9vw,24px)!important;
   font-weight:700!important;
   color:#FFFFFF!important;
   line-height:1.25!important;
@@ -1357,8 +1358,8 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 }
 .werdegang-section .tl-org{
   font-family:"IBM Plex Mono",monospace!important;
-  font-size:clamp(13px,1.1vw,15px)!important;
-  color:rgba(232,221,208,.65)!important;
+  font-size:clamp(12.5px,1vw,14px)!important;
+  color:rgba(232,221,208,.68)!important;
   line-height:1.4!important;
   margin:0!important;
 }
@@ -1369,8 +1370,8 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   align-items:center!important;
   justify-content:flex-end!important;
   flex-shrink:0!important;
-  min-width:180px!important;
-  max-width:250px!important;
+  min-width:160px!important;
+  max-width:230px!important;
   height:76px!important;
 }
 .werdegang-section .tl-logo-img{
@@ -1423,7 +1424,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 }
 .tl-brand-deva .deva-title{
   font-family:"Playfair Display",serif;
-  font-size:clamp(20px,2.1vw,26px);
+  font-size:clamp(19px,1.9vw,24px);
   font-weight:600;
   letter-spacing:.24em;
   text-transform:uppercase;
@@ -1446,7 +1447,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   gap:3px;
   font-family:Jost,sans-serif;
   font-weight:800;
-  font-size:clamp(23px,2.3vw,28px);
+  font-size:clamp(22px,2.2vw,26px);
   letter-spacing:.06em;
   color:#FFFFFF;
   line-height:1;
@@ -1454,7 +1455,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 .tl-brand-tre .tre-pipe{
   color:#B8614A;
   font-weight:300;
-  font-size:clamp(24px,2.4vw,29px);
+  font-size:clamp(23px,2.3vw,27px);
   line-height:1;
 }
 .tl-brand-tre .tre-label{
@@ -1471,65 +1472,68 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   text-align:left;
 }
 
-/* Minimalistischer animierter Scroll-Indicator */
+/* Minimalistischer animierter Scroll-Indicator — 30–50% größer & mit deutlichem Abstand mt-16 */
 .wd-scroll-hint{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:9px;
-  margin:20px auto 0;
-  color:rgba(20,18,16,.52);
+  gap:12px;
+  margin:clamp(40px,4.5vw,64px) auto 0;
+  color:rgba(20,18,16,.58);
   cursor:pointer;
   user-select:none;
   transition:opacity .35s ease,color .25s ease,transform .25s ease;
   width:fit-content;
   outline:none;
+  padding:6px 14px;
 }
 .wd-scroll-hint:hover,.wd-scroll-hint:focus-visible{
   color:#915851;
-  transform:translateY(2px);
+  transform:translateY(3px);
 }
 .wd-scroll-mouse{
-  width:15px;
-  height:22px;
-  border:1.5px solid currentColor;
-  border-radius:8px;
+  width:22px;
+  height:34px;
+  border:2px solid currentColor;
+  border-radius:12px;
   position:relative;
   display:flex;
   justify-content:center;
-  padding-top:3.5px;
+  padding-top:5px;
   box-sizing:border-box;
 }
 .wd-scroll-wheel{
-  width:2.5px;
-  height:4px;
+  width:3px;
+  height:6px;
   background:currentColor;
   border-radius:2px;
   animation:mouseScrollDot 1.6s ease-in-out infinite;
 }
 @keyframes mouseScrollDot{
   0%{opacity:1;transform:translateY(0)}
-  60%{opacity:0;transform:translateY(6px)}
+  60%{opacity:0;transform:translateY(9px)}
   100%{opacity:0;transform:translateY(0)}
 }
 .wd-scroll-text{
   font-family:"IBM Plex Mono",monospace;
-  font-size:10px;
+  font-size:13px;
   font-weight:600;
-  letter-spacing:.16em;
+  letter-spacing:.18em;
   text-transform:uppercase;
 }
 .wd-scroll-chevron{
+  width:16px;
+  height:16px;
   animation:chevronBounce 1.6s ease-in-out infinite;
 }
 @keyframes chevronBounce{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(3px)}
+  50%{transform:translateY(4px)}
 }
 
 @media (max-width: 760px) {
   .werdegang-section .tl-viewport{
-    height:320px!important;
+    height:460px!important;
   }
   .werdegang-section .tl-event{
     width:100%!important;
@@ -1538,7 +1542,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
     flex-direction:column!important;
     align-items:flex-start!important;
     gap:16px!important;
-    padding:20px 24px!important;
+    padding:24px 22px!important;
     min-height:auto!important;
   }
   .werdegang-section .tl-logo-slot{

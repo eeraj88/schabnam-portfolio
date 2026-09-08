@@ -136,17 +136,21 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 8. ⏳ Sektion „Stationen & Erfahrung“ (Werdegang) — 1,5x Karten, Rebalanced Logos & Scroll-Indicator
-* **Karten-Dimensionen (1,5x) & Großzügige Abstände:**
-  * **Vergrößerte Dimensionen:** Breite auf `width: min(1040px, 100%)` (Bereich `max-w-4xl` bis `max-w-5xl`) und großzügiges Innen-Padding (`30px clamp(28px, 3.8vw, 48px)`, entsprechend `py-8 px-10`).
-  * **Vertikaler Abstand:** Erhöhter Abstand zwischen den Stationen (`gap: 28px`) für ein luftiges, museales Erscheinungsbild.
-  * **Exaktes „Peek“-Verhalten (302px Viewport):**
-    * *Karte 1 (Master of Arts):* Zu **100 % vollständig sichtbar** (ohne jeglichen Blur oder Kantenbeschnitt).
-    * *Karte 2 (Reline Europe):* Ragt zu ca. 50–60 % von unten in den Viewport hinein.
-    * *Weicher Gradient-Fade:* Maske via `-webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, rgba(0,0,0,.45) 80%, transparent 100%)`.
-* **Outline & Dynamisches Hover-Styling:**
-  * **Basis:** Feine, elegante Kontur (`border: 1px solid rgba(255, 255, 255, 0.1)`), edel und keinesfalls klobig.
-  * **Hover-Effekt:** Sanftes Schweben (`transform: translateY(-4px)`), Aufhellung der Kontur (`border-color: rgba(255, 255, 255, 0.4)`), satter Kartenhintergrund (`#2A2724`), tiefer Raumschatten (`box-shadow: 0 18px 44px rgba(0,0,0,.35)`) und dezenter Glow mit flüssiger Transition (`transition: all .3s ease-out`).
+### 8. ⏳ Sektion „Stationen & Erfahrung“ (Werdegang) — 2,5 Karten Viewport, 740px Box-Form, Markante Outlines & Skalierter Scroll-Hint
+* **Neue Karten-Proportionen & Typografie:**
+  * **Kompakte Box-Form (`max-w-2xl` bis `max-w-3xl`):** Maximale Kartenbreite auf `width: min(740px, 100%)` fokussiert, um die visuell überstreckte Wirkung zu eliminieren.
+  * **Großzügiges vertikales Padding (`py-8` bis `py-10`):** Innenabstand auf `clamp(32px, 3.6vw, 38px) clamp(28px, 3.2vw, 36px)` bei `min-height: 156px` erhöht für ein hochwertiges, kompaktes Kartenprofil.
+  * **Vergrößertes Datums-Label:** Zeitraum-Badge (`.tl-period-badge`) spürbar vergrößert (`clamp(13px, 1.05vw, 14.5px)`, entsprechend `text-sm` bis `text-base`), mit hohem Kontrast in hellem Off-White (`#FAF7F2`) und feinem Tracking (`letter-spacing: 0.08em`).
+* **Präzise Viewport-Geometrie (Exakt 2,5 Karten sichtbar):**
+  * **Viewport-Höhe (452px Desktop / 460px Mobile):** Exakt berechnet aus Kartenhöhen (156px) und 20px Track-Gap:
+    * *Karte 1:* Zu **100 % vollständig sichtbar**.
+    * *Karte 2:* Zu **100 % vollständig sichtbar**.
+    * *Karte 3:* Ragt zu **ca. 50 % (84px von 156px = 54 %)** am unteren Rand hinein.
+    * *Karte 4:* Zu 0 % sichtbar (vollständig außerhalb des Viewports).
+  * **Präziser Fade-Verlauf:** Der lineare Gradient (`linear-gradient(to bottom, #000 0%, #000 76%, rgba(0,0,0,.6) 88%, transparent 100%)`) startet erst ab 76 % Höhe (nach Karte 2), sodass Karte 1 & 2 glasklar bleiben und ausschließlich Karte 3 sanft in den Hintergrund verblasst.
+* **Kontrastreiche Outline & Leuchtender Hover-Effekt:**
+  * **Basis-Zustand:** Deutlich sichtbare, feine weiße Kontur (`border: 1px solid rgba(255, 255, 255, 0.22)`).
+  * **Hover-Zustand:** Kontur leuchtet kontrastreich auf (`border-color: rgba(255, 255, 255, 0.72)`), sanfter Auftrieb (`transform: translateY(-4px)`), satter Kartenhintergrund (`#2B2825`), tiefer Raumschatten (`box-shadow: 0 20px 48px rgba(0,0,0,.42), 0 0 24px rgba(255,255,255,.08)`).
 * **Visuelle Logo-Neuabstimmung (rechtsbündig):**
   * **Hochschule Kaiserslautern (Master & Bachelor):** Deutlich vergrößert auf ca. doppelte Pixelhöhe (`max-height: 72px`, `max-width: 220px`).
   * **Reline Europe:** Harmonisch verkleinert (`max-height: 34px`, `max-width: 135px`), um die Gesamtbalance nicht zu überlagern.
@@ -154,12 +158,13 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
   * **TRE Vehicle Dynamics:** Der dritte dünne Strich hinter dem Kasten (`border-left`) wurde entfernt, der Abstand zu `VEHICLE DYNAMICS` verringert und die Typografie insgesamt markanter skaliert (`28px / 11px`).
   * **Komami:** Auf doppelte Größe skaliert (`76×76px` rundes Gastronomie-Badge).
   * **Stadt Neustadt an der Weinstraße:** Aktuelle, bewährte Größe beibehalten (`max-height: 44px`).
-* **Minimalistischer animierter Scroll-Indicator:**
-  * Zentriert unterhalb des Viewports platziert:
-    * Feines Maus-Icon (`15×22px`) mit kontinuierlich herabgleitendem Scroll-Dot (`@keyframes mouseScrollDot`).
-    * Monospace-Schriftzug `SCROLLEN` (`font-size: 10px`, `letter-spacing: 0.16em`).
-    * Sanft bouncender Chevron-Pfeil (`@keyframes chevronBounce`).
-    * Interaktiv: Klick auf den Indicator scrollt die Timeline automatisch um eine Kartenhöhe weiter; blendet am Ende sanft aus.
+* **Skalierter animierter Scroll-Indicator (30–50 % größer & deutlicher Abstand):**
+  * **Großzügiger Abstand:** `margin: clamp(40px, 4.5vw, 64px) auto 0` nach oben für freies Atmen unterhalb der Karten.
+  * **Vergrößerte Dimensionen:**
+    * Maus-Icon auf `22×34px` mit 2px Border und verlängertem 9px Dot-Travel (`@keyframes mouseScrollDot`).
+    * Monospace-Schriftzug `SCROLLEN` auf `13px` vergrößert (`letter-spacing: 0.18em`).
+    * Sanft bouncender Chevron-Pfeil auf `16×16px` vergrößert (`@keyframes chevronBounce`).
+    * Interaktiv: Klick auf den Indicator scrollt die Timeline automatisch um exakt 176px (1 Kartenhöhe + Gap) weiter; blendet am Ende sanft aus.
 
 ---
 
