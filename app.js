@@ -1109,3 +1109,41 @@ initMarquee();renderDocs();renderProjects();renderSkills();initSkillsAnim();rend
   else img.addEventListener('load',setSplit);
   window.addEventListener('resize',setSplit);
 })();
+
+/* === Hero: Desktop Collision Protection (Flache Viewports / Laptops - Mindestabstand 2.5rem) === */
+(function(){
+  const portrait = document.getElementById('hero-portrait');
+  const brandBlock = document.querySelector('.hero-brand-block');
+  if(!portrait || !brandBlock) return;
+  function updateDesktopClearance(){
+    if(window.innerWidth <= 880){
+      portrait.style.maxHeight = '';
+      return;
+    }
+    const brandRect = brandBlock.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // Mindestabstand 2.5rem (40px) zwischen MorphingText und Freisteller-Kopf
+    const allowedH = Math.floor(vh - brandRect.bottom - 40);
+    if(allowedH > 0){
+      portrait.style.maxHeight = allowedH + 'px';
+    }
+  }
+  window.addEventListener('resize', updateDesktopClearance, { passive: true });
+  window.addEventListener('load', updateDesktopClearance);
+  setTimeout(updateDesktopClearance, 50);
+})();
+
+/* === "Cat Mom" Easter-Egg: Tap support for touch devices === */
+(function(){
+  const trigger = document.querySelector('.cat-mom-trigger');
+  if(!trigger) return;
+  trigger.addEventListener('click', function(e){
+    e.stopPropagation();
+    this.classList.toggle('active');
+  });
+  document.addEventListener('click', function(e){
+    if(!trigger.contains(e.target)){
+      trigger.classList.remove('active');
+    }
+  });
+})();

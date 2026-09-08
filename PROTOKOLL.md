@@ -40,6 +40,10 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 * **Kuratierte Canvas-Bühne & HiDPI-Schärfe:**
   * 60 % Spaltenbreite, kuratiertes Fenster (`.hero-canvas-stage`, `border-radius: 12px`, `box-shadow: 0 20px 50px rgba(0,0,0,0.5)`).
   * Retina-Auflösung via `devicePixelRatio` und `ctx.imageSmoothingQuality = 'high'` in [`app.js`](file:///C:/Users/eeraj/Documents/PROJEKTE/Schabnam%20Portfolio/schabnam-portfolio-site/app.js).
+* **Desktop-Kollisionsbehebung (Flache Viewports / Laptops):**
+  * **Textblock fixiert:** `.hero-brand-block` erhält `flex-shrink: 0; z-index: 30; pointer-events: auto;`, sodass der Name "SCHABNAM SHOR" und der Morphing-Text immer vorrangig sichtbar bleiben.
+  * **Freisteller-Höhe an Viewport gebunden:** Skalierung des Freistellers auf `height: clamp(340px, 48vh, 620px); width: auto; object-fit: contain;` neu tariert.
+  * **2.5rem Mindestabstand garantiert:** Auf Desktop wird via CSS (`max-height: calc(...)`) und dynamischer Clearance-Kalkulation in [`app.js`](file:///C:/Users/eeraj/Documents/PROJEKTE/Schabnam%20Portfolio/schabnam-portfolio-site/app.js) ein Mindestabstand von `2.5rem` (40px) zwischen dem MorphingText und Schabnams Kopf erzwungen. Die Haare ragen somit selbst bei stark gestauchten Laptop-Fenstern niemals in die Typografie.
 * **Mobile-Optimierung (Frame-Scrubbing, gestraffter Flex-Stapel & verdoppeltes Porträt):**
   * **Frame-Scrubbing & Touch:** `.hero` auf `200vh` und `.hero-sticky` auf `position: sticky; top: 0; height: 100dvh;` gesetzt, um butterweiches Frame-Scrubbing auf Mobile zu gewährleisten. `pointer-events: none` auf dem Canvas und `-webkit-overflow-scrolling: touch` leiten Touch-Gesten latenzfrei an `#app-scroll` weiter.
   * **Tote Fläche eliminiert (Kompakter Flex-Stapel):** Auflösung des starren `space-between`. Der Bereich unterhalb der Canvas-Bühne ist als kompakter vertikaler Flex-Stapel (`flex flex-col items-center justify-start`) organisiert: Canvas-Bühne (`order: 1`), zentrierter Textblock (`order: 2`), geerdetes Porträt (`order: 3`).
@@ -48,7 +52,7 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 1b. 👤 Sektion "Über mich" — Zweifarbiges Color-Blocking & 2-zu-3 Grid-System
+### 1b. 👤 Sektion "Über mich" — Zweifarbiges Color-Blocking & Persönliche Profilspalte
 * **Zweifarbiges Color-Blocking (Hintergrund):**
   * Linke Fläche (von ganz links bis exakt zur rechten Kante des Fotos / 38 % der Sektionsbreite): Satteres, warmes Sandstein-/Kalkstein-Beige (`#D8CEBE`).
   * Rechte Fläche: Lichte Textbühne im harmonischen Grundton (`#E8DDD0`).
@@ -62,11 +66,17 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
     * Headline: `ICH GESTALTE RÄUME.` in markanter Grotesk mit flüssigem Typewriter-Effekt.
     * Leitmotiv: *„Mit dem Blick für Atmosphäre, Materialität und Licht — für Räume, die technisch funktionieren und emotional treffen.“* in eleganter Serif-Italic.
     * Fließtext: Auf zwei prägnante, lesefreundliche Absätze mit großzügigem Zeilenabstand (`line-height: 1.75`) gestrafft.
-  * **Rechter Bereich / Profil & Disziplinen (col-span-5):**
-    * Füllt die bisher ungenutzte Fläche mit einer strukturierten Metadaten-Spalte mit dezenten horizontalen Haarlinien (`border-t border-b border-black/15`):
-      * **DISZIPLINEN:** Hospitality, Rauminszenierung, Wohnen & New Work
-      * **AUSBILDUNG:** M.A. Innenarchitektur (i. A.) · B.A. Innenarchitektur
-      * **ANSATZ:** Haptik & Licht vor Dekoration — Räume als erlebbare Identität
+  * **Rechter Bereich / Persönliche Profilspalte (col-span-5):**
+    * Steife Buzzwords („Hospitality“, „New Work“) restlos durch persönliche Interessen und Kernstärken ersetzt.
+    * Feine Trennlinien (`border-t border-neutral-400/25 py-3`) für eine luftige, architektonische Struktur:
+      * **LEIDENSCHAFT:** Wohnkultur, Freihandzeichnen & Materialästhetik
+      * **KREATIVITÄT:** Raumgefühl, Skizzieren & Szenografie
+      * **PERSÖNLICHES:** Vintage-Design, Altbau-Liebe & [Cat Mom]
+* **Interaktives „Cat Mom“ Easter-Egg (Polaroid-Hover):**
+  * Das Stichwort „Cat Mom“ ist dezent gestrichelt unterstrichen und dient als interaktiver Trigger (`cursor: pointer`).
+  * **Polaroid-Card (`z-index: 50`):** Erscheint beim Hovern (bzw. bei mobilem Antippen) mit einer sanften Drehung (`rotate(-2deg)`), weichem Schatten und weißem Polaroid-Rahmen oberhalb des Textes.
+  * **Bild:** Integriert [`assets/images/cats.png`](file:///C:/Users/eeraj/Documents/PROJEKTE/Schabnam%20Portfolio/schabnam-portfolio-site/assets/images/cats.png) mit `object-fit: cover`.
+  * **Signatur:** Feine handschriftlich-typografische Notiz im unteren Bildrand: *„The real project managers 🐾“*.
 
 ---
 
