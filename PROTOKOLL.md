@@ -101,38 +101,43 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 
-### 7. 🧩 Sektion „Fähigkeiten & Tools“ — Magic UI Bento Grid Overhaul
+### 7. 🧩 Sektion „Fähigkeiten & Tools“ — Magic UI Bento Grid Overhaul & Reduktion
 * **Asset-Vorbereitung & 1:1 Aspect Ratio:**
   * Material-Texturen aus dem lokalen Projektpfad importiert nach `assets/materials/` und `public/images/materials/`:
     * `warm-light.jpg`: Präziser quadratischer Center-Crop (736×736 px) aus dem Original-Hochformatbild.
     * `eiche.jpg`, `terrazzo.jpg`, `akustikpaneel.webp`, `stoff.jpg`: Alle Texturen im 1:1-Seitenverhältnis verifiziert (`aspect-ratio: 1/1; object-fit: cover`).
-  * Vektor-Icons der 5 Kern-Werkzeuge als SVG importiert nach `assets/icons/`: Vectorworks, SketchUp, Twinmotion, Photoshop, InDesign.
-* **Kachel 1: Software & Workflow (Magic UI AnimatedBeam):**
-  * Alte statische Prozentbalken vollständig entfernt.
-  * Dynamisches SVG-Overlay berechnet kubische Bezier-Kurven in Echtzeit zwischen den 5 Software-Nodes und dem zentralen Gestaltungs-Core („Entwurf & Raumkonzept“).
-  * Animierte Lichtstrahlen (`@keyframes beamFlow` mit gestrichelten Farbverläufen und Drop-Shadow-Glow) pulsieren kontinuierlich von den Input-CAD-Tools in den Kern und weiter in die Visualisierungs- und Layout-Software.
-  * Zentraler Hub mit pulsierendem Terrakotta-Ring (`@keyframes hubPulse`) und architektonischem Raum-Icon.
-  * Responsive Neuberechnung der Strahlkoordinaten bei Viewport-Änderungen und Scroll-Eintritt.
-* **Kachel 2: Umsetzung & Koordination (Magic UI AnimatedList):**
-  * Dynamischer, lebendiger Aktivitäts-Feed typischer innenarchitektonischer Meilensteine und Freigaben (z. B. Bauherrenfreigabe AUS 2, Terrazzo-Bemusterung, Detailzeichnung 1:20, Lichtberechnung 2700K, 3D-Walkthrough, Ubakus-Bauphysik).
-  * Sanfter Slide-In-Effekt von oben (`transform: translateY(-20px) scale(0.94)` → `scale(1)`), flüssiges Nachuntenrücken und weiches Ausblenden älterer Einträge.
-  * Automatisches Pausieren bei Maus-Hover zur ungestörten Lesbarkeit.
-* **Kachel 3: Entwurf & Raumplanung (Architektur-Quadranten):**
-  * 4-Quadranten-Gitter für architektonische Kernkompetenzen:
-    1. *Grundrisse & Zonierung* (M 1:50 · CAD)
-    2. *3D-Volumen & Raumgefühl* (Modell · 3D)
-    3. *Lichtkonzepte & Akustik* (Atmosphäre · Lux)
-    4. *Detail- & Ausführungsplanung* (M 1:20 bis 1:1)
-  * Edle Micro-Karten mit feinen Konturen, Hover-Lift und typografischen Badges.
-* **Kachel 4: Material & Atmosphäre (Das Moodboard — Magic UI Marquee):**
-  * Physisch wirkendes Material-Sample-Board mit kontinuierlich scrollendem Marquee (`@keyframes marqueeScroll`).
-  * Beidseitiger Edge-Fade (`mask-image: linear-gradient`) für ein nahtloses, unendliches Durchlaufen.
-  * Quadratische 1:1-Texturkarten mit abgerundeten Ecken (`rounded-xl` / 14px), feinem Schlagschatten und semi-transparenten Glassmorphism-Badges („Eiche Natur“, „Terrazzo Fein“, „Akustikpaneel“, „Warmes Licht 2700K“, „Stoff Bouclé“).
-  * Subtiler Hover-Zoom (`scale-105 duration-300`) und interaktiver Pause-on-Hover-Effekt.
-  * Footer-Tags mit architektonischen Qualitätsmerkmalen (*Nachhaltige Werkstoffe*, *Taktile Bemusterung*, etc.).
+  * Vektor-Icons der 5 Kern-Werkzeuge (Vectorworks, SketchUp, Twinmotion, Photoshop, InDesign) direkt als verlustfreie, native Inline-SVGs in das DOM eingebettet — verhindert broken images und MIME-Type-Probleme vollständig.
+* **Kachel 1: Software & Workflow (1-2-3 Pipeline & Magic UI AnimatedBeam):**
+  * Alter statischer Hub durch einen linearen, logischen 3-Phasen-Workflow von links nach rechts ersetzt:
+    * **Phase 1 (Input / CAD):** Vectorworks & SketchUp (2D-Werkplanung, 3D-Modellierung)
+    * **Phase 2 (Visualisierung):** Twinmotion (Echtzeit-Rendering, Licht & Atmosphäre)
+    * **Phase 3 (Finalisierung):** Photoshop & InDesign (Bildbearbeitung, Layout & Portfolio)
+  * Dynamisches SVG-Overlay berechnet kubische Bezier-Kurven in Echtzeit, die flüssig von Phase 1 in Phase 2 konvergieren und von Phase 2 zu Phase 3 divergieren.
+  * Animierte Lichtstrahlen (`@keyframes beamFlow`) pulsieren kontinuierlich entlang der Arbeitskette mit Terrakotta-Glow.
+* **Kachel 2: Kommunikation & Projektführung (Magic UI AnimatedList):**
+  * Entfernen des SaaS-artigen Feeds mit Zeitstempeln („vor 14 Min“, etc.).
+  * Neuer Fokus: „Kommunikation & Projektführung“ mit Untertitel „Strukturierte Abstimmung, Teamwork und Präsentation“.
+  * Sanft durchwechselnde Liste aus 4 authentischen innenarchitektonischen Kernkompetenzen:
+    1. *Präsentationen & Pitch:* Visuelle Aufbereitung für Auftraggeber & Bauherren
+    2. *Projektkoordination:* Schnittstelle zwischen Planung, Handwerk & Team
+    3. *Teamwork & Führung:* Empathische Zusammenarbeit, HR & Recruiting-Erfahrung
+    4. *Kundenberatung:* Bedürfnisanalyse und individuelle Raumkonzepte
+  * Kein Zeitticker, sondern klare Rollen- und Kategorie-Tags (`Präsentation`, `Koordination`, `Leadership`, `Beratung`).
+* **Kachel 3: Entwurf & Raumplanung (Minimalistische Architektur-Quadranten):**
+  * Entfernen künstlicher Ziffern („01“, „02“, „03“, „04“) und Maßstabs-Badges („M 1:50 · CAD“, etc.) für ein ruhiges, unaufdringliches Erscheinungsbild.
+  * 4 fokussierte Fachdisziplinen:
+    1. *Grundrisse & Zonierung:* Strukturierung komplexer Flächen, optimierte Wegeführung und funktionale Raumzonen.
+    2. *3D-Visualisierung & Rendering:* Räumliche Proportionen, Sichtachsen und fotorealistische Lichtstimmungen vor Baubeginn.
+    3. *Lichtkonzepte & Atmosphäre:* Warmweißes Zonierungslicht, Akzentbeleuchtung und behagliche Raumakustik.
+    4. *Detail- & Ausführungsplanung:* Maßgeschneiderte Einbaumöbel, präzise Fugenbilder und materialgerechte Konstruktion.
+* **Kachel 4: Material & Atmosphäre (Das Moodboard — Großzügiges Marquee):**
+  * Vollständig von Text-Overlays („Eiche Natur“, „2700K“, etc.) und störenden Badges befreit — die physischen Werkstoffe sprechen für sich.
+  * Entfernen der Footer-Pillen („Nachhaltige Werkstoffe“, etc.) für maximale Ruhe.
+  * Deutliche Vergrößerung der Materialkarten auf `clamp(200px, 19vw, 250px)` (`160px` mobil) — das Marquee füllt die Kachelhöhe satt und harmonisch aus.
+  * Kontinuierliches, seidenweiches horizontales Marquee mit beidseitigem Rand-Fadeout (`mask-image: linear-gradient`) und Pause bei Hover.
 * **Design & Responsive Abstimmung:**
   * Konsistentes Farbschema beibehalten: Warme Beige-Bento-Karten (`#E8DDD0`) mit feinen Sandkanten auf dunklem Anthrazit-Hintergrund (`#2a2a2a`) der Sektion.
-  * Asymmetrisches 12-Spalten-Layout (7+5 / 5+7) auf Desktop, sauberes und unterbrechungsfreies Umbrechen auf mobilen Geräten.
+  * Perfekt responsive Ausrichtung der 1-2-3 Workflow-Spalten und Marquee-Kacheln auf allen Bildschirmgrößen.
 
 ---
 
@@ -143,3 +148,4 @@ Dieses Protokoll dokumentiert alle technischen, gestalterischen und funktionelle
 
 ---
 *Protokoll automatisch generiert für die Projektdokumentation.*
+

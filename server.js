@@ -13,6 +13,8 @@ const types = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.jfif': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.svg': 'image/svg+xml',
   '.mp4': 'video/mp4',
   '.pdf': 'application/pdf',
 };

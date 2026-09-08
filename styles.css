@@ -554,16 +554,16 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   margin:0!important;
 }
 
-/* ── Kachel 1: Software & Workflow (Magic UI AnimatedBeam) ── */
+/* ── Kachel 1: Software & Workflow (Magic UI AnimatedBeam mit 1-2-3 Flow) ── */
 #faehigkeiten .bento-card-workflow{grid-column:span 7!important}
 #faehigkeiten .beam-stage{
   position:relative!important;
-  min-height:280px!important;
+  min-height:290px!important;
   flex:1!important;
   display:flex!important;
-  align-items:center!important;
+  align-items:stretch!important;
   justify-content:space-between!important;
-  padding:12px clamp(8px, 1.6vw, 24px)!important;
+  padding:14px clamp(6px, 1.6vw, 24px)!important;
   box-sizing:border-box!important;
 }
 #faehigkeiten .beam-svg{
@@ -600,9 +600,29 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   align-items:center!important;
   z-index:2!important;
   position:relative!important;
+  flex:1!important;
+  max-width:32%!important;
 }
-#faehigkeiten .beam-col-left{gap:clamp(14px, 1.8vw, 22px)!important}
-#faehigkeiten .beam-col-right{gap:clamp(28px, 3.2vw, 42px)!important}
+#faehigkeiten .beam-step-badge{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:10px!important;
+  font-weight:600!important;
+  text-transform:uppercase!important;
+  letter-spacing:.12em!important;
+  color:#915851!important;
+  margin-bottom:14px!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+}
+#faehigkeiten .beam-nodes-group{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:clamp(16px, 2.2vw, 28px)!important;
+  flex:1!important;
+  width:100%!important;
+}
 #faehigkeiten .beam-node{
   display:flex!important;
   flex-direction:column!important;
@@ -613,8 +633,8 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 }
 #faehigkeiten .beam-node:hover{transform:scale(1.08)!important}
 #faehigkeiten .beam-node-icon{
-  width:clamp(44px, 4vw, 52px)!important;
-  height:clamp(44px, 4vw, 52px)!important;
+  width:clamp(44px, 3.8vw, 50px)!important;
+  height:clamp(44px, 3.8vw, 50px)!important;
   border-radius:50%!important;
   background:#FFFFFF!important;
   border:1px solid rgba(42, 42, 42, .12)!important;
@@ -628,10 +648,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   border-color:#915851!important;
   box-shadow:0 6px 20px rgba(145, 88, 81, .28)!important;
 }
-#faehigkeiten .beam-node-icon img{
-  width:clamp(20px, 1.8vw, 24px)!important;
-  height:clamp(20px, 1.8vw, 24px)!important;
-  object-fit:contain!important;
+#faehigkeiten .beam-node-icon svg{
   display:block!important;
 }
 #faehigkeiten .beam-node-label{
@@ -643,41 +660,52 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   margin-top:6px!important;
   text-transform:uppercase!important;
   text-align:center!important;
+  line-height:1.2!important;
+}
+#faehigkeiten .beam-node-sub{
+  font-family:'IBM Plex Mono',monospace!important;
+  font-size:8.5px!important;
+  color:rgba(42, 42, 42, .52)!important;
+  letter-spacing:.02em!important;
+  text-align:center!important;
+  margin-top:2px!important;
 }
 #faehigkeiten .beam-hub-container{
   display:flex!important;
   flex-direction:column!important;
   align-items:center!important;
+  justify-content:center!important;
   z-index:2!important;
   position:relative!important;
   text-align:center!important;
-  margin:0 clamp(8px, 1.5vw, 20px)!important;
+  flex:1!important;
 }
 #faehigkeiten .beam-hub{
   position:relative!important;
-  width:clamp(62px, 5.5vw, 72px)!important;
-  height:clamp(62px, 5.5vw, 72px)!important;
+  width:clamp(64px, 5.8vw, 76px)!important;
+  height:clamp(64px, 5.8vw, 76px)!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
   margin-bottom:8px!important;
+  cursor:default!important;
 }
 #faehigkeiten .beam-hub-inner{
   width:100%!important;
   height:100%!important;
   border-radius:50%!important;
-  background:linear-gradient(135deg, #FAF7F2, #E8DDD0)!important;
-  border:2.2px solid #915851!important;
+  background:linear-gradient(135deg, #FAF7F2, #FFFFFF)!important;
+  border:2.4px solid #915851!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
-  box-shadow:0 8px 24px rgba(145, 88, 81, .28)!important;
+  box-shadow:0 8px 26px rgba(145, 88, 81, .28)!important;
   color:#915851!important;
   position:relative!important;
   z-index:2!important;
   transition:transform .3s ease!important;
 }
-#faehigkeiten .beam-hub:hover .beam-hub-inner{transform:scale(1.05)!important}
+#faehigkeiten .beam-hub:hover .beam-hub-inner{transform:scale(1.06)!important}
 #faehigkeiten .beam-hub-pulse{
   position:absolute!important;
   inset:-10px!important;
@@ -694,7 +722,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 #faehigkeiten .beam-hub-text strong{
   display:block!important;
   font-family:'Jost',sans-serif!important;
-  font-size:clamp(11px, .95vw, 13px)!important;
+  font-size:clamp(12px, 1vw, 14px)!important;
   font-weight:700!important;
   color:#2a2a2a!important;
   text-transform:uppercase!important;
@@ -710,7 +738,7 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   margin-top:3px!important;
 }
 
-/* ── Kachel 2: Meilensteine (Magic UI AnimatedList) ── */
+/* ── Kachel 2: Kommunikation & Projektführung (Magic UI AnimatedList) ── */
 #faehigkeiten .bento-card-milestones{grid-column:span 5!important}
 #faehigkeiten .anim-list-wrapper{
   position:relative!important;
@@ -737,14 +765,14 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 #faehigkeiten .anim-item{
   display:flex!important;
   align-items:center!important;
-  gap:12px!important;
+  gap:13px!important;
   background:#FFFFFF!important;
   border-radius:12px!important;
-  padding:11px 14px!important;
+  padding:12px 15px!important;
   box-shadow:0 2px 8px rgba(42, 42, 42, .05)!important;
   border:1px solid rgba(42, 42, 42, .06)!important;
   transition:transform .45s cubic-bezier(.16, 1, .3, 1),opacity .45s ease,max-height .45s ease,margin .45s ease,padding .45s ease!important;
-  max-height:80px!important;
+  max-height:85px!important;
   box-sizing:border-box!important;
   overflow:hidden!important;
 }
@@ -770,41 +798,36 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   margin-bottom:0!important;
 }
 #faehigkeiten .anim-item-icon{
-  width:36px!important;
-  height:36px!important;
-  border-radius:9px!important;
+  width:38px!important;
+  height:38px!important;
+  border-radius:10px!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
   flex-shrink:0!important;
-  background:rgba(145, 88, 81, .09)!important;
+  background:rgba(145, 88, 81, .1)!important;
   color:#915851!important;
 }
 #faehigkeiten .anim-item-content{flex:1!important;min-width:0!important}
 #faehigkeiten .anim-item-title{
   font-family:'Jost',sans-serif!important;
-  font-size:13px!important;
-  font-weight:600!important;
+  font-size:13.5px!important;
+  font-weight:700!important;
   color:#2a2a2a!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
+  text-transform:uppercase!important;
+  letter-spacing:.03em!important;
   line-height:1.2!important;
   margin-bottom:2px!important;
 }
 #faehigkeiten .anim-item-sub{
-  font-family:'IBM Plex Mono',monospace!important;
-  font-size:10px!important;
-  color:rgba(42, 42, 42, .55)!important;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
+  font-size:11.5px!important;
+  color:rgba(42, 42, 42, .68)!important;
+  line-height:1.4!important;
 }
 #faehigkeiten .anim-item-meta{
   display:flex!important;
   flex-direction:column!important;
   align-items:flex-end!important;
-  gap:4px!important;
   flex-shrink:0!important;
 }
 #faehigkeiten .anim-item-badge{
@@ -812,21 +835,14 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   font-size:9px!important;
   font-weight:600!important;
   text-transform:uppercase!important;
-  letter-spacing:.06em!important;
-  padding:2px 8px!important;
+  letter-spacing:.08em!important;
+  padding:3px 9px!important;
   border-radius:12px!important;
-}
-#faehigkeiten .badge-success{background:rgba(74, 104, 88, .12)!important;color:#3d5941!important}
-#faehigkeiten .badge-accent{background:rgba(145, 88, 81, .12)!important;color:#915851!important}
-#faehigkeiten .badge-warm{background:rgba(184, 92, 56, .12)!important;color:#B85C38!important}
-#faehigkeiten .badge-neutral{background:rgba(42, 42, 42, .08)!important;color:#2a2a2a!important}
-#faehigkeiten .anim-item-time{
-  font-family:'IBM Plex Mono',monospace!important;
-  font-size:9.5px!important;
-  color:rgba(42, 42, 42, .45)!important;
+  background:rgba(145, 88, 81, .09)!important;
+  color:#915851!important;
 }
 
-/* ── Kachel 3: Entwurf & Konzept (4 Architectural Quadrants) ── */
+/* ── Kachel 3: Entwurf & Raumplanung (Minimalistisch ohne Nummern & Badges) ── */
 #faehigkeiten .bento-card-concepts{grid-column:span 5!important}
 #faehigkeiten .concepts-grid{
   display:grid!important;
@@ -836,73 +852,56 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   align-items:stretch!important;
 }
 #faehigkeiten .concept-item{
-  background:rgba(255, 255, 255, .55)!important;
+  background:rgba(255, 255, 255, .6)!important;
   border:1px solid rgba(42, 42, 42, .08)!important;
-  border-radius:10px!important;
-  padding:14px 16px!important;
+  border-radius:12px!important;
+  padding:clamp(16px, 1.8vw, 22px)!important;
   display:flex!important;
   flex-direction:column!important;
-  justify-content:space-between!important;
+  justify-content:center!important;
+  gap:6px!important;
   transition:all .25s ease!important;
 }
 #faehigkeiten .concept-item:hover{
   background:#FFFFFF!important;
   transform:translateY(-2px)!important;
   box-shadow:0 6px 18px rgba(0, 0, 0, .06)!important;
-  border-color:rgba(145, 88, 81, .3)!important;
-}
-#faehigkeiten .concept-item-num{
-  font-family:'IBM Plex Mono',monospace!important;
-  font-size:11px!important;
-  font-weight:600!important;
-  color:#915851!important;
-  margin-bottom:4px!important;
+  border-color:rgba(145, 88, 81, .35)!important;
 }
 #faehigkeiten .concept-item h4{
   font-family:'Jost',sans-serif!important;
-  font-size:13px!important;
+  font-size:clamp(13px, 1.05vw, 14.5px)!important;
   font-weight:700!important;
   color:#2a2a2a!important;
   text-transform:uppercase!important;
   letter-spacing:.04em!important;
-  margin:0 0 6px!important;
+  margin:0!important;
   line-height:1.25!important;
 }
 #faehigkeiten .concept-item p{
-  font-size:11.5px!important;
-  line-height:1.45!important;
-  color:rgba(42, 42, 42, .72)!important;
-  margin:0 0 10px!important;
-}
-#faehigkeiten .concept-item-tag{
-  align-self:flex-start!important;
-  font-family:'IBM Plex Mono',monospace!important;
-  font-size:9px!important;
-  font-weight:600!important;
-  text-transform:uppercase!important;
-  letter-spacing:.08em!important;
-  color:#915851!important;
-  background:rgba(145, 88, 81, .08)!important;
-  padding:3px 8px!important;
-  border-radius:20px!important;
+  font-size:clamp(11px, .9vw, 12px)!important;
+  line-height:1.5!important;
+  color:rgba(42, 42, 42, .7)!important;
+  margin:0!important;
 }
 
-/* ── Kachel 4: Material & Atmosphäre (Das Moodboard Marquee) ── */
+/* ── Kachel 4: Material & Atmosphäre (Sattes Moodboard Marquee) ── */
 #faehigkeiten .bento-card-materials{grid-column:span 7!important}
 #faehigkeiten .material-marquee-outer{
   position:relative!important;
   overflow:hidden!important;
   width:100%!important;
-  padding:10px 0!important;
-  margin-bottom:16px!important;
-  mask-image:linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)!important;
-  -webkit-mask-image:linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)!important;
+  padding:14px 0!important;
+  margin-top:auto!important;
+  margin-bottom:auto!important;
+  mask-image:linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%)!important;
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%)!important;
 }
 #faehigkeiten .material-marquee-track{
   display:flex!important;
-  gap:14px!important;
+  gap:18px!important;
   width:max-content!important;
-  animation:marqueeScroll 25s linear infinite!important;
+  animation:marqueeScroll 26s linear infinite!important;
 }
 #faehigkeiten .material-marquee-track:hover{animation-play-state:paused!important}
 @keyframes marqueeScroll{
@@ -910,78 +909,26 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
   100%{transform:translateX(-50%)}
 }
 #faehigkeiten .material-tile{
-  flex:0 0 135px!important;
-  width:135px!important;
-  height:135px!important;
+  flex:0 0 clamp(200px, 19vw, 250px)!important;
+  width:clamp(200px, 19vw, 250px)!important;
+  height:clamp(200px, 19vw, 250px)!important;
   aspect-ratio:1/1!important;
-  border-radius:14px!important;
+  border-radius:16px!important;
   position:relative!important;
   overflow:hidden!important;
-  box-shadow:0 4px 14px rgba(0, 0, 0, .12)!important;
-  border:1px solid rgba(255, 255, 255, .4)!important;
+  box-shadow:0 6px 20px rgba(0, 0, 0, .12)!important;
+  border:1px solid rgba(255, 255, 255, .45)!important;
   cursor:pointer!important;
 }
-#faehigkeiten .material-tile-img{
-  width:100%!important;
-  height:100%!important;
-  overflow:hidden!important;
-}
-#faehigkeiten .material-tile-img img{
+#faehigkeiten .material-tile img{
   width:100%!important;
   height:100%!important;
   object-fit:cover!important;
   aspect-ratio:1/1!important;
   display:block!important;
-  transition:transform .4s cubic-bezier(.16, 1, .3, 1)!important;
+  transition:transform .45s cubic-bezier(.16, 1, .3, 1)!important;
 }
-#faehigkeiten .material-tile:hover .material-tile-img img{transform:scale(1.08)!important}
-#faehigkeiten .material-tile-badge{
-  position:absolute!important;
-  bottom:8px!important;
-  left:8px!important;
-  right:8px!important;
-  background:rgba(26, 23, 20, .68)!important;
-  backdrop-filter:blur(8px)!important;
-  -webkit-backdrop-filter:blur(8px)!important;
-  border:1px solid rgba(255, 255, 255, .22)!important;
-  border-radius:8px!important;
-  padding:4px 6px!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  gap:5px!important;
-  color:#FFFFFF!important;
-  font-family:'Jost',sans-serif!important;
-  font-size:11px!important;
-  font-weight:500!important;
-  letter-spacing:.02em!important;
-  transition:background .3s ease!important;
-}
-#faehigkeiten .material-tile:hover .material-tile-badge{background:rgba(26, 23, 20, .88)!important}
-#faehigkeiten .material-tile-dot{
-  width:5px!important;
-  height:5px!important;
-  border-radius:50%!important;
-  background:#c47a72!important;
-  flex-shrink:0!important;
-}
-#faehigkeiten .materials-footer-tags{
-  display:flex!important;
-  flex-wrap:wrap!important;
-  gap:8px!important;
-  margin-top:auto!important;
-}
-#faehigkeiten .materials-footer-tags span{
-  font-family:'IBM Plex Mono',monospace!important;
-  font-size:10px!important;
-  letter-spacing:.06em!important;
-  text-transform:uppercase!important;
-  color:#915851!important;
-  background:rgba(145, 88, 81, .08)!important;
-  border:1px solid rgba(145, 88, 81, .25)!important;
-  border-radius:30px!important;
-  padding:5px 12px!important;
-}
+#faehigkeiten .material-tile:hover img{transform:scale(1.06)!important}
 
 /* ── Bento Responsive Queries ── */
 @media(max-width:1024px){
@@ -992,8 +939,9 @@ h3{font-family:Jost,sans-serif;font-weight:500;font-size:24px;text-transform:upp
 }
 @media(max-width:640px){
   #faehigkeiten .concepts-grid{grid-template-columns:1fr!important}
-  #faehigkeiten .material-tile{flex:0 0 115px!important;width:115px!important;height:115px!important}
+  #faehigkeiten .material-tile{flex:0 0 160px!important;width:160px!important;height:160px!important}
   #faehigkeiten .beam-stage{padding:10px 4px!important}
+  #faehigkeiten .beam-step-badge{font-size:8.5px!important}
 }
 
 /* Werdegang → beige + vertical scrollable dark cards */

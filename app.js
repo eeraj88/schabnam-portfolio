@@ -169,59 +169,8 @@ const materialSamples = [
   { name: "Eiche Natur", src: "assets/materials/eiche.jpg" },
   { name: "Terrazzo Fein", src: "assets/materials/terrazzo.jpg" },
   { name: "Akustikpaneel", src: "assets/materials/akustikpaneel.webp" },
-  { name: "Warmes Licht 2700K", src: "assets/materials/warm-light.jpg" },
+  { name: "Warmes Licht", src: "assets/materials/warm-light.jpg" },
   { name: "Stoff Bouclé", src: "assets/materials/stoff.jpg" }
-];
-
-const milestonesData = [
-  {
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="9 15 12 18 15 12"></polyline></svg>',
-    title: "Ausführungsplan: Freigabe Bauherr",
-    project: "Hotelzimmer · Phase AUS 2",
-    time: "gerade eben",
-    badge: "Freigabe",
-    badgeType: "success"
-  },
-  {
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>',
-    title: "Materialmuster: Terrazzo freigegeben",
-    project: "Café Modernisierung · BAA",
-    time: "vor 14 Min",
-    badge: "Bemustert",
-    badgeType: "accent"
-  },
-  {
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>',
-    title: "Detailzeichnung: M 1:20 exportiert",
-    project: "Functional Furniture · Nische",
-    time: "vor 42 Min",
-    badge: "CAD Plan",
-    badgeType: "neutral"
-  },
-  {
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>',
-    title: "Lichtberechnung: 2700K abgestimmt",
-    project: "Sparkasse Renovation",
-    time: "vor 1 Std",
-    badge: "Lichtkonzept",
-    badgeType: "warm"
-  },
-  {
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>',
-    title: "Twinmotion: 3D-Walkthrough gerendert",
-    project: "Creative Quarter · Entwurf",
-    time: "vor 3 Std",
-    badge: "Rendering",
-    badgeType: "accent"
-  },
-  {
-    icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
-    title: "Bauphysik: Schichtaufbau verifiziert",
-    project: "Dachsanierung · Hanf & Schilf",
-    time: "gestern",
-    badge: "Ubakus 0.18",
-    badgeType: "success"
-  }
 ];
 
 function initMaterialMarquee() {
@@ -230,16 +179,37 @@ function initMaterialMarquee() {
   var list = materialSamples.concat(materialSamples);
   track.innerHTML = list.map(function(m) {
     return '<div class="material-tile" title="' + m.name + '">' +
-      '<div class="material-tile-img">' +
-        '<img src="' + m.src + '" alt="' + m.name + '" loading="lazy">' +
-      '</div>' +
-      '<div class="material-tile-badge">' +
-        '<span class="material-tile-dot"></span>' +
-        '<span class="material-tile-name">' + m.name + '</span>' +
-      '</div>' +
+      '<img src="' + m.src + '" alt="' + m.name + '" loading="lazy">' +
     '</div>';
   }).join('');
 }
+
+const kommMilestones = [
+  {
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>',
+    title: "Präsentationen & Pitch",
+    desc: "Visuelle Aufbereitung für Auftraggeber & Bauherren",
+    category: "Präsentation"
+  },
+  {
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>',
+    title: "Projektkoordination",
+    desc: "Schnittstelle zwischen Planung, Handwerk & Team",
+    category: "Koordination"
+  },
+  {
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+    title: "Teamwork & Führung",
+    desc: "Empathische Zusammenarbeit, HR & Recruiting-Erfahrung",
+    category: "Leadership"
+  },
+  {
+    icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>',
+    title: "Kundenberatung",
+    desc: "Bedürfnisanalyse und individuelle Raumkonzepte",
+    category: "Beratung"
+  }
+];
 
 var milestoneTimer = null;
 function initAnimatedList() {
@@ -258,23 +228,22 @@ function initAnimatedList() {
       '<div class="anim-item-icon">' + data.icon + '</div>' +
       '<div class="anim-item-content">' +
         '<div class="anim-item-title">' + data.title + '</div>' +
-        '<div class="anim-item-sub">' + data.project + '</div>' +
+        '<div class="anim-item-sub">' + data.desc + '</div>' +
       '</div>' +
       '<div class="anim-item-meta">' +
-        '<span class="anim-item-badge badge-' + data.badgeType + '">' + data.badge + '</span>' +
-        '<span class="anim-item-time">' + data.time + '</span>' +
+        '<span class="anim-item-badge">' + data.category + '</span>' +
       '</div>';
     return div;
   }
 
   for (var i = 2; i >= 0; i--) {
-    feed.appendChild(createItemEl(milestonesData[i], false));
+    feed.appendChild(createItemEl(kommMilestones[i], false));
   }
   curIndex = 3;
 
   function addNextItem() {
     if (isPaused) return;
-    var data = milestonesData[curIndex % milestonesData.length];
+    var data = kommMilestones[curIndex % kommMilestones.length];
     curIndex++;
 
     var newEl = createItemEl(data, true);
@@ -302,14 +271,14 @@ function initAnimatedList() {
   }
 
   if (milestoneTimer) clearInterval(milestoneTimer);
-  milestoneTimer = setInterval(addNextItem, 3200);
+  milestoneTimer = setInterval(addNextItem, 3400);
 }
 
 function updateAnimatedBeams() {
   var stage = document.getElementById("beam-stage");
   var svg = document.getElementById("beam-svg");
-  var hub = document.getElementById("node-hub");
-  if (!stage || !svg || !hub) return;
+  var centerTarget = document.getElementById("node-tm");
+  if (!stage || !svg || !centerTarget) return;
 
   var sRect = stage.getBoundingClientRect();
   if (sRect.width === 0 || sRect.height === 0) return;
@@ -320,11 +289,12 @@ function updateAnimatedBeams() {
   svg.setAttribute("width", w);
   svg.setAttribute("height", h);
 
-  var hRect = hub.getBoundingClientRect();
-  var hubX = (hRect.left - sRect.left) + (hRect.width / 2);
-  var hubY = (hRect.top - sRect.top) + (hRect.height / 2);
+  var cIcon = centerTarget.querySelector(".beam-hub-inner") || centerTarget.querySelector(".beam-node-icon") || centerTarget;
+  var cRect = cIcon.getBoundingClientRect();
+  var cX = (cRect.left - sRect.left) + (cRect.width / 2);
+  var cY = (cRect.top - sRect.top) + (cRect.height / 2);
 
-  var leftNodes = ["node-vw", "node-su", "node-tm"];
+  var leftNodes = ["node-vw", "node-su"];
   var rightNodes = ["node-ps", "node-id"];
 
   svg.querySelectorAll(".beam-track, .beam-active").forEach(function(p) { p.remove(); });
@@ -337,12 +307,12 @@ function updateAnimatedBeams() {
     var nx = (nRect.left - sRect.left) + (nRect.width / 2);
     var ny = (nRect.top - sRect.top) + (nRect.height / 2);
 
-    var dx = hubX - nx;
+    var dx = cX - nx;
     var cp1x = nx + dx * 0.46;
     var cp1y = ny;
-    var cp2x = hubX - dx * 0.46;
-    var cp2y = hubY;
-    var d = "M " + nx + " " + ny + " C " + cp1x + " " + cp1y + ", " + cp2x + " " + cp2y + ", " + hubX + " " + hubY;
+    var cp2x = cX - dx * 0.46;
+    var cp2y = cY;
+    var d = "M " + nx + " " + ny + " C " + cp1x + " " + cp1y + ", " + cp2x + " " + cp2y + ", " + cX + " " + cY;
 
     var track = document.createElementNS("http://www.w3.org/2000/svg", "path");
     track.setAttribute("d", d);
@@ -352,7 +322,7 @@ function updateAnimatedBeams() {
     var beam = document.createElementNS("http://www.w3.org/2000/svg", "path");
     beam.setAttribute("d", d);
     beam.setAttribute("class", "beam-active");
-    beam.style.animationDelay = (idx * 0.45) + "s";
+    beam.style.animationDelay = (idx * 0.5) + "s";
     svg.appendChild(beam);
   });
 
@@ -364,12 +334,12 @@ function updateAnimatedBeams() {
     var nx = (nRect.left - sRect.left) + (nRect.width / 2);
     var ny = (nRect.top - sRect.top) + (nRect.height / 2);
 
-    var dx = nx - hubX;
-    var cp1x = hubX + dx * 0.46;
-    var cp1y = hubY;
+    var dx = nx - cX;
+    var cp1x = cX + dx * 0.46;
+    var cp1y = cY;
     var cp2x = nx - dx * 0.46;
     var cp2y = ny;
-    var d = "M " + hubX + " " + hubY + " C " + cp1x + " " + cp1y + ", " + cp2x + " " + cp2y + ", " + nx + " " + ny;
+    var d = "M " + cX + " " + cY + " C " + cp1x + " " + cp1y + ", " + cp2x + " " + cp2y + ", " + nx + " " + ny;
 
     var track = document.createElementNS("http://www.w3.org/2000/svg", "path");
     track.setAttribute("d", d);
@@ -379,7 +349,7 @@ function updateAnimatedBeams() {
     var beam = document.createElementNS("http://www.w3.org/2000/svg", "path");
     beam.setAttribute("d", d);
     beam.setAttribute("class", "beam-active");
-    beam.style.animationDelay = ((idx + 3) * 0.42) + "s";
+    beam.style.animationDelay = ((idx + 2) * 0.5) + "s";
     svg.appendChild(beam);
   });
 }
